@@ -1,19 +1,19 @@
 name: Get Instagram Token
 on:
   workflow_dispatch:
-      inputs:
-            code:
-                    description: 'OAuth code'
-                            required: true
-                            jobs:
-                              get-token:
-                                  runs-on: ubuntu-latest
-                                      steps:
-                                            - name: Exchange code for token
-                                                    run: |
-                                                              RESP=$(curl -s -X POST https://api.instagram.com/oauth/access_token -F client_id=1488332789082173 -F client_secret=35a53c41bc821a97c45ce7f10714c69f -F grant_type=authorization_code -F redirect_uri=https://developers.facebook.com/instagram/token_generator/oauth/ -F "code=${{ github.event.inputs.code }}")
-                                                                        echo "RESP=$RESP"
-                                                                                  SHORT=$(echo "$RESP" | python3 -c "import sys,json; print(json.load(sys.stdin).get('access_token','ERR'))")
-                                                                                            echo "SHORT=$SHORT"
-                                                                                                      LONG=$(curl -s "https://graph.facebook.com/v19.0/oauth/access_token?grant_type=ig_exchange_token&client_secret=35a53c41bc821a97c45ce7f10714c69f&access_token=$SHORT")
-                                                                                                                echo "LONG=$LONG"
+    inputs:
+      code:
+        description: OAuth code
+        required: true
+jobs:
+  get-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exchange code for token
+        run: |
+          RESP=$(curl -s -X POST https://api.instagram.com/oauth/access_token -F client_id=1488332789082173 -F client_secret=35a53c41bc821a97c45ce7f10714c69f -F grant_type=authorization_code -F redirect_uri=https://developers.facebook.com/instagram/token_generator/oauth/ -F "code=${{ github.event.inputs.code }}")
+          echo "RESP=$RESP"
+          SHORT=$(echo "$RESP" | python3 -c "import sys,json; print(json.load(sys.stdin).get('access_token','ERR'))")
+          echo "SHORT=$SHORT"
+          LONG=$(curl -s "https://graph.facebook.com/v19.0/oauth/access_token?grant_type=ig_exchange_token&client_secret=35a53c41bc821a97c45ce7f10714c69f&access_token=$SHORT")
+          echo "LONG=$LONG"

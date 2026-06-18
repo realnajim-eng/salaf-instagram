@@ -2,18 +2,16 @@ name: Get Instagram Token
 on:
   workflow_dispatch:
     inputs:
-      code:
-        description: OAuth code
+      short_token:
+        description: Short-lived Instagram token
         required: true
 jobs:
   get-token:
     runs-on: ubuntu-latest
     steps:
-      - name: Exchange code for token
+      - name: Exchange for long-lived token
         run: |
-          RESP=$(curl -s -X POST https://api.instagram.com/oauth/access_token -F client_id=1488332789082173 -F client_secret=REDACTED -F grant_type=authorization_code -F redirect_uri=https://localhost -F "code=${{ github.event.inputs.code }}")
-          echo "RESP=$RESP"
-          SHORT=$(echo "$RESP" | python3 -c "import sys,json; print(json.load(sys.stdin).get('access_token','ERR'))")
-          echo "SHORT=$SHORT"
+          SHORT="${{ github.event.inputs.short_token }}"
+          echo "SHORT received OK"
           LONG=$(curl -s "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=REDACTED&access_token=$SHORT")
-          echo "LONG=$LONG"
+          echo "LONG_RESP=$LONG"

@@ -6,22 +6,26 @@ import requests
 ACCESS_TOKEN = os.environ["INSTAGRAM_ACCESS_TOKEN"]
 USER_ID = os.environ["INSTAGRAM_USER_ID"]
 
-with open("captions.json", "r", encoding="utf-8") as f:
-    captions = json.load(f)
-
 with open("tracker.json", "r", encoding="utf-8") as f:
     tracker = json.load(f)
 
-index = tracker.get("last_index", -1) + 1
-if index >= len(captions):
-    index = 0
+# Priorité : légende générée par Claude API (fetch_caption.py)
+if os.path.exists("daily_caption.txt"):
+    with open("daily_caption.txt", "r", encoding="utf-8") as f:
+        caption = f.read().strip()
+    print("Légende chargée depuis Claude API")
+else:
+    with open("captions.json", "r", encoding="utf-8") as f:
+        captions = json.load(f)
+    index = tracker.get("last_index", -1) + 1
+    if index >= len(captions):
+        index = 0
+    caption = captions[index]
+    print(f"Légende chargée depuis captions.json (index {index})")
 
-caption = captions[index]
-
-# Image islamique publique (JPEG valide approuve par Instagram)
 IMAGE_URL = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=1080&fit=crop&auto=format"
 
-# Etape 1: Creer le container media
+print("Etape 1 : Creation du container media...")
 create_url = f"https://graph.instagram.com/v21.0/{USER_ID}/media"
 create_resp = requests.post(create_url, data={
     "image_url": IMAGE_URL,
@@ -29,33 +33,32 @@ create_resp = requests.post(create_url, data={
     "access_token": ACCESS_TOKEN
 })
 create_data = create_resp.json()
-print("Create media response:", create_data)
+print("Reponse :", create_data)
 
 if "id" not in create_data:
-    raise Exception(f"Erreur creation media: {create_data}")
+    raise Exception(f"Erreur creation media : {create_data}")
 
 creation_id = create_data["id"]
 
-# Attendre que le media soit pret (Instagram a besoin de quelques secondes)
-print("Attente de 10 secondes pour que le media soit pret...")
+print("Attente de 10 secondes...")
 time.sleep(10)
 
-# Etape 2: Publier le media
+print("Etape 2 : Publication...")
 publish_url = f"https://graph.instagram.com/v21.0/{USER_ID}/media_publish"
 publish_resp = requests.post(publish_url, data={
     "creation_id": creation_id,
     "access_token": ACCESS_TOKEN
 })
 publish_data = publish_resp.json()
-print("Publish response:", publish_data)
+print("Reponse :", publish_data)
 
 if "id" not in publish_data:
-    raise Exception(f"Erreur publication: {publish_data}")
+    raise Exception(f"Erreur publication : {publish_data}")
 
-print(f"Publication reussie ! Post ID: {publish_data['id']}")
-print(f"Caption publiee: {caption[:80]}...")
+print(f"Publication reussie ! Post ID : {publish_data['id']}")
+print(f"Legende : {caption[:80]}...")
 
-# Mettre a jour le tracker
+index = tracker.get("last_index", -1) + 1
 tracker["last_index"] = index
 with open("tracker.json", "w", encoding="utf-8") as f:
     json.dump(tracker, f, ensure_ascii=False, indent=2)

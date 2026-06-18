@@ -54,13 +54,23 @@ message = client.messages.create(
 
 response = message.content[0].text
 
-start = response.find("---JSON---")
-end = response.find("---END_JSON---")
-if start != -1 and end != -1:
-    raw = response[start + len("---JSON---"):end].strip()
-    data = json.loads(raw)
+# Accepte ---JSON--- / ---END_JSON--- ou ```json ... ``` ou JSON brut
+if "---JSON---" in response and "---END_JSON---" in response:
+    start = response.find("---JSON---") + len("---JSON---")
+    end   = response.find("---END_JSON---")
+    raw   = response[start:end].strip()
+elif "```json" in response:
+    start = response.find("```json") + len("```json")
+    end   = response.find("```", start)
+    raw   = response[start:end].strip()
+elif "```" in response:
+    start = response.find("```") + 3
+    end   = response.find("```", start)
+    raw   = response[start:end].strip()
 else:
-    raise ValueError(f"Format inattendu :\n{response}")
+    raw = response.strip()
+
+data = json.loads(raw)
 
 with open("daily_quote.json", "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)

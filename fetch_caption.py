@@ -37,11 +37,11 @@ Règles absolues :
 Réponds UNIQUEMENT avec ce format exact, sans aucun texte supplémentaire :
 
 ---CAPTION---
-📚 Parole de [Prénom complet du Salaf] — [رَضِيَ اللَّهُ عَنْهُ si Compagnon / رَحِمَهُ اللَّهُ si Tabi'i ou savant]
+Parole de [Prénom complet du Salaf] — [رَضِيَ اللَّهُ عَنْهُ si Compagnon / رَحِمَهُ اللَّهُ si Tabi'i ou savant]
 
 « [Traduction française fidèle et complète de la parole] »
 
-📖 Source : [Nom du livre]
+Source : [Nom du livre]
 
 #salaf #sunnah #islam #{theme_lat} #salafiyyah #ilm
 ---END_CAPTION---

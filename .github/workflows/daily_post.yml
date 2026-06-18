@@ -2,8 +2,8 @@ name: Daily Salaf Post
 
 on:
   schedule:
-    - cron: '0 6 * * *'
-  workflow_dispatch:
+    - cron: "0 8 * * *"   # chaque jour à 8h00 UTC (10h Paris)
+  workflow_dispatch:        # déclenchement manuel depuis GitHub
 
 permissions:
   contents: write
@@ -11,6 +11,7 @@ permissions:
 jobs:
   post:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -18,20 +19,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install requests anthropic
+        run: pip install -r requirements.txt
 
-      - name: Generate Salaf quote (Claude API)
+      - name: Generate caption (Claude API)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python fetch_caption.py
 
-      - name: Run post script
+      - name: Generate image & post to Instagram
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
         run: python post_salaf.py
 
       - name: Commit tracker update

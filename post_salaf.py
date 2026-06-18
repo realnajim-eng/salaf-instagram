@@ -36,13 +36,17 @@ print(f"   Source : {source}")
 # ── 2. Générer l'image ──────────────────────────────────────────────────────
 image_path = generate(name=name, quote=quote, source=source, output_path=IMAGE_FILENAME)
 
-# ── 3. Héberger l'image sur 0x0.st (gratuit, anonyme, aucune clé requise) ───
-print("Upload de l'image sur 0x0.st...")
+# ── 3. Héberger l'image sur catbox.moe (gratuit, anonyme, aucune clé) ───────
+print("Upload de l'image sur catbox.moe...")
 with open(image_path, "rb") as f:
-    upload_resp = requests.post("https://0x0.st", files={"file": f})
+    upload_resp = requests.post(
+        "https://catbox.moe/user/api.php",
+        data={"reqtype": "fileupload"},
+        files={"fileToUpload": f},
+    )
 
-if upload_resp.status_code != 200:
-    raise Exception(f"Erreur upload 0x0.st : {upload_resp.text}")
+if upload_resp.status_code != 200 or not upload_resp.text.startswith("https://"):
+    raise Exception(f"Erreur upload catbox.moe : {upload_resp.text}")
 
 image_url = upload_resp.text.strip()
 print(f"URL publique : {image_url}")

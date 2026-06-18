@@ -17,9 +17,9 @@ if index >= len(captions):
 
 caption = captions[index]
 
-# Image publique necessaire pour l'API Instagram
-# On utilise une image placeholder Salaf
-IMAGE_URL = "https://via.placeholder.com/1080x1080.png?text=Paroles+des+Salaf"
+# Image islamique publique sur picsum (JPEG valide, approuve par Instagram)
+# On utilise une image de nature/calme qui correspond a l'ambiance spirituelle
+IMAGE_URL = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=1080&fit=crop&auto=format"
 
 # Etape 1: Creer le container media
 create_url = f"https://graph.instagram.com/v21.0/{USER_ID}/media"

@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import requests
 
 ACCESS_TOKEN = os.environ["INSTAGRAM_ACCESS_TOKEN"]
@@ -17,8 +18,7 @@ if index >= len(captions):
 
 caption = captions[index]
 
-# Image islamique publique sur picsum (JPEG valide, approuve par Instagram)
-# On utilise une image de nature/calme qui correspond a l'ambiance spirituelle
+# Image islamique publique (JPEG valide approuve par Instagram)
 IMAGE_URL = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=1080&fit=crop&auto=format"
 
 # Etape 1: Creer le container media
@@ -35,6 +35,10 @@ if "id" not in create_data:
     raise Exception(f"Erreur creation media: {create_data}")
 
 creation_id = create_data["id"]
+
+# Attendre que le media soit pret (Instagram a besoin de quelques secondes)
+print("Attente de 10 secondes pour que le media soit pret...")
+time.sleep(10)
 
 # Etape 2: Publier le media
 publish_url = f"https://graph.instagram.com/v21.0/{USER_ID}/media_publish"

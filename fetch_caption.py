@@ -3,44 +3,45 @@ import random
 import anthropic
 
 THEMES = [
-    ("الصَّبْر", "patience"),
-    ("الزُّهْد", "zuhd"),
-    ("الْإِخْلَاص", "ikhlas"),
-    ("التَّوَكُّل", "tawakkul"),
-    ("الْخَشْيَة", "khashya"),
-    ("الْعِلْم", "ilm"),
-    ("الْعَمَل الصَّالِح", "amal_salih"),
-    ("الذِّكْر", "dhikr"),
-    ("التَّوْبَة", "tawba"),
-    ("الزُّهْد فِي الدُّنْيَا", "zuhd_dunya"),
-    ("الْبِدْعَة", "bidah"),
-    ("الصِّدْق", "sidq"),
+    ("patience", "patience"),
+    ("zuhd (détachement du monde)", "zuhd"),
+    ("sincérité (ikhlas)", "ikhlas"),
+    ("confiance en Allah (tawakkul)", "tawakkul"),
+    ("crainte d'Allah (khashya)", "khashya"),
+    ("la science et la connaissance", "ilm"),
+    ("les bonnes oeuvres", "amal_salih"),
+    ("le rappel d'Allah (dhikr)", "dhikr"),
+    ("le repentir (tawba)", "tawba"),
+    ("le détachement de la dunya", "zuhd_dunya"),
+    ("l'innovation blâmable (bid'ah)", "bidah"),
+    ("la véracité (sidq)", "sidq"),
+    ("l'humilité", "tawadu"),
+    ("la mort et l'au-delà", "akhira"),
 ]
 
-theme_ar, theme_lat = random.choice(THEMES)
+theme_fr, theme_lat = random.choice(THEMES)
 
 client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
-prompt = f"""أنتَ عالِمٌ متخصِّصٌ في أَقْوَالِ السَّلَفِ الصَّالِح.
+prompt = f"""Tu es un expert en sciences islamiques spécialisé dans les paroles des Salaf al-Salih.
 
-أُريدُ أَثَرًا صَحِيحًا مِن أَقْوَالِ السَّلَفِ (الصَّحَابَة أو التَّابِعِين أو أَتْبَاعِ التَّابِعِين) حَوْلَ مَوْضُوع : {theme_ar}
+Donne-moi une parole authentique d'un Salaf (Compagnon, Tabi'i ou Atba' al-Tabi'in) sur le thème : {theme_fr}
 
-القواعد المُطلَقة :
-- النَّصُّ العربيُّ بِتَشْكِيلٍ كامِلٍ (حَرَكَات كَامِلَة)
-- مَصْدَرٌ حَقِيقِيٌّ مَعْرُوف (اسم الكتاب)
-- لا تَخْتَرِع أَثَرًا — فقط أَثَرٌ مَشْهُورٌ وَمَعْرُوف
-- إِذَا لَمْ تَكُنْ مُتَأَكِّدًا فَاخْتَرْ أَثَرًا مَشْهُورًا جِدًّا
+Règles absolues :
+- Uniquement en FRANÇAIS (pas de texte arabe)
+- Mentionner clairement QUI a dit cette parole (prénom complet du Salaf)
+- Source réelle et connue (nom du livre)
+- Ne jamais inventer — uniquement des paroles vérifiées et connues
+- Si incertain, choisir une parole très célèbre et bien attestée
 
-أعطِني الجوابَ بهذا التنسيق الحَرْفي بِدُونِ أَيِّ نَصٍّ إِضَافِيّ :
+Réponds UNIQUEMENT avec ce format exact, sans aucun texte supplémentaire :
 
 ---CAPTION---
-قَالَ [الاسم] [رَضِيَ اللَّهُ عَنْهُ / رَحِمَهُ اللَّهُ] :
+📚 Parole de [Prénom complet du Salaf] — [رَضِيَ اللَّهُ عَنْهُ si Compagnon / رَحِمَهُ اللَّهُ si Tabi'i ou savant]
 
-«[النص العربي المُشَكَّل]»
+« [Traduction française fidèle et complète de la parole] »
 
-📖 [المصدر]
-
-✨ [Traduction française fidèle]
+📖 Source : [Nom du livre]
 
 #salaf #sunnah #islam #{theme_lat} #salafiyyah #ilm
 ---END_CAPTION---
@@ -64,6 +65,6 @@ else:
 with open("daily_caption.txt", "w", encoding="utf-8") as f:
     f.write(caption)
 
-print(f"✅ Légende générée (thème : {theme_ar})")
-print("─" * 50)
+print(f"✅ Légende générée (thème : {theme_fr})")
+print("-" * 50)
 print(caption)

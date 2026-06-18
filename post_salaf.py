@@ -1,14 +1,11 @@
 import os
 import json
 import time
-import subprocess
 import requests
 from generate_image import generate
 
-ACCESS_TOKEN = os.environ["INSTAGRAM_ACCESS_TOKEN"]
-USER_ID      = os.environ["INSTAGRAM_USER_ID"]
-GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
-REPO         = "realnajim-eng/salaf-instagram"
+ACCESS_TOKEN   = os.environ["INSTAGRAM_ACCESS_TOKEN"]
+USER_ID        = os.environ["INSTAGRAM_USER_ID"]
 IMAGE_FILENAME = "temp_post.jpg"
 
 # ── 1. Charger la citation du jour ──────────────────────────────────────────
@@ -39,45 +36,16 @@ print(f"   Source : {source}")
 # ── 2. Générer l'image ──────────────────────────────────────────────────────
 image_path = generate(name=name, quote=quote, source=source, output_path=IMAGE_FILENAME)
 
-# ── 3. Pousser l'image sur GitHub pour obtenir une URL publique ─────────────
-print("Upload de l'image sur GitHub...")
-import base64
+# ── 3. Héberger l'image sur 0x0.st (gratuit, anonyme, aucune clé requise) ───
+print("Upload de l'image sur 0x0.st...")
 with open(image_path, "rb") as f:
-    b64_content = base64.b64encode(f.read()).decode("utf-8")
+    upload_resp = requests.post("https://0x0.st", files={"file": f})
 
-headers = {
-    "Authorization": f"token {GITHUB_TOKEN}",
-    "Accept": "application/vnd.github+json",
-}
+if upload_resp.status_code != 200:
+    raise Exception(f"Erreur upload 0x0.st : {upload_resp.text}")
 
-# Vérifier si le fichier existe déjà (pour récupérer son SHA)
-check = requests.get(
-    f"https://api.github.com/repos/{REPO}/contents/{IMAGE_FILENAME}",
-    headers=headers,
-)
-sha = check.json().get("sha") if check.status_code == 200 else None
-
-payload = {
-    "message": "temp: image du jour",
-    "content": b64_content,
-}
-if sha:
-    payload["sha"] = sha
-
-upload_resp = requests.put(
-    f"https://api.github.com/repos/{REPO}/contents/{IMAGE_FILENAME}",
-    headers=headers,
-    json=payload,
-)
-if upload_resp.status_code not in (200, 201):
-    raise Exception(f"Erreur upload GitHub : {upload_resp.json()}")
-
-# URL raw publique (CDN GitHub)
-image_url = f"https://raw.githubusercontent.com/{REPO}/main/{IMAGE_FILENAME}?t={int(time.time())}"
+image_url = upload_resp.text.strip()
 print(f"URL publique : {image_url}")
-
-# Attendre que GitHub propage l'image
-time.sleep(5)
 
 # ── 4. Créer le container media Instagram ───────────────────────────────────
 print("Création du container Instagram...")

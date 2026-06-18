@@ -2,6 +2,49 @@ name: Daily Salaf Post
 
 on:
   schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests anthropic
+
+      - name: Generate Salaf quote (Claude API)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python fetch_caption.py
+
+      - name: Run post script
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+        run: python post_salaf.py
+
+      - name: Commit tracker update
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add tracker.json
+          git diff --staged --quiet || git commit -m "Update tracker"
+          git push
+name: Daily Salaf Post
+
+on:
+  schedule:
     - cron: '0 8 * * *'
   workflow_dispatch:
 

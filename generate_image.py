@@ -1,0 +1,109 @@
+import textwrap
+from PIL import Image, ImageDraw, ImageFont
+
+BACKGROUND_PATH = "images/background.jpg"
+OUTPUT_PATH = "output.jpg"
+
+CANVAS_SIZE = 1080
+
+WHITE      = (255, 255, 255, 255)
+WHITE_DIM  = (255, 255, 255, 200)
+GOLD       = (212, 175, 55, 230)
+OVERLAY_BG = (0, 0, 0, 155)
+
+FONT_NAME_SIZE   = 38
+FONT_QUOTE_SIZE  = 38
+FONT_SOURCE_SIZE = 30
+
+FONT_PATHS = [
+    "/System/Library/Fonts/Supplemental/Georgia Bold Italic.ttf",
+    "/System/Library/Fonts/Supplemental/Georgia Italic.ttf",
+    "/System/Library/Fonts/Supplemental/Georgia.ttf",
+    "/Library/Fonts/Arial Bold Italic.ttf",
+    "/Library/Fonts/Arial Italic.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf",
+]
+
+
+def load_font(size):
+    for path in FONT_PATHS:
+        try:
+            return ImageFont.truetype(path, size)
+        except Exception:
+            continue
+    return ImageFont.load_default()
+
+
+def shadow_text(draw, xy, text, font, fill, anchor="mm", offset=2):
+    x, y = xy
+    draw.text((x, y), text, font=font, fill=(0, 0, 0, 255), anchor=anchor,
+              stroke_width=2, stroke_fill=GOLD)
+
+
+def wrap_text(text, font, max_width, draw):
+    words = text.split()
+    lines, current = [], []
+    for word in words:
+        test = " ".join(current + [word])
+        w = draw.textlength(test, font=font)
+        if w <= max_width:
+            current.append(word)
+        else:
+            if current:
+                lines.append(" ".join(current))
+            current = [word]
+    if current:
+        lines.append(" ".join(current))
+    return lines
+
+
+def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH):
+    bg = Image.open(BACKGROUND_PATH).convert("RGBA")
+    bg = bg.resize((CANVAS_SIZE, CANVAS_SIZE), Image.LANCZOS)
+
+    overlay = Image.new("RGBA", bg.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+
+    font_name   = load_font(FONT_NAME_SIZE)
+    font_quote  = load_font(FONT_QUOTE_SIZE)
+    font_source = load_font(FONT_SOURCE_SIZE)
+
+    cx     = CANVAS_SIZE // 2
+    margin = 70
+    max_w  = CANVAS_SIZE - margin * 2
+
+    quote_lines = wrap_text(f'« {quote} »', font_quote, max_w, draw)
+    line_h      = FONT_QUOTE_SIZE + 14
+    quote_h     = len(quote_lines) * line_h
+
+    # Nom — en haut de l'image
+    y_name = 80
+    shadow_text(draw, (cx, y_name), name, font_name, None)
+
+    # Soulignement doré exactement sous le nom
+    name_w = draw.textlength(name, font=font_name)
+    sep_y = y_name + FONT_NAME_SIZE // 2 + 8
+    draw.line([(cx - name_w / 2, sep_y), (cx + name_w / 2, sep_y)], fill=GOLD, width=2)
+
+    # Citation — centrée verticalement
+    quote_total_h = len(quote_lines) * line_h
+    y_q = (CANVAS_SIZE - quote_total_h) // 2 - 180
+    for i, line in enumerate(quote_lines):
+        shadow_text(draw, (cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2), line, font_quote, None)
+
+    # Source — en bas de l'image
+    y_src = CANVAS_SIZE - 70
+    shadow_text(draw, (cx, y_src), f"— {source}", font_source, None)
+
+    result = Image.alpha_composite(bg, overlay).convert("RGB")
+    result.save(output_path, "JPEG", quality=95)
+    print(f"✅ Image générée : {output_path}")
+    return output_path
+
+
+if __name__ == "__main__":
+    generate(
+        name="Ibn al-Qayyim",
+        quote="La patience est de trois sortes : la patience dans l'obéissance à Allah, la patience face aux interdits d'Allah, et la patience face aux décrets douloureux d'Allah.",
+        source="Madarij as-Salikin",
+    )

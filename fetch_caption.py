@@ -1,50 +1,49 @@
 import os
+import json
 import random
 import anthropic
 
 THEMES = [
-    ("patience", "patience"),
-    ("zuhd (détachement du monde)", "zuhd"),
-    ("sincérité (ikhlas)", "ikhlas"),
-    ("confiance en Allah (tawakkul)", "tawakkul"),
-    ("crainte d'Allah (khashya)", "khashya"),
-    ("la science et la connaissance", "ilm"),
-    ("les bonnes oeuvres", "amal_salih"),
-    ("le rappel d'Allah (dhikr)", "dhikr"),
-    ("le repentir (tawba)", "tawba"),
-    ("le détachement de la dunya", "zuhd_dunya"),
-    ("l'innovation blâmable (bid'ah)", "bidah"),
-    ("la véracité (sidq)", "sidq"),
-    ("l'humilité", "tawadu"),
-    ("la mort et l'au-delà", "akhira"),
+    ("الصَّبْر", "patience"),
+    ("الزُّهْد", "zuhd"),
+    ("الْإِخْلَاص", "ikhlas"),
+    ("التَّوَكُّل", "tawakkul"),
+    ("الْخَشْيَة", "khashya"),
+    ("الْعِلْم", "ilm"),
+    ("الْعَمَل الصَّالِح", "amal_salih"),
+    ("الذِّكْر", "dhikr"),
+    ("التَّوْبَة", "tawba"),
+    ("الزُّهْد فِي الدُّنْيَا", "zuhd_dunya"),
+    ("الْبِدْعَة", "bidah"),
+    ("الصِّدْق", "sidq"),
 ]
 
-theme_fr, theme_lat = random.choice(THEMES)
+theme_ar, theme_lat = random.choice(THEMES)
 
 client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
-prompt = f"""Tu es un expert en sciences islamiques spécialisé dans les paroles des Salaf al-Salih.
+prompt = f"""You are a scholar specialised in the sayings of the Salaf as-Salih.
 
-Donne-moi une parole authentique d'un Salaf (Compagnon, Tabi'i ou Atba' al-Tabi'in) sur le thème : {theme_fr}
+I need an authentic narration from the Salaf (Companions, Tabi'in or Atba' at-Tabi'in) on the theme: {theme_ar} ({theme_lat})
 
-Règles absolues :
-- Uniquement en FRANÇAIS (pas de texte arabe)
-- Mentionner clairement QUI a dit cette parole (prénom complet du Salaf)
-- Source réelle et connue (nom du livre)
-- Ne jamais inventer — uniquement des paroles vérifiées et connues
-- Si incertain, choisir une parole très célèbre et bien attestée
+Strict rules:
+- The quote must be a real, well-known saying — do not invent anything
+- "name": scholar's name transliterated in French (e.g. "Ibn al-Qayyim", "Al-Hasan al-Basri")
+- "quote": faithful French translation of the saying
+- "source": book name transliterated in French (e.g. "Madarij as-Salikin")
+- "caption": the full Instagram caption in French with hashtags
 
-Réponds UNIQUEMENT avec ce format exact, sans aucun texte supplémentaire :
+Reply with ONLY this JSON, no extra text:
 
----CAPTION---
-Parole de [Prénom complet du Salaf] — [رَضِيَ اللَّهُ عَنْهُ si Compagnon / رَحِمَهُ اللَّهُ si Tabi'i ou savant]
-
-« [Traduction française fidèle et complète de la parole] »
-
-Source : [Nom du livre]
-
-#salaf #sunnah #islam #{theme_lat} #salafiyyah #ilm
----END_CAPTION---
+---JSON---
+{{
+  "name": "Scholar name in French transliteration",
+  "quote": "Faithful French translation of the saying",
+  "source": "Book name in French transliteration",
+  "theme": "{theme_lat}",
+  "caption": "« [French quote] »\\n\\n— [name] (rahimahullah)\\n📖 [source]\\n\\n#salaf #sunnah #islam #{theme_lat} #salafiyyah #ilm"
+}}
+---END_JSON---
 """
 
 message = client.messages.create(
@@ -55,16 +54,18 @@ message = client.messages.create(
 
 response = message.content[0].text
 
-start = response.find("---CAPTION---")
-end = response.find("---END_CAPTION---")
+start = response.find("---JSON---")
+end = response.find("---END_JSON---")
 if start != -1 and end != -1:
-    caption = response[start + len("---CAPTION---"):end].strip()
+    raw = response[start + len("---JSON---"):end].strip()
+    data = json.loads(raw)
 else:
-    caption = "📚 Paroles des Salaf\n\n#salaf #sunnah #islam #ilm"
+    raise ValueError(f"Format inattendu :\n{response}")
 
-with open("daily_caption.txt", "w", encoding="utf-8") as f:
-    f.write(caption)
+with open("daily_quote.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
 
-print(f"✅ Légende générée (thème : {theme_fr})")
-print("-" * 50)
-print(caption)
+print(f"✅ Citation générée (thème : {theme_ar})")
+print(f"   Nom    : {data['name']}")
+print(f"   Source : {data['source']}")
+print(f"   Extrait: {data['quote'][:60]}…")

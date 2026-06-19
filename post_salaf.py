@@ -6,7 +6,15 @@ from generate_image import generate
 
 ACCESS_TOKEN   = os.environ["INSTAGRAM_ACCESS_TOKEN"]
 USER_ID        = os.environ["INSTAGRAM_USER_ID"]
+GITHUB_TOKEN   = os.environ["GITHUB_TOKEN"]
+REPO           = "realnajim-eng/salaf-instagram"
+RELEASE_TAG    = "daily-images"
 IMAGE_FILENAME = "temp_post.jpg"
+
+GH_HEADERS = {
+    "Authorization": f"token {GITHUB_TOKEN}",
+    "Accept": "application/vnd.github+json",
+}
 
 # ── 1. Charger la citation du jour ──────────────────────────────────────────
 if os.path.exists("daily_quote.json"):
@@ -36,19 +44,46 @@ print(f"   Source : {source}")
 # ── 2. Générer l'image ──────────────────────────────────────────────────────
 image_path = generate(name=name, quote=quote, source=source, output_path=IMAGE_FILENAME)
 
-# ── 3. Héberger l'image sur catbox.moe (gratuit, anonyme, aucune clé) ───────
-print("Upload de l'image sur catbox.moe...")
+# ── 3. Héberger l'image via GitHub Releases (aucun commit, URL publique) ────
+print("Upload de l'image sur GitHub Releases...")
+
+# S'assurer que la release "daily-images" existe
+rel_resp = requests.get(
+    f"https://api.github.com/repos/{REPO}/releases/tags/{RELEASE_TAG}",
+    headers=GH_HEADERS,
+)
+if rel_resp.status_code == 404:
+    rel_resp = requests.post(
+        f"https://api.github.com/repos/{REPO}/releases",
+        headers=GH_HEADERS,
+        json={"tag_name": RELEASE_TAG, "name": "Daily images", "body": "Auto-generated images"},
+    )
+release_id = rel_resp.json()["id"]
+
+# Supprimer l'asset existant s'il y en a un (même nom)
+assets_resp = requests.get(
+    f"https://api.github.com/repos/{REPO}/releases/{release_id}/assets",
+    headers=GH_HEADERS,
+)
+for asset in assets_resp.json():
+    if asset["name"] == IMAGE_FILENAME:
+        requests.delete(
+            f"https://api.github.com/repos/{REPO}/releases/assets/{asset['id']}",
+            headers=GH_HEADERS,
+        )
+
+# Uploader l'image comme asset de la release
 with open(image_path, "rb") as f:
     upload_resp = requests.post(
-        "https://catbox.moe/user/api.php",
-        data={"reqtype": "fileupload"},
-        files={"fileToUpload": f},
+        f"https://uploads.github.com/repos/{REPO}/releases/{release_id}/assets?name={IMAGE_FILENAME}",
+        headers={**GH_HEADERS, "Content-Type": "image/jpeg"},
+        data=f,
     )
 
-if upload_resp.status_code != 200 or not upload_resp.text.startswith("https://"):
-    raise Exception(f"Erreur upload catbox.moe : {upload_resp.text}")
+if upload_resp.status_code not in (200, 201):
+    raise Exception(f"Erreur upload GitHub Release : {upload_resp.json()}")
 
-image_url = upload_resp.text.strip()
+image_url = upload_resp.json()["browser_download_url"]
 print(f"URL publique : {image_url}")
 
 # ── 4. Créer le container media Instagram ───────────────────────────────────

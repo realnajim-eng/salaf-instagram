@@ -33,6 +33,7 @@ jobs:
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python post_salaf.py
 
       - name: Commit tracker update

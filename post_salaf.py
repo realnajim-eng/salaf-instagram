@@ -1,7 +1,9 @@
 import os
 import json
 import time
+import base64
 import requests
+from nacl import encoding, public
 from generate_image import generate
 
 ACCESS_TOKEN   = os.environ["INSTAGRAM_ACCESS_TOKEN"]
@@ -15,6 +17,48 @@ GH_HEADERS = {
     "Authorization": f"token {GITHUB_TOKEN}",
     "Accept": "application/vnd.github+json",
 }
+
+# ── 0. Renouveler le token Instagram (expire tous les 60 jours) ─────────────
+def refresh_instagram_token(token):
+    resp = requests.get(
+        "https://graph.instagram.com/refresh_access_token",
+        params={"grant_type": "ig_refresh_token", "access_token": token},
+    )
+    data = resp.json()
+    if "access_token" in data:
+        new_token = data["access_token"]
+        expires_in = data.get("expires_in", 0)
+        print(f"✅ Token Instagram renouvelé (expire dans {expires_in // 86400} jours)")
+        return new_token
+    else:
+        print(f"⚠️  Renouvellement token échoué : {data}")
+        return token
+
+def update_github_secret(secret_name, secret_value):
+    # Récupérer la clé publique du dépôt
+    key_resp = requests.get(
+        f"https://api.github.com/repos/{REPO}/actions/secrets/public-key",
+        headers=GH_HEADERS,
+    )
+    key_data = key_resp.json()
+    public_key = public.PublicKey(key_data["key"].encode("utf-8"), encoding.Base64Encoder())
+    sealed_box = public.SealedBox(public_key)
+    encrypted = base64.b64encode(sealed_box.encrypt(secret_value.encode("utf-8"))).decode("utf-8")
+
+    put_resp = requests.put(
+        f"https://api.github.com/repos/{REPO}/actions/secrets/{secret_name}",
+        headers=GH_HEADERS,
+        json={"encrypted_value": encrypted, "key_id": key_data["key_id"]},
+    )
+    if put_resp.status_code in (201, 204):
+        print(f"✅ Secret GitHub '{secret_name}' mis à jour")
+    else:
+        print(f"⚠️  Mise à jour secret échouée : {put_resp.status_code} {put_resp.text}")
+
+new_token = refresh_instagram_token(ACCESS_TOKEN)
+if new_token != ACCESS_TOKEN:
+    update_github_secret("INSTAGRAM_ACCESS_TOKEN", new_token)
+    ACCESS_TOKEN = new_token
 
 # ── 1. Charger la citation du jour ──────────────────────────────────────────
 if os.path.exists("daily_quote.json"):

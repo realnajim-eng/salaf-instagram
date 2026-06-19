@@ -3,3 +3,4 @@ pillow
 requests
 arabic-reshaper
 python-bidi
+PyNaCl

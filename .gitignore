@@ -1,0 +1,7 @@
+temp_post.jpg
+output.jpg
+daily_quote.json
+daily_caption.txt
+__pycache__/
+*.pyc
+.DS_Store

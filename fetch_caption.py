@@ -18,8 +18,13 @@ if os.path.exists(QUOTES_DB):
     else:
         tracker = {}
 
+    # Clé anti-répétition : texte arabe si présent, sinon texte français
+    # (les paroles tirées du livre français n'ont pas toujours de quote_ar)
+    def qkey(q):
+        return q.get("quote_ar") or q.get("quote", "")
+
     used = set(tracker.get("used_quotes", []))
-    available = [q for q in db if q["quote_ar"] not in used]
+    available = [q for q in db if qkey(q) not in used]
 
     if not available:
         # Tout a été utilisé — recommencer depuis le début
@@ -29,7 +34,7 @@ if os.path.exists(QUOTES_DB):
     quote_data = random.choice(available)
 
     # Marquer comme utilisé
-    tracker.setdefault("used_quotes", []).append(quote_data["quote_ar"])
+    tracker.setdefault("used_quotes", []).append(qkey(quote_data))
     with open(TRACKER, "w", encoding="utf-8") as f:
         json.dump(tracker, f, ensure_ascii=False, indent=2)
 

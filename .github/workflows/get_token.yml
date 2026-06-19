@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Exchange for long-lived token
+        env:
+          SHORT: ${{ github.event.inputs.short_token }}
+          CLIENT_SECRET: ${{ secrets.INSTAGRAM_CLIENT_SECRET }}
         run: |
-          SHORT="${{ github.event.inputs.short_token }}"
           echo "SHORT received OK"
-          LONG=$(curl -s "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=REDACTED&access_token=$SHORT")
+          LONG=$(curl -s "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=$CLIENT_SECRET&access_token=$SHORT")
           echo "LONG_RESP=$LONG"

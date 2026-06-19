@@ -34,9 +34,8 @@ def load_font(size):
     return ImageFont.load_default()
 
 
-def shadow_text(draw, xy, text, font, fill, anchor="mm", offset=2):
-    x, y = xy
-    draw.text((x, y), text, font=font, fill=(0, 0, 0, 255), anchor=anchor,
+def shadow_text(draw, xy, text, font, anchor="mm"):
+    draw.text(xy, text, font=font, fill=(0, 0, 0, 255), anchor=anchor,
               stroke_width=2, stroke_fill=GOLD)
 
 
@@ -78,7 +77,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH)
 
     # Nom — en haut de l'image
     y_name = 80
-    shadow_text(draw, (cx, y_name), name, font_name, None)
+    shadow_text(draw, (cx, y_name), name, font_name)
 
     # Soulignement doré exactement sous le nom
     name_w = draw.textlength(name, font=font_name)
@@ -89,11 +88,11 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH)
     quote_total_h = len(quote_lines) * line_h
     y_q = (CANVAS_SIZE - quote_total_h) // 2 - 250
     for i, line in enumerate(quote_lines):
-        shadow_text(draw, (cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2), line, font_quote, None)
+        shadow_text(draw, (cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2), line, font_quote)
 
     # Source — en bas de l'image
     y_src = CANVAS_SIZE - 130
-    shadow_text(draw, (cx, y_src), f"— {source}", font_source, None)
+    shadow_text(draw, (cx, y_src), f"— {source}", font_source)
 
     # Compte Instagram — logo + nom
     IG_PURPLE = (131, 58, 180, 255)

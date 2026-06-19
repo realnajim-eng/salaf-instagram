@@ -80,7 +80,12 @@ Thème : {theme_ar} ({theme_lat})
     else:
         raw = response.strip()
 
-    quote_data = json.loads(raw)
+    try:
+        quote_data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        print(f"⚠️  Réponse Claude non parsable : {e}")
+        print(f"   Réponse brute :\n{response}")
+        raise SystemExit("Échec du fallback Claude — citation introuvable")
     print(f"✅ Citation générée via Claude API (thème : {theme_ar})")
 
 # ── 3. Sauvegarder pour post_salaf.py ────────────────────────────────────────

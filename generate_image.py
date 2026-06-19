@@ -115,6 +115,37 @@ def shadow_text(draw, xy, text, font, anchor="mm", stroke_width=GOLD_STROKE):
               stroke_width=stroke_width, stroke_fill=GOLD)
 
 
+# Glyphe ﷺ (ligature « ṣallā Allāhu ʿalayhi wa-sallam ») — absent des polices
+# latines, présent dans Amiri. On le rend avec la police arabe au sein de la ligne.
+PROPHET_GLYPH = "ﷺ"
+
+
+def draw_quote_line(draw, cx, y, line, latin_font, ar_font):
+    """Dessine une ligne de citation centrée ; si elle contient ﷺ, ce glyphe
+    est rendu avec la police arabe, le reste avec la police latine."""
+    if PROPHET_GLYPH not in line:
+        shadow_text(draw, (cx, y), line, latin_font)
+        return
+    # Découper la ligne en segments (texte latin / glyphe ﷺ)
+    segs, buf = [], ""
+    for ch in line:
+        if ch == PROPHET_GLYPH:
+            if buf:
+                segs.append((buf, latin_font))
+                buf = ""
+            segs.append((PROPHET_GLYPH, ar_font))
+        else:
+            buf += ch
+    if buf:
+        segs.append((buf, latin_font))
+    total = sum(draw.textlength(s, font=f) for s, f in segs)
+    x = cx - total / 2
+    for s, f in segs:
+        draw.text((x, y), s, font=f, fill=(0, 0, 0, 255), anchor="lm",
+                  stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+        x += draw.textlength(s, font=f)
+
+
 def text_gold_thin_outline(overlay, cx, cy, text, font_size, ss=3, stroke=2):
     """Texte DORÉ avec un fin contour noir sous-pixel : rendu à ss× avec un
     contour de `stroke` px, puis réduction → contour effectif = stroke/ss px."""
@@ -205,11 +236,13 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     draw.line([(x_left, sep_y), (x_end, sep_y)], fill=(0, 0, 0, 255), width=4)  # contour noir
     draw.line([(x_left, sep_y), (x_end, sep_y)], fill=GOLD, width=2)
 
-    # Citation — centrée verticalement
+    # Citation — centrée verticalement (ﷺ rendu via la police arabe)
+    font_quote_ar = load_arabic_font(FONT_QUOTE_SIZE)
     quote_total_h = len(quote_lines) * line_h
     y_q = (CANVAS_SIZE - quote_total_h) // 2 - 250
     for i, line in enumerate(quote_lines):
-        shadow_text(draw, (cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2), line, font_quote)
+        draw_quote_line(draw, cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2, line,
+                        font_quote, font_quote_ar)
 
     # Source — en bas de l'image (livre seul) ; texte doré, tout petit contour noir
     y_src = CANVAS_SIZE - 130

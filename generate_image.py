@@ -13,6 +13,13 @@ ARABIC_FONT_PATHS = [
     "/Library/Fonts/Arial Unicode.ttf",
 ]
 
+# Police du nom du compte — sans-serif nette, embarquée (rendu identique partout)
+ACCOUNT_FONT_PATHS = [
+    "fonts/Poppins-Bold.ttf",
+    "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+]
+
 # Formule de bénédiction selon la génération
 HONORIFIC_SAHABI = "رَضِيَ اللَّهُ عَنْهُ"   # Compagnon
 HONORIFIC_OTHER  = "رَحِمَهُ اللَّهُ"        # Tābiʿī / Atbāʿ et au-delà
@@ -28,8 +35,9 @@ GOLD_STROKE = 1
 
 WHITE      = (255, 255, 255, 255)
 WHITE_DIM  = (255, 255, 255, 200)
-GOLD       = (212, 175, 55, 230)
-OVERLAY_BG = (0, 0, 0, 155)
+GOLD        = (212, 175, 55, 230)
+GOLD_BRIGHT = (255, 209, 92, 255)   # doré clair et éclatant (nom du compte)
+OVERLAY_BG  = (0, 0, 0, 155)
 
 # Couleurs du dégradé Instagram (violet → rose → orange)
 IG_PURPLE = (131, 58, 180)
@@ -77,6 +85,15 @@ def load_arabic_font(size):
     return ImageFont.load_default()
 
 
+def load_account_font(size):
+    for path in ACCOUNT_FONT_PATHS:
+        try:
+            return ImageFont.truetype(path, size)
+        except Exception:
+            continue
+    return load_font(size)
+
+
 def shape_arabic(text):
     """Met en forme un texte arabe (liaisons + sens droite-à-gauche) pour Pillow."""
     return get_display(arabic_reshaper.reshape(text))
@@ -93,9 +110,22 @@ def book_from_source(source):
     return source.split("—")[0].strip()
 
 
-def shadow_text(draw, xy, text, font, anchor="mm"):
+def shadow_text(draw, xy, text, font, anchor="mm", stroke_width=GOLD_STROKE):
     draw.text(xy, text, font=font, fill=(0, 0, 0, 255), anchor=anchor,
-              stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+              stroke_width=stroke_width, stroke_fill=GOLD)
+
+
+def text_gold_thin_outline(overlay, cx, cy, text, font_size, ss=3, stroke=2):
+    """Texte DORÉ avec un fin contour noir sous-pixel : rendu à ss× avec un
+    contour de `stroke` px, puis réduction → contour effectif = stroke/ss px."""
+    big_font = load_font(font_size * ss)
+    lw, lh = CANVAS_SIZE * ss, (font_size + 24) * ss
+    layer = Image.new("RGBA", (lw, lh), (0, 0, 0, 0))
+    ImageDraw.Draw(layer).text(
+        (lw // 2, lh // 2), text, font=big_font, fill=GOLD,
+        anchor="mm", stroke_width=stroke, stroke_fill=(0, 0, 0, 255))
+    layer = layer.resize((lw // ss, lh // ss), Image.LANCZOS)
+    overlay.alpha_composite(layer, (int(cx - layer.width / 2), int(cy - layer.height / 2)))
 
 
 def gradient_line(draw, x0, x1, y, width, stops):
@@ -181,9 +211,9 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     for i, line in enumerate(quote_lines):
         shadow_text(draw, (cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2), line, font_quote)
 
-    # Source — en bas de l'image (livre seul, sans le site ni le chapitre)
+    # Source — en bas de l'image (livre seul) ; texte doré, tout petit contour noir
     y_src = CANVAS_SIZE - 130
-    shadow_text(draw, (cx, y_src), f"— {book_from_source(source)}", font_source)
+    text_gold_thin_outline(overlay, cx, y_src, f"— {book_from_source(source)}", FONT_SOURCE_SIZE)
 
     # Compte Instagram — logo + nom
     IG_PURPLE = (131, 58, 180, 255)
@@ -193,10 +223,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
 
     ACCOUNT_TEXT = "Un_Jour_Un_Salaf"
     ICON_SIZE    = 23   # taille du logo Instagram
-    try:
-        font_account = ImageFont.truetype("/System/Library/Fonts/Supplemental/Impact.ttf", 23)
-    except Exception:
-        font_account = load_font(21)
+    font_account = load_account_font(22)
 
     y_account = CANVAS_SIZE - 65
 
@@ -222,13 +249,13 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
                 radius=r + stroke, outline=color, width=2,
             )
 
-    # ── Texte avec contour dégradé ───────────────────────────────────────────
+    # ── Texte avec contour dégradé (affiné : 2 couches au lieu de 3) ──────────
     tx = int(x_start + ICON_SIZE + gap)
     ty = y_account
-    for stroke, color in [(3, IG_PURPLE), (2, IG_PINK), (1, IG_ORANGE)]:
+    for stroke, color in [(2, IG_PURPLE)]:
         draw.text((tx, ty), ACCOUNT_TEXT, font=font_account, fill=color, anchor="lm",
                   stroke_width=stroke, stroke_fill=color)
-    draw.text((tx, ty), ACCOUNT_TEXT, font=font_account, fill=BLACK, anchor="lm")
+    draw.text((tx, ty), ACCOUNT_TEXT, font=font_account, fill=GOLD_BRIGHT, anchor="lm")
 
     result = Image.alpha_composite(bg, overlay).convert("RGB")
     result.save(output_path, "JPEG", quality=95)

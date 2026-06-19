@@ -2,7 +2,7 @@ name: Daily Salaf Post
 
 on:
   schedule:
-    - cron: "0 8 * * *"   # chaque jour à 8h00 UTC (10h Paris)
+    - cron: "0 15 * * *"   # chaque jour à 15h00 UTC = 17h Paris (été/CEST ; 16h Paris en hiver/CET)
   workflow_dispatch:        # déclenchement manuel depuis GitHub
 
 permissions:

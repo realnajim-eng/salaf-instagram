@@ -16,39 +16,64 @@ THEMES = [
     ("الزُّهْد فِي الدُّنْيَا", "zuhd_dunya"),
     ("الْبِدْعَة", "bidah"),
     ("الصِّدْق", "sidq"),
+    ("الْخَوْف مِنَ اللَّه", "khawf"),
+    ("الرَّجَاء", "raja"),
+    ("التَّوَاضُع", "tawadu"),
+    ("الصَّمْت وَحِفْظ اللِّسَان", "samt"),
+    ("مُجَاهَدَة النَّفْس", "mujahada"),
+    ("حُبّ الْآخِرَة", "hubb_akhira"),
+    ("الاسْتِغْفَار", "istighfar"),
+    ("الْوَرَع", "wara"),
 ]
 
 theme_ar, theme_lat = random.choice(THEMES)
 
 client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
-prompt = f"""You are a scholar specialised in the sayings of the Salaf as-Salih.
+prompt = f"""Tu es un spécialiste des paroles authentiques des Salaf as-Salih (السَّلَفُ الصَّالِح).
 
-I need an authentic narration from the Salaf (Companions, Tabi'in or Atba' at-Tabi'in) on the theme: {theme_ar} ({theme_lat})
+RÈGLES ABSOLUES (standards aqwal-salaf) :
+1. Cite UNIQUEMENT une parole réelle et vérifiable — JAMAIS d'invention, JAMAIS d'extrapolation
+2. La parole doit venir d'un Compagnon (صَحَابِيّ), Tābiʿī ou Atbāʿ at-Tābiʿīn (3 premières générations uniquement)
+3. Tu dois citer le LIVRE SOURCE exact avec numéro/tome/page réel
+4. Indique la catégorie : مَوْقُوف (Compagnon) ou مَقْطُوع (Tābiʿī/Atbāʿ)
 
-Strict rules:
-- The quote must be a real, well-known saying — do not invent anything
-- "name": scholar's name transliterated in French (e.g. "Ibn al-Qayyim", "Al-Hasan al-Basri")
-- "quote": faithful French translation of the saying
-- "source": book name transliterated in French (e.g. "Madarij as-Salikin")
-- "caption": the full Instagram caption in French with hashtags
+SOURCES CLASSIQUES DE RÉFÉRENCE :
+- الزُّهد — ابن المبارك (181 هـ)
+- الزُّهد — الإمام أحمد (241 هـ)
+- حِلْيَة الأَوْلِيَاء — أبو نُعَيم (430 هـ)
+- جَامِع بَيَان العِلم — ابن عبد البر (463 هـ)
+- الإِبَانَة الكُبْرَى — ابن بطة (387 هـ)
+- شَرْح أُصُول اعتقاد أهل السنة — اللالكائي (418 هـ)
+- مَدَارِج السَّالِكِين — ابن القيم (751 هـ)
+- سِيَر أَعْلَام النُّبَلَاء — الذهبي (748 هـ)
+- الطَّبَقَات الكُبْرَى — ابن سعد (230 هـ)
+- الشَّرِيعَة — الآجري (360 هـ)
+- السُّنَّة — عبد الله بن أحمد (290 هـ)
 
-Reply with ONLY this JSON, no extra text:
+Thème demandé : {theme_ar} ({theme_lat})
+
+Réponds UNIQUEMENT avec ce JSON :
 
 ---JSON---
 {{
-  "name": "Scholar name in French transliteration",
-  "quote": "Faithful French translation of the saying",
-  "source": "Book name in French transliteration",
+  "name_ar": "اسم العالم بالعربية مشكولاً",
+  "name": "Nom translittéré en français (ex: Ibn al-Mubarak, Al-Hasan al-Basri)",
+  "generation": "sahabi | tabiʿi | atba",
+  "category": "mawquf | maqtuʿ",
+  "quote_ar": "النص العربي الأصلي",
+  "quote": "Traduction française fidèle et littérale",
+  "source_ar": "المصدر بالعربية مع الجزء والصفحة أو الرقم",
+  "source": "Nom du livre translittéré en français avec référence (ex: Al-Zuhd li-Ibn al-Mubarak, n° 234)",
   "theme": "{theme_lat}",
-  "caption": "« [French quote] »\\n\\n— [name] (rahimahullah)\\n📖 [source]\\n\\n#salaf #sunnah #islam #{theme_lat} #salafiyyah #ilm"
+  "caption": "« [traduction française] »\\n\\n— [name] (rahimahullah)\\n📖 [source]\\n\\n#salaf #sunnah #islam #{theme_lat} #salafiyyah #ilm #UnJourUnSalaf"
 }}
 ---END_JSON---
 """
 
 message = client.messages.create(
     model="claude-sonnet-4-6",
-    max_tokens=1024,
+    max_tokens=1500,
     messages=[{"role": "user", "content": prompt}],
 )
 
@@ -76,6 +101,7 @@ with open("daily_quote.json", "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
 print(f"✅ Citation générée (thème : {theme_ar})")
-print(f"   Nom    : {data['name']}")
-print(f"   Source : {data['source']}")
-print(f"   Extrait: {data['quote'][:60]}…")
+print(f"   Nom        : {data['name']}")
+print(f"   Génération : {data.get('generation', '?')} | Catégorie : {data.get('category', '?')}")
+print(f"   Source     : {data['source']}")
+print(f"   Extrait    : {data['quote'][:80]}…")

@@ -121,7 +121,8 @@ print(f"   Nom    : {name}")
 print(f"   Source : {source}")
 
 # ── 2. Générer l'image ──────────────────────────────────────────────────────
-image_path = generate(name=name, quote=quote, source=source, output_path=IMAGE_FILENAME)
+image_path = generate(name=name, quote=quote, source=source, output_path=IMAGE_FILENAME,
+                      generation=quote_data.get("generation", ""))
 
 # ── 3. Héberger l'image via GitHub Releases (aucun commit, URL publique) ────
 print("Upload de l'image sur GitHub Releases...")

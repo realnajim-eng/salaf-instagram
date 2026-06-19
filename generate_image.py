@@ -1,19 +1,46 @@
 import textwrap
+import arabic_reshaper
+from bidi.algorithm import get_display
 from PIL import Image, ImageDraw, ImageFont
 
 BACKGROUND_PATH = "images/background.jpg"
 OUTPUT_PATH = "output.jpg"
 
+# Police arabe embarquée (le runner GitHub n'a pas de police arabe système)
+ARABIC_FONT_PATHS = [
+    "fonts/Amiri-Regular.ttf",
+    "/System/Library/Fonts/Supplemental/Baghdad.ttc",
+    "/Library/Fonts/Arial Unicode.ttf",
+]
+
+# Formule de bénédiction selon la génération
+HONORIFIC_SAHABI = "رَضِيَ اللَّهُ عَنْهُ"   # Compagnon
+HONORIFIC_OTHER  = "رَحِمَهُ اللَّهُ"        # Tābiʿī / Atbāʿ et au-delà
+
 CANVAS_SIZE = 1080
+
+# Bordure colorée « cuite » dans background.jpg (~37 px). On rogne ce nombre de
+# pixels sur chaque bord avant redimensionnement pour l'affiner de moitié.
+BORDER_CROP = 18
+
+# Épaisseur du contour doré autour du texte (était 2 ; affiné à 1).
+GOLD_STROKE = 1
 
 WHITE      = (255, 255, 255, 255)
 WHITE_DIM  = (255, 255, 255, 200)
 GOLD       = (212, 175, 55, 230)
 OVERLAY_BG = (0, 0, 0, 155)
 
-FONT_NAME_SIZE   = 38
-FONT_QUOTE_SIZE  = 38
-FONT_SOURCE_SIZE = 30
+# Couleurs du dégradé Instagram (violet → rose → orange)
+IG_PURPLE = (131, 58, 180)
+IG_PINK   = (225, 48, 108)
+IG_ORANGE = (247, 119, 55)
+IG_GRADIENT = [IG_PURPLE, IG_PINK, IG_ORANGE]
+
+FONT_NAME_SIZE      = 38
+FONT_QUOTE_SIZE     = 38
+FONT_SOURCE_SIZE    = 24
+FONT_HONORIFIC_SIZE = 33   # bénédiction arabe sur la ligne du nom
 
 FONT_PATHS = [
     "/System/Library/Fonts/Supplemental/Georgia Bold Italic.ttf",
@@ -34,9 +61,49 @@ def load_font(size):
     return ImageFont.load_default()
 
 
+def load_arabic_font(size):
+    for path in ARABIC_FONT_PATHS:
+        try:
+            return ImageFont.truetype(path, size)
+        except Exception:
+            continue
+    return ImageFont.load_default()
+
+
+def shape_arabic(text):
+    """Met en forme un texte arabe (liaisons + sens droite-à-gauche) pour Pillow."""
+    return get_display(arabic_reshaper.reshape(text))
+
+
+def honorific_for(generation):
+    """Bénédiction à afficher selon la génération du Salaf."""
+    return HONORIFIC_SAHABI if generation == "sahabi" else HONORIFIC_OTHER
+
+
+def book_from_source(source):
+    """Ne garde que le livre (avant le tiret cadratin) ; retire le site
+    (Al-Durar al-Sanniyya / dorar.net) et le chapitre."""
+    return source.split("—")[0].strip()
+
+
 def shadow_text(draw, xy, text, font, anchor="mm"):
     draw.text(xy, text, font=font, fill=(0, 0, 0, 255), anchor=anchor,
-              stroke_width=2, stroke_fill=GOLD)
+              stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+
+
+def gradient_line(draw, x0, x1, y, width, stops):
+    """Trace une ligne horizontale au dégradé de couleurs (stops = liste RGB)."""
+    n = max(1, int(round(x1 - x0)))
+    half = width / 2
+    for i in range(n + 1):
+        t = i / n
+        seg = t * (len(stops) - 1)
+        idx = min(int(seg), len(stops) - 2)
+        f = seg - idx
+        c0, c1 = stops[idx], stops[idx + 1]
+        color = tuple(int(c0[k] + (c1[k] - c0[k]) * f) for k in range(3)) + (255,)
+        x = x0 + i
+        draw.line([(x, y - half), (x, y + half)], fill=color, width=1)
 
 
 def wrap_text(text, font, max_width, draw):
@@ -56,8 +123,12 @@ def wrap_text(text, font, max_width, draw):
     return lines
 
 
-def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH):
+def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
+             generation: str = ""):
     bg = Image.open(BACKGROUND_PATH).convert("RGBA")
+    if BORDER_CROP > 0:
+        w, h = bg.size
+        bg = bg.crop((BORDER_CROP, BORDER_CROP, w - BORDER_CROP, h - BORDER_CROP))
     bg = bg.resize((CANVAS_SIZE, CANVAS_SIZE), Image.LANCZOS)
 
     overlay = Image.new("RGBA", bg.size, (0, 0, 0, 0))
@@ -75,14 +146,27 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH)
     line_h      = FONT_QUOTE_SIZE + 14
     quote_h     = len(quote_lines) * line_h
 
-    # Nom — en haut de l'image
+    # Nom + bénédiction arabe sur LA MÊME LIGNE, centrés comme un groupe
     y_name = 80
-    shadow_text(draw, (cx, y_name), name, font_name)
+    font_hon = load_arabic_font(FONT_HONORIFIC_SIZE)
+    hon_text = shape_arabic(honorific_for(generation))
+    name_w  = draw.textlength(name, font=font_name)
+    hon_w   = draw.textlength(hon_text, font=font_hon)
+    gap     = 16
+    x_left  = cx - (name_w + gap + hon_w) / 2
 
-    # Soulignement doré exactement sous le nom
-    name_w = draw.textlength(name, font=font_name)
-    sep_y = y_name + FONT_NAME_SIZE // 2 + 8
-    draw.line([(cx - name_w / 2, sep_y), (cx + name_w / 2, sep_y)], fill=GOLD, width=2)
+    # Titre (noir + contour doré)
+    draw.text((x_left, y_name), name, font=font_name, fill=(0, 0, 0, 255),
+              anchor="lm", stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+    # Bénédiction arabe — même couleur/style que le titre
+    draw.text((x_left + name_w + gap, y_name), hon_text, font=font_hon, fill=(0, 0, 0, 255),
+              anchor="lm", stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+
+    # Soulignement doré (avec léger contour noir) sous TOUT le titre
+    sep_y = y_name + FONT_NAME_SIZE // 2 + 3
+    x_end = x_left + name_w + gap + hon_w
+    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=(0, 0, 0, 255), width=4)  # contour noir
+    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=GOLD, width=2)
 
     # Citation — centrée verticalement
     quote_total_h = len(quote_lines) * line_h
@@ -90,9 +174,9 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH)
     for i, line in enumerate(quote_lines):
         shadow_text(draw, (cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2), line, font_quote)
 
-    # Source — en bas de l'image
+    # Source — en bas de l'image (livre seul, sans le site ni le chapitre)
     y_src = CANVAS_SIZE - 130
-    shadow_text(draw, (cx, y_src), f"— {source}", font_source)
+    shadow_text(draw, (cx, y_src), f"— {book_from_source(source)}", font_source)
 
     # Compte Instagram — logo + nom
     IG_PURPLE = (131, 58, 180, 255)
@@ -101,11 +185,11 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH)
     BLACK     = (0, 0, 0, 255)
 
     ACCOUNT_TEXT = "Un_Jour_Un_Salaf"
-    ICON_SIZE    = 26   # taille du logo Instagram
+    ICON_SIZE    = 23   # taille du logo Instagram
     try:
-        font_account = ImageFont.truetype("/System/Library/Fonts/Supplemental/Impact.ttf", 26)
+        font_account = ImageFont.truetype("/System/Library/Fonts/Supplemental/Impact.ttf", 23)
     except Exception:
-        font_account = load_font(24)
+        font_account = load_font(21)
 
     y_account = CANVAS_SIZE - 65
 

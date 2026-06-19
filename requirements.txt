@@ -2,3 +2,5 @@ anthropic
 pillow
 requests
 PyNaCl
+arabic-reshaper
+python-bidi

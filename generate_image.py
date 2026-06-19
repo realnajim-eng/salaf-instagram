@@ -62,9 +62,16 @@ def load_font(size):
 
 
 def load_arabic_font(size):
+    # Moteur BASIC forcé : on fait nous-mêmes la mise en forme (reshape +
+    # bidi) dans shape_arabic(). Sans ça, si libraqm est présent (runner
+    # GitHub), Pillow refait le bidi par-dessus et inverse le texte.
+    try:
+        basic = ImageFont.Layout.BASIC
+    except AttributeError:
+        basic = ImageFont.LAYOUT_BASIC
     for path in ARABIC_FONT_PATHS:
         try:
-            return ImageFont.truetype(path, size)
+            return ImageFont.truetype(path, size, layout_engine=basic)
         except Exception:
             continue
     return ImageFont.load_default()

@@ -3,105 +3,86 @@ import json
 import random
 import anthropic
 
-THEMES = [
-    ("الصَّبْر", "patience"),
-    ("الزُّهْد", "zuhd"),
-    ("الْإِخْلَاص", "ikhlas"),
-    ("التَّوَكُّل", "tawakkul"),
-    ("الْخَشْيَة", "khashya"),
-    ("الْعِلْم", "ilm"),
-    ("الْعَمَل الصَّالِح", "amal_salih"),
-    ("الذِّكْر", "dhikr"),
-    ("التَّوْبَة", "tawba"),
-    ("الزُّهْد فِي الدُّنْيَا", "zuhd_dunya"),
-    ("الْبِدْعَة", "bidah"),
-    ("الصِّدْق", "sidq"),
-    ("الْخَوْف مِنَ اللَّه", "khawf"),
-    ("الرَّجَاء", "raja"),
-    ("التَّوَاضُع", "tawadu"),
-    ("الصَّمْت وَحِفْظ اللِّسَان", "samt"),
-    ("مُجَاهَدَة النَّفْس", "mujahada"),
-    ("حُبّ الْآخِرَة", "hubb_akhira"),
-    ("الاسْتِغْفَار", "istighfar"),
-    ("الْوَرَع", "wara"),
-]
+QUOTES_DB = "quotes_salaf.json"
+TRACKER   = "tracker.json"
 
-theme_ar, theme_lat = random.choice(THEMES)
+# ── 1. Charger la base de données dorar.net ──────────────────────────────────
+if os.path.exists(QUOTES_DB):
+    with open(QUOTES_DB, "r", encoding="utf-8") as f:
+        db = json.load(f)
 
-client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    # Éviter de répéter la même citation (suivi via tracker)
+    if os.path.exists(TRACKER):
+        with open(TRACKER, "r", encoding="utf-8") as f:
+            tracker = json.load(f)
+    else:
+        tracker = {}
 
-prompt = f"""Tu es un spécialiste des paroles authentiques des Salaf as-Salih (السَّلَفُ الصَّالِح).
+    used = set(tracker.get("used_quotes", []))
+    available = [q for q in db if q["quote_ar"] not in used]
 
-RÈGLES ABSOLUES (standards aqwal-salaf) :
-1. Cite UNIQUEMENT une parole réelle et vérifiable — JAMAIS d'invention, JAMAIS d'extrapolation
-2. La parole doit venir d'un Compagnon (صَحَابِيّ), Tābiʿī ou Atbāʿ at-Tābiʿīn (3 premières générations uniquement)
-3. Tu dois citer le LIVRE SOURCE exact avec numéro/tome/page réel
-4. Indique la catégorie : مَوْقُوف (Compagnon) ou مَقْطُوع (Tābiʿī/Atbāʿ)
+    if not available:
+        # Tout a été utilisé — recommencer depuis le début
+        available = db
+        tracker["used_quotes"] = []
 
-SOURCES CLASSIQUES DE RÉFÉRENCE :
-- الزُّهد — ابن المبارك (181 هـ)
-- الزُّهد — الإمام أحمد (241 هـ)
-- حِلْيَة الأَوْلِيَاء — أبو نُعَيم (430 هـ)
-- جَامِع بَيَان العِلم — ابن عبد البر (463 هـ)
-- الإِبَانَة الكُبْرَى — ابن بطة (387 هـ)
-- شَرْح أُصُول اعتقاد أهل السنة — اللالكائي (418 هـ)
-- مَدَارِج السَّالِكِين — ابن القيم (751 هـ)
-- سِيَر أَعْلَام النُّبَلَاء — الذهبي (748 هـ)
-- الطَّبَقَات الكُبْرَى — ابن سعد (230 هـ)
-- الشَّرِيعَة — الآجري (360 هـ)
-- السُّنَّة — عبد الله بن أحمد (290 هـ)
+    quote_data = random.choice(available)
 
-Thème demandé : {theme_ar} ({theme_lat})
+    # Marquer comme utilisé
+    tracker.setdefault("used_quotes", []).append(quote_data["quote_ar"])
+    with open(TRACKER, "w", encoding="utf-8") as f:
+        json.dump(tracker, f, ensure_ascii=False, indent=2)
 
-Réponds UNIQUEMENT avec ce JSON :
+    print(f"✅ Citation chargée depuis quotes_salaf.json (dorar.net)")
+    print(f"   Nom        : {quote_data['name']}")
+    print(f"   Génération : {quote_data.get('generation','?')} | Catégorie : {quote_data.get('category','?')}")
+    print(f"   Source     : {quote_data['source']}")
+    print(f"   Extrait    : {quote_data['quote'][:80]}…")
+
+# ── 2. Fallback : Claude API (si quotes_salaf.json absent) ───────────────────
+else:
+    print("⚠️  quotes_salaf.json introuvable — fallback vers Claude API")
+
+    THEMES = [
+        ("الصَّبْر", "patience"), ("الزُّهْد", "zuhd"), ("الْإِخْلَاص", "ikhlas"),
+        ("التَّوَكُّل", "tawakkul"), ("الْخَشْيَة", "khashya"), ("الْعِلْم", "ilm"),
+        ("الْعَمَل الصَّالِح", "amal_salih"), ("الذِّكْر", "dhikr"),
+        ("التَّوْبَة", "tawba"), ("الْوَرَع", "wara"),
+    ]
+    theme_ar, theme_lat = random.choice(THEMES)
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+
+    prompt = f"""Tu es un spécialiste des paroles authentiques des Salaf as-Salih.
+RÈGLES ABSOLUES : cite uniquement une parole réelle des 3 premières générations avec source précise (livre + référence).
+Thème : {theme_ar} ({theme_lat})
 
 ---JSON---
 {{
-  "name_ar": "اسم العالم بالعربية مشكولاً",
-  "name": "Nom translittéré en français (ex: Ibn al-Mubarak, Al-Hasan al-Basri)",
-  "generation": "sahabi | tabiʿi | atba",
-  "category": "mawquf | maqtuʿ",
-  "quote_ar": "النص العربي الأصلي",
-  "quote": "Traduction française fidèle et littérale",
-  "source_ar": "المصدر بالعربية مع الجزء والصفحة أو الرقم",
-  "source": "Nom du livre translittéré en français avec référence (ex: Al-Zuhd li-Ibn al-Mubarak, n° 234)",
-  "theme": "{theme_lat}",
-  "caption": "« [traduction française] »\\n\\n— [name] (rahimahullah)\\n📖 [source]\\n\\n#salaf #sunnah #islam #{theme_lat} #salafiyyah #ilm #UnJourUnSalaf"
+  "name_ar": "...", "name": "...", "generation": "sahabi|tabiʿi|atba",
+  "category": "mawquf|maqtuʿ", "quote_ar": "...", "quote": "traduction française",
+  "source_ar": "...", "source": "...", "theme": "{theme_lat}",
+  "caption": "« [quote] »\\n\\n— [name] (rahimahullah)\\n📖 [source]\\n\\n#{theme_lat} #salaf #sunnah #islam #salafiyyah #ilm #UnJourUnSalaf"
 }}
----END_JSON---
-"""
+---END_JSON---"""
 
-message = client.messages.create(
-    model="claude-sonnet-4-6",
-    max_tokens=1500,
-    messages=[{"role": "user", "content": prompt}],
-)
+    message = client.messages.create(model="claude-sonnet-4-6", max_tokens=1500,
+        messages=[{"role": "user", "content": prompt}])
+    response = message.content[0].text
 
-response = message.content[0].text
+    if "---JSON---" in response:
+        start = response.find("---JSON---") + 10
+        end   = response.find("---END_JSON---")
+        raw   = response[start:end].strip()
+    elif "```json" in response:
+        start = response.find("```json") + 7
+        end   = response.find("```", start)
+        raw   = response[start:end].strip()
+    else:
+        raw = response.strip()
 
-# Accepte ---JSON--- / ---END_JSON--- ou ```json ... ``` ou JSON brut
-if "---JSON---" in response and "---END_JSON---" in response:
-    start = response.find("---JSON---") + len("---JSON---")
-    end   = response.find("---END_JSON---")
-    raw   = response[start:end].strip()
-elif "```json" in response:
-    start = response.find("```json") + len("```json")
-    end   = response.find("```", start)
-    raw   = response[start:end].strip()
-elif "```" in response:
-    start = response.find("```") + 3
-    end   = response.find("```", start)
-    raw   = response[start:end].strip()
-else:
-    raw = response.strip()
+    quote_data = json.loads(raw)
+    print(f"✅ Citation générée via Claude API (thème : {theme_ar})")
 
-data = json.loads(raw)
-
+# ── 3. Sauvegarder pour post_salaf.py ────────────────────────────────────────
 with open("daily_quote.json", "w", encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
-
-print(f"✅ Citation générée (thème : {theme_ar})")
-print(f"   Nom        : {data['name']}")
-print(f"   Génération : {data.get('generation', '?')} | Catégorie : {data.get('category', '?')}")
-print(f"   Source     : {data['source']}")
-print(f"   Extrait    : {data['quote'][:80]}…")
+    json.dump(quote_data, f, ensure_ascii=False, indent=2)

@@ -11,12 +11,20 @@ from generate_image import generate
 ACCESS_TOKEN   = os.environ["INSTAGRAM_ACCESS_TOKEN"]
 USER_ID        = os.environ["INSTAGRAM_USER_ID"]
 GITHUB_TOKEN   = os.environ["GITHUB_TOKEN"]
+# Token utilisé pour écrire les secrets (le GITHUB_TOKEN automatique n'a pas ce
+# droit) : on préfère un PAT dédié s'il est fourni, sinon on retombe dessus.
+SECRETS_TOKEN  = os.environ.get("GH_PAT") or GITHUB_TOKEN
 REPO           = "realnajim-eng/salaf-instagram"
 RELEASE_TAG    = "daily-images"
 IMAGE_FILENAME = "temp_post.jpg"
 
 GH_HEADERS = {
     "Authorization": f"token {GITHUB_TOKEN}",
+    "Accept": "application/vnd.github+json",
+}
+
+GH_SECRETS_HEADERS = {
+    "Authorization": f"token {SECRETS_TOKEN}",
     "Accept": "application/vnd.github+json",
 }
 
@@ -61,29 +69,40 @@ def update_github_secret(secret_name, secret_value):
     # Récupérer la clé publique du dépôt
     key_resp = http.get(
         f"https://api.github.com/repos/{REPO}/actions/secrets/public-key",
-        headers=GH_HEADERS,
+        headers=GH_SECRETS_HEADERS,
         timeout=TIMEOUT,
     )
     key_data = key_resp.json()
+    if "key" not in key_data:
+        raise RuntimeError(
+            f"Clé publique inaccessible (HTTP {key_resp.status_code}) : {key_data}. "
+            "Le token n'a probablement pas le droit d'écrire les secrets — "
+            "fournis un PAT dans le secret GH_PAT (permission Secrets: read & write)."
+        )
     public_key = public.PublicKey(key_data["key"].encode("utf-8"), encoding.Base64Encoder())
     sealed_box = public.SealedBox(public_key)
     encrypted = base64.b64encode(sealed_box.encrypt(secret_value.encode("utf-8"))).decode("utf-8")
 
     put_resp = http.put(
         f"https://api.github.com/repos/{REPO}/actions/secrets/{secret_name}",
-        headers=GH_HEADERS,
+        headers=GH_SECRETS_HEADERS,
         json={"encrypted_value": encrypted, "key_id": key_data["key_id"]},
         timeout=TIMEOUT,
     )
     if put_resp.status_code in (201, 204):
         print(f"✅ Secret GitHub '{secret_name}' mis à jour")
     else:
-        print(f"⚠️  Mise à jour secret échouée : {put_resp.status_code} {put_resp.text}")
+        raise RuntimeError(f"Mise à jour secret échouée : {put_resp.status_code} {put_resp.text}")
 
 new_token = refresh_instagram_token(ACCESS_TOKEN)
 if new_token != ACCESS_TOKEN:
-    update_github_secret("INSTAGRAM_ACCESS_TOKEN", new_token)
+    # Utiliser tout de suite le token frais pour CETTE publication, même si la
+    # persistance échoue : un échec de sauvegarde ne doit jamais bloquer le post.
     ACCESS_TOKEN = new_token
+    try:
+        update_github_secret("INSTAGRAM_ACCESS_TOKEN", new_token)
+    except Exception as e:
+        print(f"⚠️  Persistance du nouveau token échouée (publication poursuivie) : {e}")
 
 # ── 1. Charger la citation du jour (produite par fetch_caption.py) ───────────
 if not os.path.exists("daily_quote.json"):

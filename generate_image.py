@@ -87,13 +87,58 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH)
 
     # Citation — centrée verticalement
     quote_total_h = len(quote_lines) * line_h
-    y_q = (CANVAS_SIZE - quote_total_h) // 2 - 180
+    y_q = (CANVAS_SIZE - quote_total_h) // 2 - 250
     for i, line in enumerate(quote_lines):
         shadow_text(draw, (cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2), line, font_quote, None)
 
     # Source — en bas de l'image
-    y_src = CANVAS_SIZE - 70
+    y_src = CANVAS_SIZE - 130
     shadow_text(draw, (cx, y_src), f"— {source}", font_source, None)
+
+    # Compte Instagram — logo + nom
+    IG_PURPLE = (131, 58, 180, 255)
+    IG_PINK   = (225, 48, 108, 255)
+    IG_ORANGE = (247, 119, 55, 255)
+    BLACK     = (0, 0, 0, 255)
+
+    ACCOUNT_TEXT = "Un_Jour_Un_Salaf"
+    ICON_SIZE    = 26   # taille du logo Instagram
+    try:
+        font_account = ImageFont.truetype("/System/Library/Fonts/Supplemental/Impact.ttf", 26)
+    except Exception:
+        font_account = load_font(24)
+
+    y_account = CANVAS_SIZE - 65
+
+    # Largeur totale logo + espace + texte
+    text_w = draw.textlength(ACCOUNT_TEXT, font=font_account)
+    gap    = 8
+    total_w = ICON_SIZE + gap + text_w
+    x_start = cx - total_w / 2
+
+    # ── Logo Instagram (PNG officiel) ────────────────────────────────────────
+    ix = int(x_start)
+    iy = int(y_account - ICON_SIZE // 2)
+    try:
+        logo = Image.open("images/instagram_logo.png").convert("RGBA")
+        logo = logo.resize((ICON_SIZE, ICON_SIZE), Image.LANCZOS)
+        overlay.paste(logo, (ix, iy), logo)
+    except Exception:
+        # fallback : carré arrondi dégradé simple
+        r = 7
+        for stroke, color in [(3, IG_PURPLE), (2, IG_PINK), (1, IG_ORANGE)]:
+            draw.rounded_rectangle(
+                [ix - stroke, iy - stroke, ix + ICON_SIZE + stroke, iy + ICON_SIZE + stroke],
+                radius=r + stroke, outline=color, width=2,
+            )
+
+    # ── Texte avec contour dégradé ───────────────────────────────────────────
+    tx = int(x_start + ICON_SIZE + gap)
+    ty = y_account
+    for stroke, color in [(3, IG_PURPLE), (2, IG_PINK), (1, IG_ORANGE)]:
+        draw.text((tx, ty), ACCOUNT_TEXT, font=font_account, fill=color, anchor="lm",
+                  stroke_width=stroke, stroke_fill=color)
+    draw.text((tx, ty), ACCOUNT_TEXT, font=font_account, fill=BLACK, anchor="lm")
 
     result = Image.alpha_composite(bg, overlay).convert("RGB")
     result.save(output_path, "JPEG", quality=95)

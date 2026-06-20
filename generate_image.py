@@ -29,7 +29,7 @@ CANVAS_SIZE = 1080
 # Suréchantillonnage : on dessine tout à SS× la taille finale puis on réduit en
 # LANCZOS au moment de sauvegarder. Le texte, les contours et les traits dorés
 # en ressortent beaucoup plus nets (anti-aliasing fin) qu'un rendu direct à 1080.
-SS = 3
+SS = 4
 
 # Bordure colorée « cuite » dans background.jpg (~37 px). On rogne ce nombre de
 # pixels sur chaque bord avant redimensionnement pour l'affiner de moitié.
@@ -257,7 +257,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     # Citation — placée HAUT, juste sous le titre (et non plus centrée verticalement)
     font_quote_ar = load_arabic_font(FONT_QUOTE_SIZE * S)
     quote_total_h = len(quote_lines) * line_h
-    zone_top    = sep_y + 70 * S                          # sous le titre (descendu légèrement)
+    zone_top    = sep_y + 82 * S                          # sous le titre (descendu très légèrement)
     y_q = zone_top
     for i, line in enumerate(quote_lines):
         draw_quote_line(draw, cx, y_q + i * line_h + FONT_QUOTE_SIZE * S // 2, line,
@@ -265,7 +265,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
 
     # Source — placée en bas, mais TOUJOURS sous la citation (descend si elle est longue)
     quote_bottom = y_q + quote_total_h
-    y_src = max(RC - 115 * S, quote_bottom + 45 * S)
+    y_src = max(RC - 105 * S, quote_bottom + 45 * S)
 
     # Source — en bas de l'image (livre seul) ; texte doré, tout petit contour noir
     text_gold_thin_outline(overlay, cx, y_src, f"— {book_from_source(source)}",
@@ -320,8 +320,9 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     if S != 1:
         result = result.resize((CANVAS_SIZE, CANVAS_SIZE), Image.LANCZOS)
 
-    # Léger renforcement de netteté après réduction (subtil, sans halo visible).
-    result = result.filter(ImageFilter.UnsharpMask(radius=1.2, percent=80, threshold=2))
+    # Renforcement de netteté après réduction : rayon fin + intensité plus forte
+    # pour des bords nets qui survivent mieux à la recompression Instagram.
+    result = result.filter(ImageFilter.UnsharpMask(radius=1.0, percent=115, threshold=2))
 
     # subsampling=0 (4:4:4) : pas de sous-échantillonnage de la chrominance, ce
     # qui évite la bavure de couleur sur le texte doré et le dégradé Instagram.

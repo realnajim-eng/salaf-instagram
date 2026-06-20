@@ -38,6 +38,10 @@ BORDER_CROP = 18
 # Épaisseur du contour doré autour du texte (était 2 ; affiné à 1).
 GOLD_STROKE = 1
 
+# Épaisseur de contour (en unités avant ×SS) partagée par le titre et la
+# citation centrale, pour un rendu identique des deux.
+TITLE_STROKE = 3
+
 WHITE      = (255, 255, 255, 255)
 WHITE_DIM  = (255, 255, 255, 200)
 GOLD        = (212, 175, 55, 230)
@@ -116,8 +120,8 @@ def book_from_source(source):
 
 
 def shadow_text(draw, xy, text, font, anchor="mm", stroke_width=GOLD_STROKE):
-    draw.text(xy, text, font=font, fill=(0, 0, 0, 255), anchor=anchor,
-              stroke_width=stroke_width, stroke_fill=GOLD)
+    draw.text(xy, text, font=font, fill=GOLD, anchor=anchor,
+              stroke_width=stroke_width, stroke_fill=(0, 0, 0, 255))
 
 
 def stroke_px():
@@ -133,7 +137,7 @@ PROPHET_GLYPH = "ﷺ"
 def draw_quote_line(draw, cx, y, line, latin_font, ar_font):
     """Dessine une ligne de citation centrée ; si elle contient ﷺ, ce glyphe
     est rendu avec la police arabe, le reste avec la police latine."""
-    sw = stroke_px()
+    sw = 4 * SS   # contour noir épais de la citation (lisibilité sur fond clair)
     if PROPHET_GLYPH not in line:
         shadow_text(draw, (cx, y), line, latin_font, stroke_width=sw)
         return
@@ -152,8 +156,8 @@ def draw_quote_line(draw, cx, y, line, latin_font, ar_font):
     total = sum(draw.textlength(s, font=f) for s, f in segs)
     x = cx - total / 2
     for s, f in segs:
-        draw.text((x, y), s, font=f, fill=(0, 0, 0, 255), anchor="lm",
-                  stroke_width=sw, stroke_fill=GOLD)
+        draw.text((x, y), s, font=f, fill=GOLD, anchor="lm",
+                  stroke_width=sw, stroke_fill=(0, 0, 0, 255))
         x += draw.textlength(s, font=f)
 
 
@@ -231,7 +235,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     quote_h     = len(quote_lines) * line_h
 
     # Nom + bénédiction arabe sur LA MÊME LIGNE, centrés comme un groupe
-    y_name = 80 * S
+    y_name = 65 * S
     font_hon = load_arabic_font(FONT_HONORIFIC_SIZE * S)
     hon_text = shape_arabic(honorific_for(generation))
     name_w  = draw.textlength(name, font=font_name)
@@ -239,29 +243,29 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     gap     = 16 * S
     x_left  = cx - (name_w + gap + hon_w) / 2
 
-    # Titre (noir + contour doré)
-    draw.text((x_left, y_name), name, font=font_name, fill=(0, 0, 0, 255),
-              anchor="lm", stroke_width=sw, stroke_fill=GOLD)
+    # Titre — mêmes couleurs/contour que le texte central : doré + contour noir épais
+    title_stroke = 4 * S
+    draw.text((x_left, y_name), name, font=font_name, fill=GOLD,
+              anchor="lm", stroke_width=title_stroke, stroke_fill=(0, 0, 0, 255))
     # Bénédiction arabe — même couleur/style que le titre
-    draw.text((x_left + name_w + gap, y_name), hon_text, font=font_hon, fill=(0, 0, 0, 255),
-              anchor="lm", stroke_width=sw, stroke_fill=GOLD)
+    draw.text((x_left + name_w + gap, y_name), hon_text, font=font_hon, fill=GOLD,
+              anchor="lm", stroke_width=title_stroke, stroke_fill=(0, 0, 0, 255))
 
-    # Soulignement doré (avec léger contour noir) sous TOUT le titre
+    # (Soulignement du titre retiré)
     sep_y = y_name + FONT_NAME_SIZE * S // 2 + 3 * S
-    x_end = x_left + name_w + gap + hon_w
-    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=(0, 0, 0, 255), width=4 * S)  # contour noir
-    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=GOLD, width=2 * S)
 
-    # Citation — centrée dans la zone entre le nom et la source
+    # Citation — placée HAUT, juste sous le titre (et non plus centrée verticalement)
     font_quote_ar = load_arabic_font(FONT_QUOTE_SIZE * S)
     quote_total_h = len(quote_lines) * line_h
-    y_src       = RC - 130 * S
-    zone_top    = y_name + FONT_NAME_SIZE * S + 20 * S   # sous le nom + marge
-    zone_bottom = y_src - 30 * S                          # au-dessus de la source
-    y_q = zone_top + (zone_bottom - zone_top - quote_total_h) // 2
+    zone_top    = sep_y + 70 * S                          # sous le titre (descendu légèrement)
+    y_q = zone_top
     for i, line in enumerate(quote_lines):
         draw_quote_line(draw, cx, y_q + i * line_h + FONT_QUOTE_SIZE * S // 2, line,
                         font_quote, font_quote_ar)
+
+    # Source — placée en bas, mais TOUJOURS sous la citation (descend si elle est longue)
+    quote_bottom = y_q + quote_total_h
+    y_src = max(RC - 115 * S, quote_bottom + 45 * S)
 
     # Source — en bas de l'image (livre seul) ; texte doré, tout petit contour noir
     text_gold_thin_outline(overlay, cx, y_src, f"— {book_from_source(source)}",
@@ -277,7 +281,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     ICON_SIZE    = 23 * S   # taille du logo Instagram
     font_account = load_account_font(22 * S)
 
-    y_account = RC - 65 * S
+    y_account = RC - 50 * S
 
     # Largeur totale logo + espace + texte
     text_w = draw.textlength(ACCOUNT_TEXT, font=font_account)

@@ -1,7 +1,7 @@
 import textwrap
 import arabic_reshaper
 from bidi.algorithm import get_display
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 BACKGROUND_PATH = "images/background.jpg"
 OUTPUT_PATH = "output.jpg"
@@ -25,6 +25,11 @@ HONORIFIC_SAHABI = "رَضِيَ اللَّهُ عَنْهُ"   # Compagnon
 HONORIFIC_OTHER  = "رَحِمَهُ اللَّهُ"        # Tābiʿī / Atbāʿ et au-delà
 
 CANVAS_SIZE = 1080
+
+# Suréchantillonnage : on dessine tout à SS× la taille finale puis on réduit en
+# LANCZOS au moment de sauvegarder. Le texte, les contours et les traits dorés
+# en ressortent beaucoup plus nets (anti-aliasing fin) qu'un rendu direct à 1080.
+SS = 3
 
 # Bordure colorée « cuite » dans background.jpg (~37 px). On rogne ce nombre de
 # pixels sur chaque bord avant redimensionnement pour l'affiner de moitié.
@@ -115,6 +120,11 @@ def shadow_text(draw, xy, text, font, anchor="mm", stroke_width=GOLD_STROKE):
               stroke_width=stroke_width, stroke_fill=GOLD)
 
 
+def stroke_px():
+    """Épaisseur du contour doré, mise à l'échelle du suréchantillonnage."""
+    return GOLD_STROKE * SS
+
+
 # Glyphe ﷺ (ligature « ṣallā Allāhu ʿalayhi wa-sallam ») — absent des polices
 # latines, présent dans Amiri. On le rend avec la police arabe au sein de la ligne.
 PROPHET_GLYPH = "ﷺ"
@@ -123,8 +133,9 @@ PROPHET_GLYPH = "ﷺ"
 def draw_quote_line(draw, cx, y, line, latin_font, ar_font):
     """Dessine une ligne de citation centrée ; si elle contient ﷺ, ce glyphe
     est rendu avec la police arabe, le reste avec la police latine."""
+    sw = stroke_px()
     if PROPHET_GLYPH not in line:
-        shadow_text(draw, (cx, y), line, latin_font)
+        shadow_text(draw, (cx, y), line, latin_font, stroke_width=sw)
         return
     # Découper la ligne en segments (texte latin / glyphe ﷺ)
     segs, buf = [], ""
@@ -142,15 +153,16 @@ def draw_quote_line(draw, cx, y, line, latin_font, ar_font):
     x = cx - total / 2
     for s, f in segs:
         draw.text((x, y), s, font=f, fill=(0, 0, 0, 255), anchor="lm",
-                  stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+                  stroke_width=sw, stroke_fill=GOLD)
         x += draw.textlength(s, font=f)
 
 
-def text_gold_thin_outline(overlay, cx, cy, text, font_size, ss=3, stroke=2):
+def text_gold_thin_outline(overlay, cx, cy, text, font_size, ss=3, stroke=2,
+                           canvas_w=CANVAS_SIZE):
     """Texte DORÉ avec un fin contour noir sous-pixel : rendu à ss× avec un
     contour de `stroke` px, puis réduction → contour effectif = stroke/ss px."""
     big_font = load_font(font_size * ss)
-    lw, lh = CANVAS_SIZE * ss, (font_size + 24) * ss
+    lw, lh = canvas_w * ss, (font_size + 24) * ss
     layer = Image.new("RGBA", (lw, lh), (0, 0, 0, 0))
     ImageDraw.Draw(layer).text(
         (lw // 2, lh // 2), text, font=big_font, fill=GOLD,
@@ -193,62 +205,67 @@ def wrap_text(text, font, max_width, draw):
 
 def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
              generation: str = ""):
+    S  = SS                      # facteur de suréchantillonnage
+    RC = CANVAS_SIZE * S         # taille du canevas de rendu (haute résolution)
+
     bg = Image.open(BACKGROUND_PATH).convert("RGBA")
     if BORDER_CROP > 0:
         w, h = bg.size
         bg = bg.crop((BORDER_CROP, BORDER_CROP, w - BORDER_CROP, h - BORDER_CROP))
-    bg = bg.resize((CANVAS_SIZE, CANVAS_SIZE), Image.LANCZOS)
+    bg = bg.resize((RC, RC), Image.LANCZOS)
 
     overlay = Image.new("RGBA", bg.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
 
-    font_name   = load_font(FONT_NAME_SIZE)
-    font_quote  = load_font(FONT_QUOTE_SIZE)
-    font_source = load_font(FONT_SOURCE_SIZE)
+    font_name   = load_font(FONT_NAME_SIZE * S)
+    font_quote  = load_font(FONT_QUOTE_SIZE * S)
+    font_source = load_font(FONT_SOURCE_SIZE * S)
 
-    cx     = CANVAS_SIZE // 2
-    margin = 70
-    max_w  = CANVAS_SIZE - margin * 2
+    cx     = RC // 2
+    margin = 70 * S
+    max_w  = RC - margin * 2
+    sw     = stroke_px()
 
     quote_lines = wrap_text(f'« {quote} »', font_quote, max_w, draw)
-    line_h      = FONT_QUOTE_SIZE + 14
+    line_h      = (FONT_QUOTE_SIZE + 14) * S
     quote_h     = len(quote_lines) * line_h
 
     # Nom + bénédiction arabe sur LA MÊME LIGNE, centrés comme un groupe
-    y_name = 80
-    font_hon = load_arabic_font(FONT_HONORIFIC_SIZE)
+    y_name = 80 * S
+    font_hon = load_arabic_font(FONT_HONORIFIC_SIZE * S)
     hon_text = shape_arabic(honorific_for(generation))
     name_w  = draw.textlength(name, font=font_name)
     hon_w   = draw.textlength(hon_text, font=font_hon)
-    gap     = 16
+    gap     = 16 * S
     x_left  = cx - (name_w + gap + hon_w) / 2
 
     # Titre (noir + contour doré)
     draw.text((x_left, y_name), name, font=font_name, fill=(0, 0, 0, 255),
-              anchor="lm", stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+              anchor="lm", stroke_width=sw, stroke_fill=GOLD)
     # Bénédiction arabe — même couleur/style que le titre
     draw.text((x_left + name_w + gap, y_name), hon_text, font=font_hon, fill=(0, 0, 0, 255),
-              anchor="lm", stroke_width=GOLD_STROKE, stroke_fill=GOLD)
+              anchor="lm", stroke_width=sw, stroke_fill=GOLD)
 
     # Soulignement doré (avec léger contour noir) sous TOUT le titre
-    sep_y = y_name + FONT_NAME_SIZE // 2 + 3
+    sep_y = y_name + FONT_NAME_SIZE * S // 2 + 3 * S
     x_end = x_left + name_w + gap + hon_w
-    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=(0, 0, 0, 255), width=4)  # contour noir
-    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=GOLD, width=2)
+    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=(0, 0, 0, 255), width=4 * S)  # contour noir
+    draw.line([(x_left, sep_y), (x_end, sep_y)], fill=GOLD, width=2 * S)
 
     # Citation — centrée dans la zone entre le nom et la source
-    font_quote_ar = load_arabic_font(FONT_QUOTE_SIZE)
+    font_quote_ar = load_arabic_font(FONT_QUOTE_SIZE * S)
     quote_total_h = len(quote_lines) * line_h
-    y_src       = CANVAS_SIZE - 130
-    zone_top    = y_name + FONT_NAME_SIZE + 20   # sous le nom + marge
-    zone_bottom = y_src - 30                      # au-dessus de la source
+    y_src       = RC - 130 * S
+    zone_top    = y_name + FONT_NAME_SIZE * S + 20 * S   # sous le nom + marge
+    zone_bottom = y_src - 30 * S                          # au-dessus de la source
     y_q = zone_top + (zone_bottom - zone_top - quote_total_h) // 2
     for i, line in enumerate(quote_lines):
-        draw_quote_line(draw, cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2, line,
+        draw_quote_line(draw, cx, y_q + i * line_h + FONT_QUOTE_SIZE * S // 2, line,
                         font_quote, font_quote_ar)
 
     # Source — en bas de l'image (livre seul) ; texte doré, tout petit contour noir
-    text_gold_thin_outline(overlay, cx, y_src, f"— {book_from_source(source)}", FONT_SOURCE_SIZE)
+    text_gold_thin_outline(overlay, cx, y_src, f"— {book_from_source(source)}",
+                           FONT_SOURCE_SIZE * S, canvas_w=RC)
 
     # Compte Instagram — logo + nom
     IG_PURPLE = (131, 58, 180, 255)
@@ -257,14 +274,14 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     BLACK     = (0, 0, 0, 255)
 
     ACCOUNT_TEXT = "Un_Jour_Un_Salaf"
-    ICON_SIZE    = 23   # taille du logo Instagram
-    font_account = load_account_font(22)
+    ICON_SIZE    = 23 * S   # taille du logo Instagram
+    font_account = load_account_font(22 * S)
 
-    y_account = CANVAS_SIZE - 65
+    y_account = RC - 65 * S
 
     # Largeur totale logo + espace + texte
     text_w = draw.textlength(ACCOUNT_TEXT, font=font_account)
-    gap    = 8
+    gap    = 8 * S
     total_w = ICON_SIZE + gap + text_w
     x_start = cx - total_w / 2
 
@@ -287,13 +304,24 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     # ── Texte avec contour dégradé (affiné : 2 couches au lieu de 3) ──────────
     tx = int(x_start + ICON_SIZE + gap)
     ty = y_account
-    for stroke, color in [(2, IG_PURPLE)]:
+    for stroke, color in [(2 * S, IG_PURPLE)]:
         draw.text((tx, ty), ACCOUNT_TEXT, font=font_account, fill=color, anchor="lm",
                   stroke_width=stroke, stroke_fill=color)
     draw.text((tx, ty), ACCOUNT_TEXT, font=font_account, fill=GOLD_BRIGHT, anchor="lm")
 
     result = Image.alpha_composite(bg, overlay).convert("RGB")
-    result.save(output_path, "JPEG", quality=95)
+
+    # Réduction du canevas haute résolution vers la taille finale : c'est cette
+    # étape LANCZOS qui produit des bords nets et lisses.
+    if S != 1:
+        result = result.resize((CANVAS_SIZE, CANVAS_SIZE), Image.LANCZOS)
+
+    # Léger renforcement de netteté après réduction (subtil, sans halo visible).
+    result = result.filter(ImageFilter.UnsharpMask(radius=1.2, percent=80, threshold=2))
+
+    # subsampling=0 (4:4:4) : pas de sous-échantillonnage de la chrominance, ce
+    # qui évite la bavure de couleur sur le texte doré et le dégradé Instagram.
+    result.save(output_path, "JPEG", quality=95, subsampling=0, optimize=True)
     print(f"✅ Image générée : {output_path}")
     return output_path
 

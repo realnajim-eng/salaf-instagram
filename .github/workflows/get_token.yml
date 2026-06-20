@@ -9,11 +9,80 @@ jobs:
   get-token:
     runs-on: ubuntu-latest
     steps:
-      - name: Exchange for long-lived token
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests PyNaCl
+
+      - name: Exchange token and save to secret
         env:
           SHORT: ${{ github.event.inputs.short_token }}
           CLIENT_SECRET: ${{ secrets.INSTAGRAM_CLIENT_SECRET }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          REPO: ${{ github.repository }}
         run: |
-          echo "SHORT received OK"
-          LONG=$(curl -s "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=$CLIENT_SECRET&access_token=$SHORT")
-          echo "LONG_RESP=$LONG"
+          python3 - <<'EOF'
+          import os, json, base64, requests
+          from nacl import encoding, public
+
+          short  = os.environ["SHORT"]
+          secret = os.environ["CLIENT_SECRET"]
+          pat    = os.environ["GH_PAT"]
+          repo   = os.environ["REPO"]
+
+          # 1. Échanger le token court contre un token longue durée
+          resp = requests.get(
+              "https://graph.instagram.com/access_token",
+              params={
+                  "grant_type": "ig_exchange_token",
+                  "client_secret": secret,
+                  "access_token": short,
+              },
+              timeout=30,
+          )
+          data = resp.json()
+          print("Réponse API Instagram :", json.dumps(data, indent=2))
+
+          if "access_token" not in data:
+              raise SystemExit(f"Échange échoué : {data}")
+
+          new_token  = data["access_token"]
+          expires_in = data.get("expires_in", 0)
+          print(f"✅ Token longue durée obtenu (expire dans {expires_in // 86400} jours)")
+
+          # 2. Chiffrer et sauvegarder dans le secret GitHub INSTAGRAM_ACCESS_TOKEN
+          gh_headers = {
+              "Authorization": f"token {pat}",
+              "Accept": "application/vnd.github+json",
+          }
+          key_resp = requests.get(
+              f"https://api.github.com/repos/{repo}/actions/secrets/public-key",
+              headers=gh_headers,
+              timeout=30,
+          )
+          key_data = key_resp.json()
+          if "key" not in key_data:
+              raise SystemExit(f"Clé publique inaccessible : {key_data}")
+
+          pub_key   = public.PublicKey(key_data["key"].encode(), encoding.Base64Encoder())
+          encrypted = base64.b64encode(
+              public.SealedBox(pub_key).encrypt(new_token.encode())
+          ).decode()
+
+          put_resp = requests.put(
+              f"https://api.github.com/repos/{repo}/actions/secrets/INSTAGRAM_ACCESS_TOKEN",
+              headers=gh_headers,
+              json={"encrypted_value": encrypted, "key_id": key_data["key_id"]},
+              timeout=30,
+          )
+          if put_resp.status_code in (201, 204):
+              print("✅ Secret INSTAGRAM_ACCESS_TOKEN mis à jour automatiquement")
+          else:
+              raise SystemExit(f"Mise à jour secret échouée : {put_resp.status_code} {put_resp.text}")
+          EOF

@@ -236,16 +236,18 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     draw.line([(x_left, sep_y), (x_end, sep_y)], fill=(0, 0, 0, 255), width=4)  # contour noir
     draw.line([(x_left, sep_y), (x_end, sep_y)], fill=GOLD, width=2)
 
-    # Citation — centrée verticalement (ﷺ rendu via la police arabe)
+    # Citation — centrée dans la zone entre le nom et la source
     font_quote_ar = load_arabic_font(FONT_QUOTE_SIZE)
     quote_total_h = len(quote_lines) * line_h
-    y_q = (CANVAS_SIZE - quote_total_h) // 2 - 250
+    y_src       = CANVAS_SIZE - 130
+    zone_top    = y_name + FONT_NAME_SIZE + 20   # sous le nom + marge
+    zone_bottom = y_src - 30                      # au-dessus de la source
+    y_q = zone_top + (zone_bottom - zone_top - quote_total_h) // 2
     for i, line in enumerate(quote_lines):
         draw_quote_line(draw, cx, y_q + i * line_h + FONT_QUOTE_SIZE // 2, line,
                         font_quote, font_quote_ar)
 
     # Source — en bas de l'image (livre seul) ; texte doré, tout petit contour noir
-    y_src = CANVAS_SIZE - 130
     text_gold_thin_outline(overlay, cx, y_src, f"— {book_from_source(source)}", FONT_SOURCE_SIZE)
 
     # Compte Instagram — logo + nom

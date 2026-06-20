@@ -94,15 +94,16 @@ def update_github_secret(secret_name, secret_value):
     else:
         raise RuntimeError(f"Mise à jour secret échouée : {put_resp.status_code} {put_resp.text}")
 
-new_token = refresh_instagram_token(ACCESS_TOKEN)
-if new_token != ACCESS_TOKEN:
-    # Utiliser tout de suite le token frais pour CETTE publication, même si la
-    # persistance échoue : un échec de sauvegarde ne doit jamais bloquer le post.
-    ACCESS_TOKEN = new_token
-    try:
-        update_github_secret("INSTAGRAM_ACCESS_TOKEN", new_token)
-    except Exception as e:
-        print(f"⚠️  Persistance du nouveau token échouée (publication poursuivie) : {e}")
+try:
+    new_token = refresh_instagram_token(ACCESS_TOKEN)
+    if new_token != ACCESS_TOKEN:
+        ACCESS_TOKEN = new_token
+        try:
+            update_github_secret("INSTAGRAM_ACCESS_TOKEN", new_token)
+        except Exception as e:
+            print(f"⚠️  Persistance du nouveau token échouée (publication poursuivie) : {e}")
+except Exception as e:
+    print(f"⚠️  Renouvellement du token échoué (publication avec l'ancien token) : {e}")
 
 # ── 1. Charger la citation du jour (produite par fetch_caption.py) ───────────
 if not os.path.exists("daily_quote.json"):

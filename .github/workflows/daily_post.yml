@@ -1,8 +1,9 @@
 name: Daily Salaf Post
 
 on:
-  schedule:
-    - cron: "0 15 * * *"   # chaque jour à 15h00 UTC = 17h Paris (été/CEST ; 16h Paris en hiver/CET)
+  # Publication quotidienne EN PAUSE : décommenter le bloc ci-dessous pour la réactiver.
+  # schedule:
+  #   - cron: "0 15 * * *"   # chaque jour à 15h00 UTC = 17h Paris (été/CEST ; 16h Paris en hiver/CET)
   workflow_dispatch:        # déclenchement manuel depuis GitHub
 
 permissions:

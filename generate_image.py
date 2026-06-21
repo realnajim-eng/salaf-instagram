@@ -190,8 +190,11 @@ def gradient_line(draw, x0, x1, y, width, stops):
         draw.line([(x, y - half), (x, y + half)], fill=color, width=1)
 
 
-def wrap_text(text, font, max_width, draw):
-    words = text.split()
+def wrap_text(text, font, max_width, draw, words=None):
+    # `words` permet de passer des jetons déjà constitués (ex. guillemets collés
+    # au premier/dernier mot) pour empêcher qu'ils soient renvoyés seuls.
+    if words is None:
+        words = text.split()
     lines, current = [], []
     for word in words:
         test = " ".join(current + [word])
@@ -230,7 +233,12 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     max_w  = RC - margin * 2
     sw     = stroke_px()
 
-    quote_lines = wrap_text(f'« {quote} »', font_quote, max_w, draw)
+    # Guillemets collés au premier et au dernier mot : « ne part jamais seul en
+    # tête de ligne et » ne se retrouve jamais orphelin en fin de citation.
+    quote_words = quote.split()
+    quote_words[0]  = "« " + quote_words[0]
+    quote_words[-1] = quote_words[-1] + " »"
+    quote_lines = wrap_text(None, font_quote, max_w, draw, words=quote_words)
     line_h      = (FONT_QUOTE_SIZE + 14) * S
     quote_h     = len(quote_lines) * line_h
 

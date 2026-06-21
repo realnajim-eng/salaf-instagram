@@ -2,6 +2,7 @@ import os
 import json
 import random
 import anthropic
+from build_caption import build_caption, clean_source
 
 QUOTES_DB = "quotes_salaf.json"
 TRACKER   = "tracker.json"
@@ -93,6 +94,13 @@ Thème : {theme_ar} ({theme_lat})
         raise SystemExit("Échec du fallback Claude — citation introuvable")
     print(f"✅ Citation générée via Claude API (thème : {theme_ar})")
 
-# ── 3. Sauvegarder pour post_salaf.py ────────────────────────────────────────
+# ── 3. Épurer la source (ouvrage seul) + régénérer la légende ────────────────
+# On ne garde que l'ouvrage dans la source (site et chapitre retirés), pour
+# l'image comme pour la légende. La caption est ensuite reconstruite avec des
+# hashtags francophones variés (croissance organique).
+quote_data["source"] = clean_source(quote_data.get("source", ""))
+quote_data["caption"] = build_caption(quote_data)
+
+# ── 4. Sauvegarder pour post_salaf.py ────────────────────────────────────────
 with open("daily_quote.json", "w", encoding="utf-8") as f:
     json.dump(quote_data, f, ensure_ascii=False, indent=2)

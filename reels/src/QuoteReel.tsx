@@ -2,6 +2,7 @@ import { z } from "zod";
 import {
   AbsoluteFill,
   Audio,
+  Img,
   interpolate,
   OffthreadVideo,
   spring,
@@ -70,6 +71,13 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
     };
   };
 
+  // Temps : zoom lent continu sur le sablier (image fixe), calé sur toute la
+  // durée du réel — même principe que le zoom intégré du paradis, mais natif.
+  const sablierZoom = interpolate(frame, [0, durationInFrames], [1.0, 1.14], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
   // Fondu au noir sur la dernière seconde
   const outro = interpolate(
     frame,
@@ -81,21 +89,33 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
   return (
     <AbsoluteFill style={{ background: "#000", opacity: outro }}>
       <Audio src={staticFile(audio)} />
-      {/* Décor vidéo réel (en boucle, muet) */}
-      <OffthreadVideo
-        src={staticFile(`video/${theme}.mp4`)}
-        muted
-        {...(videoPlaybackRate ? { playbackRate: videoPlaybackRate } : { loop: true })}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          filter:
-            theme === "temps"
-              ? "brightness(1.04) saturate(1.05) contrast(1.02)"
-              : "brightness(1.42) saturate(1.12) contrast(1.0)",
-        }}
-      />
+      {/* Décor de fond. Temps : image fixe (sablier) avec zoom lent continu.
+          Paradis/Enfer : vidéo réelle, zoom intégré étiré jusqu'à la fin de l'audio. */}
+      {theme === "temps" ? (
+        <Img
+          src={staticFile("Sablier.png")}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            transform: `scale(${sablierZoom})`,
+            transformOrigin: "center center",
+            filter: "brightness(1.28) saturate(1.08) contrast(1.02)",
+          }}
+        />
+      ) : (
+        <OffthreadVideo
+          src={staticFile(`video/${theme}.mp4`)}
+          muted
+          {...(videoPlaybackRate ? { playbackRate: videoPlaybackRate } : { loop: true })}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            filter: "brightness(1.42) saturate(1.12) contrast(1.0)",
+          }}
+        />
+      )}
       {/* Voile pour la lisibilité — léger pour le Paradis (lumineux), plus marqué pour l'Enfer */}
       <AbsoluteFill
         style={{
@@ -103,7 +123,7 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
             theme === "enfer"
               ? "radial-gradient(125% 85% at 50% 45%, rgba(0,0,0,0.22) 40%, rgba(0,0,0,0.6) 100%)"
               : theme === "temps"
-              ? "radial-gradient(130% 90% at 50% 45%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.5) 100%)"
+              ? "radial-gradient(135% 95% at 50% 45%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.30) 100%)"
               : "radial-gradient(135% 95% at 50% 45%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.42) 100%)",
         }}
       />

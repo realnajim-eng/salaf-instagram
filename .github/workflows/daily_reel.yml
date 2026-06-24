@@ -3,7 +3,7 @@ name: Daily Reel Post
 on:
   # Publication quotidienne EN PAUSE : décommenter le bloc ci-dessous pour l'activer.
   # schedule:
-  #   - cron: "0 15 * * *"   # chaque jour à 15h00 UTC = 17h Paris (été/CEST ; 16h en hiver/CET)
+  #   - cron: "0 16 * * *"   # chaque jour à 16h00 UTC = 18h Paris (été/CEST ; 17h en hiver/CET)
   workflow_dispatch:         # déclenchement manuel depuis GitHub
 
 permissions:

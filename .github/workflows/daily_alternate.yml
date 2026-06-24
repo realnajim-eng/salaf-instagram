@@ -1,0 +1,132 @@
+name: Daily Alternate Post (Salaf / Reel)
+
+# Alternance : un jour une parole de Salaf (post image), le lendemain un reel,
+# et ainsi de suite. Le type publié est piloté par le compteur d'état post_state.json
+# ("next": "salaf" | "reel"), qui bascule après CHAQUE publication réussie.
+# L'alternance reste donc stricte même si un jour est manqué.
+
+on:
+  # PUBLICATION AUTOMATIQUE EN PAUSE (à la demande de l'utilisateur).
+  # Pour activer l'alternance quotidienne : décommenter le bloc schedule ci-dessous.
+  # schedule:
+  #   - cron: "0 16 * * *"   # chaque jour à 16h00 UTC = 18h Paris (été/CEST ; 17h en hiver/CET)
+  workflow_dispatch:         # déclenchement manuel depuis GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  # 1) Lit post_state.json et décide quel type publier aujourd'hui.
+  decide:
+    runs-on: ubuntu-latest
+    outputs:
+      type: ${{ steps.read.outputs.type }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Read next post type
+        id: read
+        run: |
+          NEXT=$(python3 -c "import json;print(json.load(open('post_state.json'))['next'])")
+          echo "Prochaine publication : $NEXT"
+          echo "type=$NEXT" >> "$GITHUB_OUTPUT"
+
+  # 2) Publie une parole de Salaf (seulement si c'est son tour).
+  salaf:
+    needs: decide
+    if: needs.decide.outputs.type == 'salaf'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate caption (Claude API)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python fetch_caption.py
+
+      - name: Generate image & post to Instagram
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}   # optionnel : PAT pour persister le token Instagram renouvelé
+        run: python post_salaf.py
+
+      - name: Flip state to reel & commit
+        run: |
+          python3 -c "import json;p='post_state.json';d=json.load(open(p));d['next']='reel';json.dump(d,open(p,'w'),indent=2,ensure_ascii=False);open(p,'a').write('\n')"
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add tracker.json post_state.json
+          git diff --staged --quiet || git commit -m "Salaf posté → prochain : reel"
+          git push
+
+  # 3) Publie un reel (seulement si c'est son tour).
+  reel:
+    needs: decide
+    if: needs.decide.outputs.type == 'reel'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: reels
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Remotion system libraries (Chrome headless)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3 libdbus-1-3 libatk1.0-0 libgbm1 libasound2t64 \
+            libxcomposite1 libxdamage1 libxrandr2 libxkbcommon0 \
+            libatk-bridge2.0-0 libpango-1.0-0 libcairo2 libcups2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: pip install requests pynacl
+
+      - name: Pick today's verse
+        run: python pick_verse.py
+
+      - name: Render reel (Remotion)
+        run: npx remotion render Verse out/daily_reel.mp4 --props=render_props.json
+
+      - name: Post reel to Instagram
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}   # optionnel : PAT pour persister le token Instagram renouvelé
+        run: python post_reel.py
+
+      - name: Flip state to salaf & commit
+        working-directory: .
+        run: |
+          python3 -c "import json;p='post_state.json';d=json.load(open(p));d['next']='salaf';json.dump(d,open(p,'w'),indent=2,ensure_ascii=False);open(p,'a').write('\n')"
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add reels/posted_reels.json post_state.json
+          git diff --staged --quiet || git commit -m "Reel posté → prochain : salaf"
+          git push

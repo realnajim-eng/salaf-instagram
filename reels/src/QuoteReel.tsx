@@ -4,7 +4,6 @@ import {
   Audio,
   Img,
   interpolate,
-  OffthreadVideo,
   spring,
   staticFile,
   useCurrentFrame,
@@ -19,9 +18,6 @@ export const verseSchema = z.object({
   surah_ar: z.string(),
   ref: z.string(),
   audio: z.string(),
-  // Étire la lecture de la vidéo de fond pour que son zoom intégré couvre
-  // toute la durée du réel (au lieu de boucler/redémarrer). Calculé dans Root.
-  videoPlaybackRate: z.number().optional(),
 });
 
 // Palettes sobres par thème (contenu sacré — rien de criard)
@@ -104,7 +100,6 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
   surah_ar,
   ref,
   audio,
-  videoPlaybackRate,
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
@@ -148,52 +143,37 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
   return (
     <AbsoluteFill style={{ background: "#000", opacity: outro }}>
       <Audio src={staticFile(audio)} />
-      {/* Décor de fond. Temps/Tawḥīd : image fixe avec zoom lent continu.
-          Paradis/Enfer : vidéo réelle, zoom intégré étiré jusqu'à la fin de l'audio. */}
-      {stillImage ? (
-        <Img
-          src={staticFile(stillImage)}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            transform: `scale(${stillZoom})`,
-            transformOrigin: "center center",
-            filter:
-              theme === "tawhid"
-                ? "brightness(1.0) saturate(1.08) contrast(1.05)"
-                : theme === "jugement"
-                ? // Balance : image laissée dans son état d'origine (blanc lumineux)
-                  "none"
-                : theme === "coran"
-                ? // Muṣḥaf relié : on assombrit légèrement pour faire ressortir
-                  // l'écriture claire posée par-dessus
-                  "brightness(0.9) saturate(1.05) contrast(1.06)"
-                : theme === "patience"
-                ? // Aube brumeuse : luminosité relevée pour un matin plus clair
-                  "brightness(1.18) saturate(1.06) contrast(1.03)"
-                : theme === "paradis"
-                ? // Vallée verdoyante : déjà lumineuse, on rehausse à peine
-                  "brightness(1.06) saturate(1.1) contrast(1.04)"
-                : theme === "enfer"
-                ? // Vallée de lave : on garde l'obscurité dramatique, braises saturées
-                  "brightness(1.02) saturate(1.12) contrast(1.06)"
-                : "brightness(1.28) saturate(1.08) contrast(1.02)",
-          }}
-        />
-      ) : (
-        <OffthreadVideo
-          src={staticFile(`video/${theme}.mp4`)}
-          muted
-          {...(videoPlaybackRate ? { playbackRate: videoPlaybackRate } : { loop: true })}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            filter: "brightness(1.42) saturate(1.12) contrast(1.0)",
-          }}
-        />
-      )}
+      {/* Décor de fond : image fixe avec zoom lent continu calé sur toute la durée. */}
+      <Img
+        src={staticFile(stillImage)}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          transform: `scale(${stillZoom})`,
+          transformOrigin: "center center",
+          filter:
+            theme === "tawhid"
+              ? "brightness(1.0) saturate(1.08) contrast(1.05)"
+              : theme === "jugement"
+              ? // Balance : image laissée dans son état d'origine (blanc lumineux)
+                "none"
+              : theme === "coran"
+              ? // Muṣḥaf relié : on assombrit légèrement pour faire ressortir
+                // l'écriture claire posée par-dessus
+                "brightness(0.9) saturate(1.05) contrast(1.06)"
+              : theme === "patience"
+              ? // Aube brumeuse : luminosité relevée pour un matin plus clair
+                "brightness(1.18) saturate(1.06) contrast(1.03)"
+              : theme === "paradis"
+              ? // Vallée verdoyante : déjà lumineuse, on rehausse à peine
+                "brightness(1.06) saturate(1.1) contrast(1.04)"
+              : theme === "enfer"
+              ? // Vallée de lave : on garde l'obscurité dramatique, braises saturées
+                "brightness(1.02) saturate(1.12) contrast(1.06)"
+              : "brightness(1.28) saturate(1.08) contrast(1.02)",
+        }}
+      />
       {/* Voile pour la lisibilité — léger pour le Paradis (lumineux), plus marqué pour l'Enfer */}
       <AbsoluteFill
         style={{

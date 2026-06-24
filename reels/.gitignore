@@ -1,0 +1,5 @@
+node_modules/
+out/
+.remotion/
+# Vidéos de fond (volumineuses, fournies en local — pas dans git)
+public/video/

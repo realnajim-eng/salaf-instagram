@@ -1,5 +1,5 @@
 import { Composition, staticFile } from "remotion";
-import { getAudioDurationInSeconds, getVideoMetadata } from "@remotion/media-utils";
+import { getAudioDurationInSeconds } from "@remotion/media-utils";
 import { QuoteReel, verseSchema } from "./QuoteReel";
 import verses from "../public/verses.json";
 
@@ -53,20 +53,12 @@ export const RemotionRoot: React.FC = () => {
         ref: sample.ref,
         audio: sample.audio,
       }}
-      // Durée = longueur de la récitation + 2,5 s (respiration + fondu sortant)
+      // Durée = longueur de la récitation + 2,5 s (respiration + fondu sortant).
+      // Tous les thèmes utilisent désormais un fond image fixe (zoom lent continu).
       calculateMetadata={async ({ props }) => {
         const dur = await getAudioDurationInSeconds(staticFile(props.audio));
-        const reelSeconds = dur + 2.5;
-        const durationInFrames = Math.ceil(reelSeconds * FPS);
-        // Paradis & enfer : la vidéo a un zoom intégré plus court que le réel.
-        // On étire sa lecture (playbackRate) pour que le zoom coule jusqu'au
-        // bout de l'audio, sans boucler/redémarrer.
-        let videoPlaybackRate: number | undefined;
-        if (props.theme === "paradis" || props.theme === "enfer") {
-          const meta = await getVideoMetadata(staticFile(`video/${props.theme}.mp4`));
-          videoPlaybackRate = meta.durationInSeconds / reelSeconds;
-        }
-        return { durationInFrames, props: { ...props, videoPlaybackRate } };
+        const durationInFrames = Math.ceil((dur + 2.5) * FPS);
+        return { durationInFrames };
       }}
     />
   );

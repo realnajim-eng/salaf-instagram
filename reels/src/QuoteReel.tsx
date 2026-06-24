@@ -93,6 +93,8 @@ const STILL_IMAGE: Record<string, string> = {
   jugement: "Balance.png",
   coran: "Quran.jpg",
   patience: "Patience.jpg",
+  paradis: "Paradis.jpg",
+  enfer: "Enfer.jpg",
 };
 
 export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
@@ -170,6 +172,12 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
                 : theme === "patience"
                 ? // Aube brumeuse : luminosité relevée pour un matin plus clair
                   "brightness(1.18) saturate(1.06) contrast(1.03)"
+                : theme === "paradis"
+                ? // Vallée verdoyante : déjà lumineuse, on rehausse à peine
+                  "brightness(1.06) saturate(1.1) contrast(1.04)"
+                : theme === "enfer"
+                ? // Vallée de lave : on garde l'obscurité dramatique, braises saturées
+                  "brightness(1.02) saturate(1.12) contrast(1.06)"
                 : "brightness(1.28) saturate(1.08) contrast(1.02)",
           }}
         />

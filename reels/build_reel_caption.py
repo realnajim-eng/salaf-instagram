@@ -33,6 +33,8 @@ THEME_TAGS = {
     "patience": ["#patience", "#sabr", "#endurance"],
     "jugement": ["#jourdujugement", "#audela", "#rappeldelamort"],
     "temps":    ["#letemps", "#viedicibas", "#mediter"],
+    "paradis":  ["#paradis", "#jannah", "#recompense"],
+    "enfer":    ["#enfer", "#jahannam", "#craintedallah"],
 }
 
 # Phrase d'accroche sobre par thème (première ligne, en français).
@@ -42,6 +44,8 @@ HOOK = {
     "patience": "🤲 La patience (aṣ-ṣabr)",
     "jugement": "⚖️ Le Jour du Jugement",
     "temps":    "⏳ Le temps qui passe",
+    "paradis":  "🌿 Le Paradis (al-Jannah)",
+    "enfer":    "🔥 L'Enfer (an-Nār)",
 }
 
 

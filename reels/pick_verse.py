@@ -27,7 +27,7 @@ RENDER_PROPS = os.path.join(HERE, "render_props.json")
 CURRENT = os.path.join(HERE, "current_verse.json")
 
 # Thèmes à fond image (cf. STILL_IMAGE dans QuoteReel.tsx) — seuls rendables en CI.
-IMAGE_THEMES = ["coran", "tawhid", "patience", "jugement", "temps"]
+IMAGE_THEMES = ["coran", "tawhid", "patience", "jugement", "temps", "paradis", "enfer"]
 
 # Champs attendus par le schéma Remotion (verseSchema dans QuoteReel.tsx).
 PROP_FIELDS = ("theme", "verse_ar", "translation", "surah_ar", "ref", "audio")

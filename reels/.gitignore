@@ -3,3 +3,6 @@ out/
 .remotion/
 # Vidéos de fond (volumineuses, fournies en local — pas dans git)
 public/video/
+# Fichiers éphémères régénérés à chaque exécution du workflow
+render_props.json
+current_verse.json

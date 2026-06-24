@@ -36,6 +36,32 @@ REFS = {
         (3, 190), (25, 62), (17, 12), (21, 33), (36, 40),
         (79, 46), (10, 45), (30, 55), (22, 47), (70, 4),
     ],
+    # Tawḥīd & création : unicité d'Allah liée à Son acte de création
+    # (tawḥīd al-rubūbiyya + al-ulūhiyya). Versets clairs et bien connus.
+    "tawhid": [
+        (2, 163), (7, 54), (13, 16), (16, 17), (21, 22), (30, 22),
+        (39, 62), (40, 62), (51, 56), (59, 24), (67, 3),
+    ],
+    # Jour du Jugement : la pesée des actions (mīzān), le livre des comptes,
+    # la rétribution équitable de chaque bien et chaque mal. Versets clairs.
+    "jugement": [
+        (99, 7), (99, 8), (21, 47), (7, 8), (7, 9), (101, 6),
+        (101, 8), (17, 14), (84, 7), (84, 10), (3, 30), (40, 17),
+    ],
+    # Le Livre d'Allah (le Coran) : sa nature de guidée, sa préservation,
+    # sa facilité à la mémorisation, l'appel à le méditer, sa guérison et sa
+    # bénédiction. Versets clairs et bien connus parlant du Coran lui-même.
+    "coran": [
+        (2, 2), (15, 9), (17, 9), (54, 17), (38, 29), (4, 82),
+        (17, 82), (10, 57), (59, 21), (6, 155), (73, 4), (2, 185),
+    ],
+    # Patience, persévérance, endurance (الصَّبْر) : Allah est avec les patients,
+    # leur récompense sans compter, l'ordre d'endurer l'épreuve, la belle patience.
+    # Références vérifiées (racine ص-ب-ر présente) via le serveur MCP tafsir.
+    "patience": [
+        (2, 153), (2, 155), (3, 200), (3, 146), (8, 46), (16, 96),
+        (16, 127), (39, 10), (13, 24), (41, 35), (31, 17), (70, 5),
+    ],
 }
 
 # Entrées combinées (plusieurs āyāt d'une même sourate présentées comme un bloc).
@@ -44,6 +70,15 @@ COMBINED = {
     "temps": [
         # Sourate al-ʿAsr (103) en entier — la sourate-phare sur le temps.
         {"surah": 103, "ayat": [1, 2, 3], "full_surah_audio": True},
+    ],
+    "tawhid": [
+        # Sourate al-Ikhlāṣ (112) en entier — la sourate du Tawḥīd par excellence.
+        {"surah": 112, "ayat": [1, 2, 3, 4], "full_surah_audio": True},
+    ],
+    "patience": [
+        # Sourate aš-Šarḥ (94) en entier — « car avec la difficulté est, certes,
+        # une facilité » : l'aube après la nuit, le fruit de la patience.
+        {"surah": 94, "ayat": [1, 2, 3, 4, 5, 6, 7, 8], "full_surah_audio": True},
     ],
 }
 

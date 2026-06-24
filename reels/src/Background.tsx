@@ -12,13 +12,22 @@ function mulberry32(seed: number) {
   };
 }
 
-type Theme = "paradis" | "enfer" | "temps";
+type Theme = "paradis" | "enfer" | "temps" | "tawhid" | "jugement" | "coran" | "patience";
 
 const CONF = {
   paradis: { count: 45, color: "rgba(245,233,200,", speed: 24, size: [3, 9], glow: "rgba(40,120,90,0.55)" },
   enfer: { count: 60, color: "rgba(240,150,70,", speed: 60, size: [2, 7], glow: "rgba(150,40,20,0.6)" },
   // Grains de sable dorés, fins et lents — ambiance "sablier"
   temps: { count: 40, color: "rgba(222,196,138,", speed: 18, size: [2, 6], glow: "rgba(120,95,40,0.5)" },
+  // Tawḥīd : fine poussière d'étoiles bleutée, lente — voûte céleste
+  tawhid: { count: 50, color: "rgba(205,220,255,", speed: 14, size: [1, 5], glow: "rgba(40,70,140,0.45)" },
+  // Jugement : fond clair (image blanche) — fines particules sombres discrètes,
+  // lueur quasi nulle pour ne pas salir le blanc
+  jugement: { count: 32, color: "rgba(120,105,70,", speed: 15, size: [1, 4], glow: "rgba(150,140,110,0.12)" },
+  // Coran : fine poussière dorée/parchemin, lente — lumière posée sur le muṣḥaf
+  coran: { count: 38, color: "rgba(224,200,142,", speed: 14, size: [2, 6], glow: "rgba(125,95,40,0.42)" },
+  // Patience : fine brume matinale bleu-pâle, très lente — l'aube qui se lève
+  patience: { count: 44, color: "rgba(206,222,235,", speed: 12, size: [1, 5], glow: "rgba(120,150,180,0.40)" },
 };
 
 export const Background: React.FC<{ theme: Theme }> = ({ theme }) => {
@@ -28,7 +37,7 @@ export const Background: React.FC<{ theme: Theme }> = ({ theme }) => {
   const conf = CONF[theme];
 
   const particles = useMemo(() => {
-    const rng = mulberry32(theme === "enfer" ? 7 : theme === "temps" ? 17 : 42);
+    const rng = mulberry32(theme === "enfer" ? 7 : theme === "temps" ? 17 : theme === "tawhid" ? 23 : theme === "jugement" ? 31 : theme === "coran" ? 53 : theme === "patience" ? 61 : 42);
     return Array.from({ length: conf.count }, () => ({
       x: rng(),
       size: conf.size[0] + rng() * (conf.size[1] - conf.size[0]),

@@ -1,0 +1,67 @@
+name: Daily Reel Post
+
+on:
+  # Publication quotidienne EN PAUSE : décommenter le bloc ci-dessous pour l'activer.
+  # schedule:
+  #   - cron: "0 15 * * *"   # chaque jour à 15h00 UTC = 17h Paris (été/CEST ; 16h en hiver/CET)
+  workflow_dispatch:         # déclenchement manuel depuis GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: reels
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Remotion system libraries (Chrome headless)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3 libdbus-1-3 libatk1.0-0 libgbm1 libasound2t64 \
+            libxcomposite1 libxdamage1 libxrandr2 libxkbcommon0 \
+            libatk-bridge2.0-0 libpango-1.0-0 libcairo2 libcups2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: pip install requests pynacl
+
+      - name: Pick today's verse
+        run: python pick_verse.py
+
+      - name: Render reel (Remotion)
+        run: npx remotion render Verse out/daily_reel.mp4 --props=render_props.json
+
+      - name: Post reel to Instagram
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}   # optionnel : PAT pour persister le token Instagram renouvelé
+        run: python post_reel.py
+
+      - name: Commit tracker update
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add posted_reels.json
+          git diff --staged --quiet || git commit -m "Update reels tracker"
+          git push

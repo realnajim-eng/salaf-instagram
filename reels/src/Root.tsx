@@ -26,7 +26,7 @@ if (typeof document !== "undefined") {
 }
 
 type Verse = {
-  theme: "paradis" | "enfer" | "temps";
+  theme: "paradis" | "enfer" | "temps" | "tawhid" | "jugement" | "coran" | "patience";
   verse_ar: string;
   translation: string;
   surah_ar: string;

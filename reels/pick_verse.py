@@ -65,7 +65,7 @@ def main():
         # (références authentifiées) via build_verses.py, puis ce workflow
         # reprend tout seul la rotation des thèmes.
         raise SystemExit(
-            "STOCK ÉPUISÉ : les 60 versets ont tous été publiés. "
+            f"STOCK ÉPUISÉ : les {len(queue)} versets ont tous été publiés. "
             "Aucune republication (règle : jamais le même verset). "
             "Ajoute de nouveaux versets aux thèmes (build_verses.py) pour relancer."
         )

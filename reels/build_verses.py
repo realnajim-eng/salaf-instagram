@@ -68,6 +68,8 @@ REFS = {
     "rahma": [
         (7, 156), (39, 53), (21, 107), (6, 54), (7, 56),
         (2, 218), (12, 64), (40, 7), (11, 90), (7, 49),
+        (6, 12), (36, 58), (30, 50), (43, 32), (15, 49), (12, 92),
+        (7, 151), (17, 110), (2, 64), (19, 96), (52, 28),
     ],
     # Repentir & pardon (التَّوْبَة) : Allah accepte le repentir de Ses
     # serviteurs, le repentir sincère, quiconque se repent et fait le bien.
@@ -75,6 +77,9 @@ REFS = {
     "tawba": [
         (28, 67), (20, 82), (25, 71), (4, 17), (9, 104),
         (42, 25), (110, 3), (2, 160), (66, 8), (5, 39),
+        (2, 222), (2, 37), (3, 89), (4, 16), (4, 18), (5, 34),
+        (7, 153), (9, 112), (9, 117), (11, 3), (11, 52), (11, 61),
+        (13, 30), (20, 122), (24, 5), (40, 3), (66, 4),
     ],
     # Gratitude (الشُّكْر) : « si vous êtes reconnaissants, Je vous
     # accroîtrai », qui est reconnaissant l'est pour lui-même.
@@ -82,6 +87,9 @@ REFS = {
     "shukr": [
         (14, 7), (31, 12), (2, 172), (16, 114), (39, 7),
         (27, 40), (34, 13), (16, 18), (27, 19), (16, 78),
+        (2, 152), (3, 144), (7, 10), (10, 60), (14, 5), (16, 14),
+        (27, 73), (29, 17), (31, 31), (34, 15), (35, 12), (39, 66),
+        (45, 12), (64, 17), (67, 23), (76, 9),
     ],
     # Confiance en Allah (التَّوَكُّل) : quiconque place sa confiance en
     # Allah, Il lui suffit ; c'est sur Lui que comptent les croyants.
@@ -89,6 +97,9 @@ REFS = {
     "tawakkul": [
         (3, 159), (65, 3), (8, 2), (3, 160), (14, 12),
         (9, 51), (39, 38), (67, 29), (25, 58), (11, 123),
+        (3, 122), (3, 173), (5, 11), (7, 89), (8, 61), (9, 129),
+        (10, 84), (10, 85), (11, 56), (12, 67), (14, 11), (16, 42),
+        (29, 59), (33, 3), (64, 13), (73, 9),
     ],
     # Piété filiale (بِرُّ الوَالِدَيْن) : bonté envers les parents associée
     # à l'adoration d'Allah, la douceur envers eux dans leur vieillesse.
@@ -96,6 +107,7 @@ REFS = {
     "birr": [
         (17, 23), (17, 24), (31, 14), (46, 15), (2, 83),
         (4, 36), (6, 151), (29, 8), (31, 15), (19, 14),
+        (14, 41), (71, 28), (19, 32),
     ],
     # Méditation sur la création (التَّفَكُّر) : réfléchir aux signes
     # d'Allah dans les cieux, la terre et soi-même.
@@ -103,6 +115,7 @@ REFS = {
     "tafakkur": [
         (3, 191), (30, 21), (30, 8), (16, 11), (16, 69),
         (13, 3), (45, 13), (10, 24), (6, 50), (16, 44),
+        (39, 42), (34, 46), (7, 184),
     ],
     # La mort (المَوْت) : toute âme goûtera la mort, elle vous atteindra
     # où que vous soyez, le rappel du retour vers Allah.
@@ -110,6 +123,8 @@ REFS = {
     "mort": [
         (3, 185), (21, 35), (29, 57), (4, 78), (3, 145),
         (39, 42), (2, 28), (23, 99), (50, 19), (67, 2),
+        (3, 169), (2, 154), (21, 34), (23, 15), (44, 56),
+        (56, 60), (40, 11), (3, 143),
     ],
     # Crainte révérencielle d'Allah (التَّقْوَى) : craignez Allah comme il
     # se doit, le meilleur viatique est la piété, le plus noble est le plus pieux.
@@ -117,6 +132,9 @@ REFS = {
     "taqwa": [
         (3, 102), (2, 197), (49, 13), (8, 29), (33, 70),
         (3, 76), (9, 119), (7, 96), (5, 35), (16, 128),
+        (2, 189), (2, 281), (3, 130), (5, 8), (7, 26), (22, 1),
+        (47, 17), (59, 18), (64, 16), (2, 194), (2, 212), (3, 15),
+        (8, 34), (16, 30),
     ],
     # Espoir après l'épreuve (الفَرَج بَعْدَ الشِّدَّة) : Allah accordera
     # une aisance après la gêne, une issue à qui Le craint, le secours proche.
@@ -124,6 +142,8 @@ REFS = {
     "faraj": [
         (65, 7), (65, 2), (65, 3), (12, 87), (93, 5),
         (93, 3), (2, 286), (40, 60), (2, 214), (3, 139),
+        (65, 4), (65, 5), (21, 88), (12, 90), (12, 86),
+        (8, 10), (30, 5), (48, 1), (40, 51), (3, 126),
     ],
     # Le rappel / évocation d'Allah (الذِّكْر) : c'est par le rappel d'Allah
     # que les cœurs s'apaisent, « évoquez-Moi, Je vous évoquerai ».
@@ -131,6 +151,9 @@ REFS = {
     "rappel": [
         (13, 28), (2, 152), (33, 41), (29, 45), (20, 14),
         (33, 35), (63, 9), (73, 8), (87, 15), (2, 200),
+        (8, 45), (62, 10), (4, 103), (2, 198), (18, 24), (76, 25),
+        (3, 41), (39, 22), (7, 205), (24, 37), (57, 16), (20, 124),
+        (26, 227), (33, 21),
     ],
 }
 
@@ -255,9 +278,17 @@ def main():
 
     for theme in themes:
         for surah, ayah in REFS[theme]:
-            out.append(build_single(theme, surah, ayah))
+            try:
+                out.append(build_single(theme, surah, ayah))
+            except Exception as e:
+                # Réservoir auto : une référence qui échoue (réseau, ayah
+                # introuvable) est ignorée sans interrompre le build.
+                print(f"  ✗ {theme:8} {surah}:{ayah}  ÉCHEC ({e}) — ignoré")
         for spec in COMBINED.get(theme, []):
-            out.append(build_combined(theme, spec))
+            try:
+                out.append(build_combined(theme, spec))
+            except Exception as e:
+                print(f"  ✗ {theme:8} combiné  ÉCHEC ({e}) — ignoré")
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)

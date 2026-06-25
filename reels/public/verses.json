@@ -925,17 +925,6 @@
   },
   {
     "theme": "rahma",
-    "surah": 7,
-    "ayah": 156,
-    "surah_ar": "سُورَةُ الأَعۡرَافِ",
-    "surah_fr": "Al-A'raaf",
-    "ref": "Al-A'raaf 7:156",
-    "verse_ar": "وَٱكْتُبْ لَنَا فِى هَٰذِهِ ٱلدُّنْيَا حَسَنَةًۭ وَفِى ٱلْءَاخِرَةِ إِنَّا هُدْنَآ إِلَيْكَ ۚ قَالَ عَذَابِىٓ أُصِيبُ بِهِۦ مَنْ أَشَآءُ ۖ وَرَحْمَتِى وَسِعَتْ كُلَّ شَىْءٍۢ ۚ فَسَأَكْتُبُهَا لِلَّذِينَ يَتَّقُونَ وَيُؤْتُونَ ٱلزَّكَوٰةَ وَٱلَّذِينَ هُم بِـَٔايَٰتِنَا يُؤْمِنُونَ",
-    "translation": "Et prescris pour nous le bien ici-bas ainsi que dans l'au-delà. Nous voilà revenus vers Toi, repentis.» Et (Allah) dit: «Je ferai que Mon châtiment atteigne qui Je veux. Et Ma miséricorde embrasse toute chose. Je la prescrirai à ceux qui (Me) craignent, acquittent la Zakât, et ont foi en Nos signes,",
-    "audio": "audio/rahma_7_156.mp3"
-  },
-  {
-    "theme": "rahma",
     "surah": 39,
     "ayah": 53,
     "surah_ar": "سُورَةُ الزُّمَرِ",
@@ -955,17 +944,6 @@
     "verse_ar": "وَمَآ أَرْسَلْنَٰكَ إِلَّا رَحْمَةًۭ لِّلْعَٰلَمِينَ",
     "translation": "Et Nous ne t'avons envoyé qu'en miséricorde pour l'univers.",
     "audio": "audio/rahma_21_107.mp3"
-  },
-  {
-    "theme": "rahma",
-    "surah": 6,
-    "ayah": 54,
-    "surah_ar": "سُورَةُ الأَنۡعَامِ",
-    "surah_fr": "Al-An'aam",
-    "ref": "Al-An'aam 6:54",
-    "verse_ar": "وَإِذَا جَآءَكَ ٱلَّذِينَ يُؤْمِنُونَ بِـَٔايَٰتِنَا فَقُلْ سَلَٰمٌ عَلَيْكُمْ ۖ كَتَبَ رَبُّكُمْ عَلَىٰ نَفْسِهِ ٱلرَّحْمَةَ ۖ أَنَّهُۥ مَنْ عَمِلَ مِنكُمْ سُوٓءًۢا بِجَهَٰلَةٍۢ ثُمَّ تَابَ مِنۢ بَعْدِهِۦ وَأَصْلَحَ فَأَنَّهُۥ غَفُورٌۭ رَّحِيمٌۭ",
-    "translation": "Et lorsque viennent vers toi ceux qui croient à nos versets (le Coran), dis: «Que la paix soit sur vous! Votre Seigneur S'est prescrit à Lui-même la miséricorde. Et quiconque d'entre vous a fait un mal par ignorance, et ensuite s'est repenti et s'est réformé... Il est, alors, Pardonneur et Miséricordieux».",
-    "audio": "audio/rahma_6_54.mp3"
   },
   {
     "theme": "rahma",
@@ -1002,17 +980,6 @@
   },
   {
     "theme": "rahma",
-    "surah": 40,
-    "ayah": 7,
-    "surah_ar": "سُورَةُ غَافِرٍ",
-    "surah_fr": "Ghafir",
-    "ref": "Ghafir 40:7",
-    "verse_ar": "ٱلَّذِينَ يَحْمِلُونَ ٱلْعَرْشَ وَمَنْ حَوْلَهُۥ يُسَبِّحُونَ بِحَمْدِ رَبِّهِمْ وَيُؤْمِنُونَ بِهِۦ وَيَسْتَغْفِرُونَ لِلَّذِينَ ءَامَنُوا۟ رَبَّنَا وَسِعْتَ كُلَّ شَىْءٍۢ رَّحْمَةًۭ وَعِلْمًۭا فَٱغْفِرْ لِلَّذِينَ تَابُوا۟ وَٱتَّبَعُوا۟ سَبِيلَكَ وَقِهِمْ عَذَابَ ٱلْجَحِيمِ",
-    "translation": "Ceux (les Anges) qui portent le Trône et ceux qui l'entourent célèbrent les louanges de leur Seigneur, croient en Lui et implorent le pardon pour ceux qui croient: «Seigneur! Tu étends sur toute chose Ta miséricorde et Ta science. Pardonne donc à ceux qui se repentent et suivent Ton chemin et protège-les du châtiment de l'Enfer.",
-    "audio": "audio/rahma_40_7.mp3"
-  },
-  {
-    "theme": "rahma",
     "surah": 11,
     "ayah": 90,
     "surah_ar": "سُورَةُ هُودٍ",
@@ -1032,6 +999,116 @@
     "verse_ar": "أَهَٰٓؤُلَآءِ ٱلَّذِينَ أَقْسَمْتُمْ لَا يَنَالُهُمُ ٱللَّهُ بِرَحْمَةٍ ۚ ٱدْخُلُوا۟ ٱلْجَنَّةَ لَا خَوْفٌ عَلَيْكُمْ وَلَآ أَنتُمْ تَحْزَنُونَ",
     "translation": "Est-ce donc ceux-là au sujet desquels vous juriez qu'ils n'obtiendront de la part d'Allah aucune miséricorde...? - Entrez au Paradis! Vous serez à l'abri de toute crainte et vous ne serez point affligés.",
     "audio": "audio/rahma_7_49.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 6,
+    "ayah": 12,
+    "surah_ar": "سُورَةُ الأَنۡعَامِ",
+    "surah_fr": "Al-An'aam",
+    "ref": "Al-An'aam 6:12",
+    "verse_ar": "قُل لِّمَن مَّا فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۖ قُل لِّلَّهِ ۚ كَتَبَ عَلَىٰ نَفْسِهِ ٱلرَّحْمَةَ ۚ لَيَجْمَعَنَّكُمْ إِلَىٰ يَوْمِ ٱلْقِيَٰمَةِ لَا رَيْبَ فِيهِ ۚ ٱلَّذِينَ خَسِرُوٓا۟ أَنفُسَهُمْ فَهُمْ لَا يُؤْمِنُونَ",
+    "translation": "Dis: «A qui appartient ce qui est dans les cieux et la terre?» Dis: «A Allah!» Il S'est à Lui-même prescrit la miséricorde. Il vous rassemblera, certainement, au Jour de la Résurrection: il n'y a pas de doute là-dessus. Ceux qui font leur propre perte sont ceux qui ne croient pas.",
+    "audio": "audio/rahma_6_12.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 36,
+    "ayah": 58,
+    "surah_ar": "سُورَةُ يسٓ",
+    "surah_fr": "Yaseen",
+    "ref": "Yaseen 36:58",
+    "verse_ar": "سَلَٰمٌۭ قَوْلًۭا مِّن رَّبٍّۢ رَّحِيمٍۢ",
+    "translation": "«Salâm» [paix et salut]! Parole de la part d'un Seigneur Très Miséricordieux.",
+    "audio": "audio/rahma_36_58.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 30,
+    "ayah": 50,
+    "surah_ar": "سُورَةُ الرُّومِ",
+    "surah_fr": "Ar-Room",
+    "ref": "Ar-Room 30:50",
+    "verse_ar": "فَٱنظُرْ إِلَىٰٓ ءَاثَٰرِ رَحْمَتِ ٱللَّهِ كَيْفَ يُحْىِ ٱلْأَرْضَ بَعْدَ مَوْتِهَآ ۚ إِنَّ ذَٰلِكَ لَمُحْىِ ٱلْمَوْتَىٰ ۖ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ",
+    "translation": "Regarde donc les effets de la miséricorde d'Allah comment Il redonne la vie à la terre après sa mort. C'est Lui qui fait revivre les morts et Il est Omnipotent.",
+    "audio": "audio/rahma_30_50.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 15,
+    "ayah": 49,
+    "surah_ar": "سُورَةُ الحِجۡرِ",
+    "surah_fr": "Al-Hijr",
+    "ref": "Al-Hijr 15:49",
+    "verse_ar": "نَبِّئْ عِبَادِىٓ أَنِّىٓ أَنَا ٱلْغَفُورُ ٱلرَّحِيمُ",
+    "translation": "Informe Mes serviteurs que c'est Moi le Pardonneur, le Très Miséricordieux.",
+    "audio": "audio/rahma_15_49.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 12,
+    "ayah": 92,
+    "surah_ar": "سُورَةُ يُوسُفَ",
+    "surah_fr": "Yusuf",
+    "ref": "Yusuf 12:92",
+    "verse_ar": "قَالَ لَا تَثْرِيبَ عَلَيْكُمُ ٱلْيَوْمَ ۖ يَغْفِرُ ٱللَّهُ لَكُمْ ۖ وَهُوَ أَرْحَمُ ٱلرَّٰحِمِينَ",
+    "translation": "- Il dit: «Pas de récrimination contre vous aujourd'hui! Qu'Allah vous pardonne. C'est Lui Le plus Miséricordieux des miséricordieux.",
+    "audio": "audio/rahma_12_92.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 7,
+    "ayah": 151,
+    "surah_ar": "سُورَةُ الأَعۡرَافِ",
+    "surah_fr": "Al-A'raaf",
+    "ref": "Al-A'raaf 7:151",
+    "verse_ar": "قَالَ رَبِّ ٱغْفِرْ لِى وَلِأَخِى وَأَدْخِلْنَا فِى رَحْمَتِكَ ۖ وَأَنتَ أَرْحَمُ ٱلرَّٰحِمِينَ",
+    "translation": "Et (Moïse) dit: «O mon Seigneur, pardonne à moi et à mon frère et fais-nous entrer en Ta miséricorde, car Tu es Le plus Miséricordieux des miséricordieux».",
+    "audio": "audio/rahma_7_151.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 17,
+    "ayah": 110,
+    "surah_ar": "سُورَةُ الإِسۡرَاءِ",
+    "surah_fr": "Al-Israa",
+    "ref": "Al-Israa 17:110",
+    "verse_ar": "قُلِ ٱدْعُوا۟ ٱللَّهَ أَوِ ٱدْعُوا۟ ٱلرَّحْمَٰنَ ۖ أَيًّۭا مَّا تَدْعُوا۟ فَلَهُ ٱلْأَسْمَآءُ ٱلْحُسْنَىٰ ۚ وَلَا تَجْهَرْ بِصَلَاتِكَ وَلَا تُخَافِتْ بِهَا وَٱبْتَغِ بَيْنَ ذَٰلِكَ سَبِيلًۭا",
+    "translation": "Dis: «Invoquez Allah, ou invoquez le Tout Miséricordieux. Quel que soit le nom par lequel vous l'appelez, Il a les plus beaux noms. Et dans ta Salât, ne récite pas à voix haute; et ne l'y abaisse pas trop, mais cherche le juste milieu entre les deux».",
+    "audio": "audio/rahma_17_110.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 2,
+    "ayah": 64,
+    "surah_ar": "سُورَةُ البَقَرَةِ",
+    "surah_fr": "Al-Baqara",
+    "ref": "Al-Baqara 2:64",
+    "verse_ar": "ثُمَّ تَوَلَّيْتُم مِّنۢ بَعْدِ ذَٰلِكَ ۖ فَلَوْلَا فَضْلُ ٱللَّهِ عَلَيْكُمْ وَرَحْمَتُهُۥ لَكُنتُم مِّنَ ٱلْخَٰسِرِينَ",
+    "translation": "Puis vous vous en détournâtes après vos engagements, n'eût été donc la grâce d'Allah et Sa miséricorde, vous seriez certes parmi les perdants.",
+    "audio": "audio/rahma_2_64.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 19,
+    "ayah": 96,
+    "surah_ar": "سُورَةُ مَرۡيَمَ",
+    "surah_fr": "Maryam",
+    "ref": "Maryam 19:96",
+    "verse_ar": "إِنَّ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ سَيَجْعَلُ لَهُمُ ٱلرَّحْمَٰنُ وُدًّۭا",
+    "translation": "A ceux qui croient et font de bonnes œuvres, le Tout Miséricordieux accordera Son amour.",
+    "audio": "audio/rahma_19_96.mp3"
+  },
+  {
+    "theme": "rahma",
+    "surah": 52,
+    "ayah": 28,
+    "surah_ar": "سُورَةُ الطُّورِ",
+    "surah_fr": "At-Tur",
+    "ref": "At-Tur 52:28",
+    "verse_ar": "إِنَّا كُنَّا مِن قَبْلُ نَدْعُوهُ ۖ إِنَّهُۥ هُوَ ٱلْبَرُّ ٱلرَّحِيمُ",
+    "translation": "Antérieurement, nous L'invoquions. C'est Lui certes, le Charitable, le Très Miséricordieux».",
+    "audio": "audio/rahma_52_28.mp3"
   },
   {
     "theme": "tawba",
@@ -1123,17 +1200,6 @@
   },
   {
     "theme": "tawba",
-    "surah": 66,
-    "ayah": 8,
-    "surah_ar": "سُورَةُ التَّحۡرِيمِ",
-    "surah_fr": "At-Tahrim",
-    "ref": "At-Tahrim 66:8",
-    "verse_ar": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ تُوبُوٓا۟ إِلَى ٱللَّهِ تَوْبَةًۭ نَّصُوحًا عَسَىٰ رَبُّكُمْ أَن يُكَفِّرَ عَنكُمْ سَيِّـَٔاتِكُمْ وَيُدْخِلَكُمْ جَنَّٰتٍۢ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ يَوْمَ لَا يُخْزِى ٱللَّهُ ٱلنَّبِىَّ وَٱلَّذِينَ ءَامَنُوا۟ مَعَهُۥ ۖ نُورُهُمْ يَسْعَىٰ بَيْنَ أَيْدِيهِمْ وَبِأَيْمَٰنِهِمْ يَقُولُونَ رَبَّنَآ أَتْمِمْ لَنَا نُورَنَا وَٱغْفِرْ لَنَآ ۖ إِنَّكَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ",
-    "translation": "O vous qui avez cru! Repentez-vous à Allah d'un repentir sincère. Il se peut que votre Seigneur vous efface vos fautes et qu'Il vous fasse entrer dans des Jardins sous lesquels coulent les ruisseaux, le jour où Allah épargnera l'ignominie au Prophète et à ceux qui croient avec lui. Leur lumière courra devant eux et à leur droite; ils diront: «Seigneur, parfais-nous notre lumière et pardonne-nous. Car Tu es Omnipotent».",
-    "audio": "audio/tawba_66_8.mp3"
-  },
-  {
-    "theme": "tawba",
     "surah": 5,
     "ayah": 39,
     "surah_ar": "سُورَةُ المَائـِدَةِ",
@@ -1142,6 +1208,138 @@
     "verse_ar": "فَمَن تَابَ مِنۢ بَعْدِ ظُلْمِهِۦ وَأَصْلَحَ فَإِنَّ ٱللَّهَ يَتُوبُ عَلَيْهِ ۗ إِنَّ ٱللَّهَ غَفُورٌۭ رَّحِيمٌ",
     "translation": "Mais quiconque se repent après son tort et se réforme, Allah accepte son repentir. Car, Allah est, certes, Pardonneur et Miséricordieux.",
     "audio": "audio/tawba_5_39.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 2,
+    "ayah": 37,
+    "surah_ar": "سُورَةُ البَقَرَةِ",
+    "surah_fr": "Al-Baqara",
+    "ref": "Al-Baqara 2:37",
+    "verse_ar": "فَتَلَقَّىٰٓ ءَادَمُ مِن رَّبِّهِۦ كَلِمَٰتٍۢ فَتَابَ عَلَيْهِ ۚ إِنَّهُۥ هُوَ ٱلتَّوَّابُ ٱلرَّحِيمُ",
+    "translation": "Puis Adam reçut de son Seigneur des paroles, et Allah agréa son repentir car c'est Lui certes, le Repentant, le Miséricordieux.",
+    "audio": "audio/tawba_2_37.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 3,
+    "ayah": 89,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:89",
+    "verse_ar": "إِلَّا ٱلَّذِينَ تَابُوا۟ مِنۢ بَعْدِ ذَٰلِكَ وَأَصْلَحُوا۟ فَإِنَّ ٱللَّهَ غَفُورٌۭ رَّحِيمٌ",
+    "translation": "excepté ceux qui par la suite se repentiront et se réformeront: car Allah est certes Pardonneur et Miséricordieux.",
+    "audio": "audio/tawba_3_89.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 4,
+    "ayah": 16,
+    "surah_ar": "سُورَةُ النِّسَاءِ",
+    "surah_fr": "An-Nisaa",
+    "ref": "An-Nisaa 4:16",
+    "verse_ar": "وَٱلَّذَانِ يَأْتِيَٰنِهَا مِنكُمْ فَـَٔاذُوهُمَا ۖ فَإِن تَابَا وَأَصْلَحَا فَأَعْرِضُوا۟ عَنْهُمَآ ۗ إِنَّ ٱللَّهَ كَانَ تَوَّابًۭا رَّحِيمًا",
+    "translation": "Les deux d'entre vous qui l'ont commise [la fornication], sévissez contre eux. S'ils se repentent ensuite et se réforment, alors laissez-les en paix. Allah demeure Accueillant au repentir et Miséricordieux.",
+    "audio": "audio/tawba_4_16.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 4,
+    "ayah": 18,
+    "surah_ar": "سُورَةُ النِّسَاءِ",
+    "surah_fr": "An-Nisaa",
+    "ref": "An-Nisaa 4:18",
+    "verse_ar": "وَلَيْسَتِ ٱلتَّوْبَةُ لِلَّذِينَ يَعْمَلُونَ ٱلسَّيِّـَٔاتِ حَتَّىٰٓ إِذَا حَضَرَ أَحَدَهُمُ ٱلْمَوْتُ قَالَ إِنِّى تُبْتُ ٱلْـَٰٔنَ وَلَا ٱلَّذِينَ يَمُوتُونَ وَهُمْ كُفَّارٌ ۚ أُو۟لَٰٓئِكَ أَعْتَدْنَا لَهُمْ عَذَابًا أَلِيمًۭا",
+    "translation": "Mais l'absolution n'est point destinée à ceux qui font de mauvaises actions jusqu'au moment où la mort se présente à l'un d'eux, et qui s'écrie: «Certes, je me repens maintenant» - non plus pour ceux qui meurent mécréants. Et c'est pour eux que Nous avons préparé un châtiment douloureux.",
+    "audio": "audio/tawba_4_18.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 5,
+    "ayah": 34,
+    "surah_ar": "سُورَةُ المَائـِدَةِ",
+    "surah_fr": "Al-Maaida",
+    "ref": "Al-Maaida 5:34",
+    "verse_ar": "إِلَّا ٱلَّذِينَ تَابُوا۟ مِن قَبْلِ أَن تَقْدِرُوا۟ عَلَيْهِمْ ۖ فَٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ غَفُورٌۭ رَّحِيمٌۭ",
+    "translation": "excepté ceux qui se sont repentis avant de tomber en votre pouvoir: sachez qu'alors, Allah est Pardonneur et Miséricordieux.",
+    "audio": "audio/tawba_5_34.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 7,
+    "ayah": 153,
+    "surah_ar": "سُورَةُ الأَعۡرَافِ",
+    "surah_fr": "Al-A'raaf",
+    "ref": "Al-A'raaf 7:153",
+    "verse_ar": "وَٱلَّذِينَ عَمِلُوا۟ ٱلسَّيِّـَٔاتِ ثُمَّ تَابُوا۟ مِنۢ بَعْدِهَا وَءَامَنُوٓا۟ إِنَّ رَبَّكَ مِنۢ بَعْدِهَا لَغَفُورٌۭ رَّحِيمٌۭ",
+    "translation": "Ceux qui ont fait de mauvaises actions et qui ensuite se sont repentis et ont cru... ton Seigneur, après cela est sûrement Pardonneur et Miséricordieux.",
+    "audio": "audio/tawba_7_153.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 11,
+    "ayah": 3,
+    "surah_ar": "سُورَةُ هُودٍ",
+    "surah_fr": "Hud",
+    "ref": "Hud 11:3",
+    "verse_ar": "وَأَنِ ٱسْتَغْفِرُوا۟ رَبَّكُمْ ثُمَّ تُوبُوٓا۟ إِلَيْهِ يُمَتِّعْكُم مَّتَٰعًا حَسَنًا إِلَىٰٓ أَجَلٍۢ مُّسَمًّۭى وَيُؤْتِ كُلَّ ذِى فَضْلٍۢ فَضْلَهُۥ ۖ وَإِن تَوَلَّوْا۟ فَإِنِّىٓ أَخَافُ عَلَيْكُمْ عَذَابَ يَوْمٍۢ كَبِيرٍ",
+    "translation": "Demandez pardon à votre Seigneur; ensuite, revenez à Lui. Il vous accordera une belle jouissance jusqu'à un terme fixé, et Il accordera à chaque méritant l'honneur qu'il mérite. Mais si vous tournez le dos, je crains alors pour vous le châtiment d'un grand jour.",
+    "audio": "audio/tawba_11_3.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 11,
+    "ayah": 52,
+    "surah_ar": "سُورَةُ هُودٍ",
+    "surah_fr": "Hud",
+    "ref": "Hud 11:52",
+    "verse_ar": "وَيَٰقَوْمِ ٱسْتَغْفِرُوا۟ رَبَّكُمْ ثُمَّ تُوبُوٓا۟ إِلَيْهِ يُرْسِلِ ٱلسَّمَآءَ عَلَيْكُم مِّدْرَارًۭا وَيَزِدْكُمْ قُوَّةً إِلَىٰ قُوَّتِكُمْ وَلَا تَتَوَلَّوْا۟ مُجْرِمِينَ",
+    "translation": "O mon peuple, implorez le pardon de votre Seigneur et repentez-vous à Lui pour qu'Il envoie sur vous du ciel des pluies abondantes et qu'Il ajoute force à votre force. Et ne vous détournez pas [de Lui] en devenant coupables».",
+    "audio": "audio/tawba_11_52.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 20,
+    "ayah": 122,
+    "surah_ar": "سُورَةُ طه",
+    "surah_fr": "Taa-Haa",
+    "ref": "Taa-Haa 20:122",
+    "verse_ar": "ثُمَّ ٱجْتَبَٰهُ رَبُّهُۥ فَتَابَ عَلَيْهِ وَهَدَىٰ",
+    "translation": "Son Seigneur l'a ensuite élu, agréé son repentir et l'a guidé.",
+    "audio": "audio/tawba_20_122.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 24,
+    "ayah": 5,
+    "surah_ar": "سُورَةُ النُّورِ",
+    "surah_fr": "An-Noor",
+    "ref": "An-Noor 24:5",
+    "verse_ar": "إِلَّا ٱلَّذِينَ تَابُوا۟ مِنۢ بَعْدِ ذَٰلِكَ وَأَصْلَحُوا۟ فَإِنَّ ٱللَّهَ غَفُورٌۭ رَّحِيمٌۭ",
+    "translation": "à l'exception de ceux qui, après cela, se repentent et se réforment, car Allah est Pardonneur et Miséricordieux.",
+    "audio": "audio/tawba_24_5.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 40,
+    "ayah": 3,
+    "surah_ar": "سُورَةُ غَافِرٍ",
+    "surah_fr": "Ghafir",
+    "ref": "Ghafir 40:3",
+    "verse_ar": "غَافِرِ ٱلذَّنۢبِ وَقَابِلِ ٱلتَّوْبِ شَدِيدِ ٱلْعِقَابِ ذِى ٱلطَّوْلِ ۖ لَآ إِلَٰهَ إِلَّا هُوَ ۖ إِلَيْهِ ٱلْمَصِيرُ",
+    "translation": "Le Pardonneur des péchés, l'Accueillant au repentir, le Dur en punition, le Détenteur des faveurs. Point de divinité à part Lui et vers Lui est la destination.",
+    "audio": "audio/tawba_40_3.mp3"
+  },
+  {
+    "theme": "tawba",
+    "surah": 66,
+    "ayah": 4,
+    "surah_ar": "سُورَةُ التَّحۡرِيمِ",
+    "surah_fr": "At-Tahrim",
+    "ref": "At-Tahrim 66:4",
+    "verse_ar": "إِن تَتُوبَآ إِلَى ٱللَّهِ فَقَدْ صَغَتْ قُلُوبُكُمَا ۖ وَإِن تَظَٰهَرَا عَلَيْهِ فَإِنَّ ٱللَّهَ هُوَ مَوْلَىٰهُ وَجِبْرِيلُ وَصَٰلِحُ ٱلْمُؤْمِنِينَ ۖ وَٱلْمَلَٰٓئِكَةُ بَعْدَ ذَٰلِكَ ظَهِيرٌ",
+    "translation": "Si vous vous repentez à Allah c'est que vos cœurs ont fléchi. Mais si vous vous soutenez l'une l'autre contre le Prophète, alors ses alliés seront Allah, Gabriel et les vertueux d'entre les croyants, et les Anges sont par surcroît [son] soutien.",
+    "audio": "audio/tawba_66_4.mp3"
   },
   {
     "theme": "shukr",
@@ -1189,28 +1387,6 @@
   },
   {
     "theme": "shukr",
-    "surah": 39,
-    "ayah": 7,
-    "surah_ar": "سُورَةُ الزُّمَرِ",
-    "surah_fr": "Az-Zumar",
-    "ref": "Az-Zumar 39:7",
-    "verse_ar": "إِن تَكْفُرُوا۟ فَإِنَّ ٱللَّهَ غَنِىٌّ عَنكُمْ ۖ وَلَا يَرْضَىٰ لِعِبَادِهِ ٱلْكُفْرَ ۖ وَإِن تَشْكُرُوا۟ يَرْضَهُ لَكُمْ ۗ وَلَا تَزِرُ وَازِرَةٌۭ وِزْرَ أُخْرَىٰ ۗ ثُمَّ إِلَىٰ رَبِّكُم مَّرْجِعُكُمْ فَيُنَبِّئُكُم بِمَا كُنتُمْ تَعْمَلُونَ ۚ إِنَّهُۥ عَلِيمٌۢ بِذَاتِ ٱلصُّدُورِ",
-    "translation": "Si vous ne croyez pas, Allah se passe largement de vous. De Ses serviteurs cependant, Il n'agrée pas la mécréance. Et si vous êtes reconnaissants, Il l'agrée pour vous. Nul pécheur ne portera les péchés d'autrui. Ensuite, vers votre Seigneur sera votre retour: Il vous informera alors de ce que vous faisiez car Il connaît parfaitement le contenu des poitrines.",
-    "audio": "audio/shukr_39_7.mp3"
-  },
-  {
-    "theme": "shukr",
-    "surah": 27,
-    "ayah": 40,
-    "surah_ar": "سُورَةُ النَّمۡلِ",
-    "surah_fr": "An-Naml",
-    "ref": "An-Naml 27:40",
-    "verse_ar": "قَالَ ٱلَّذِى عِندَهُۥ عِلْمٌۭ مِّنَ ٱلْكِتَٰبِ أَنَا۠ ءَاتِيكَ بِهِۦ قَبْلَ أَن يَرْتَدَّ إِلَيْكَ طَرْفُكَ ۚ فَلَمَّا رَءَاهُ مُسْتَقِرًّا عِندَهُۥ قَالَ هَٰذَا مِن فَضْلِ رَبِّى لِيَبْلُوَنِىٓ ءَأَشْكُرُ أَمْ أَكْفُرُ ۖ وَمَن شَكَرَ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِۦ ۖ وَمَن كَفَرَ فَإِنَّ رَبِّى غَنِىٌّۭ كَرِيمٌۭ",
-    "translation": "Quelqu'un qui avait une connaissance du Livre dit: «Je te l'apporterai avant que tu n'aies cligné de l'œil». Quand ensuite, Salomon a vu le trône installé auprès de lui, il dit: «Cela est de la grâce de mon Seigneur, pour m'éprouver si je suis reconnaissant ou si je suis ingrat. Quiconque est reconnaissant c'est dans son propre intérêt qu'il le fait, et quiconque est ingrat... alors mon Seigneur Se suffit à Lui-même et Il est Généreux».",
-    "audio": "audio/shukr_27_40.mp3"
-  },
-  {
-    "theme": "shukr",
     "surah": 34,
     "ayah": 13,
     "surah_ar": "سُورَةُ سَبَإٍ",
@@ -1219,17 +1395,6 @@
     "verse_ar": "يَعْمَلُونَ لَهُۥ مَا يَشَآءُ مِن مَّحَٰرِيبَ وَتَمَٰثِيلَ وَجِفَانٍۢ كَٱلْجَوَابِ وَقُدُورٍۢ رَّاسِيَٰتٍ ۚ ٱعْمَلُوٓا۟ ءَالَ دَاوُۥدَ شُكْرًۭا ۚ وَقَلِيلٌۭ مِّنْ عِبَادِىَ ٱلشَّكُورُ",
     "translation": "Ils exécutaient pour lui ce qu'il voulait: sanctuaires, statues, plateaux comme des bassins, et marmites bien ancrées. - «O famille de David, œuvrez par gratitude», alors qu'il y a eu peu de Mes serviteurs qui sont reconnaissants.",
     "audio": "audio/shukr_34_13.mp3"
-  },
-  {
-    "theme": "shukr",
-    "surah": 16,
-    "ayah": 18,
-    "surah_ar": "سُورَةُ النَّحۡلِ",
-    "surah_fr": "An-Nahl",
-    "ref": "An-Nahl 16:18",
-    "verse_ar": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ ۗ إِنَّ ٱللَّهَ لَغَفُورٌۭ رَّحِيمٌۭ",
-    "translation": "Et si vous comptez les bienfaits d'Allah, vous ne saurez pas les dénombrer. Car Allah est Pardonneur, et Miséricordieux.",
-    "audio": "audio/shukr_16_18.mp3"
   },
   {
     "theme": "shukr",
@@ -1254,15 +1419,147 @@
     "audio": "audio/shukr_16_78.mp3"
   },
   {
-    "theme": "tawakkul",
-    "surah": 3,
-    "ayah": 159,
-    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
-    "surah_fr": "Aal-i-Imraan",
-    "ref": "Aal-i-Imraan 3:159",
-    "verse_ar": "فَبِمَا رَحْمَةٍۢ مِّنَ ٱللَّهِ لِنتَ لَهُمْ ۖ وَلَوْ كُنتَ فَظًّا غَلِيظَ ٱلْقَلْبِ لَٱنفَضُّوا۟ مِنْ حَوْلِكَ ۖ فَٱعْفُ عَنْهُمْ وَٱسْتَغْفِرْ لَهُمْ وَشَاوِرْهُمْ فِى ٱلْأَمْرِ ۖ فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى ٱللَّهِ ۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلْمُتَوَكِّلِينَ",
-    "translation": "C'est par quelque miséricorde de la part d'Allah que tu (Muhammad) as été si doux envers eux! Mais si tu étais rude, au cœur dur, ils se seraient enfuis de ton entourage. Pardonne-leur donc, et implore pour eux le pardon (d'Allah). Et consulte-les à propos des affaires; puis une fois que tu t'es décidé, confie-toi donc à Allah, Allah aime, en vérité, ceux qui Lui font confiance.",
-    "audio": "audio/tawakkul_3_159.mp3"
+    "theme": "shukr",
+    "surah": 2,
+    "ayah": 152,
+    "surah_ar": "سُورَةُ البَقَرَةِ",
+    "surah_fr": "Al-Baqara",
+    "ref": "Al-Baqara 2:152",
+    "verse_ar": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ",
+    "translation": "Souvenez-vous de Moi donc. Je vous récompenserai. Remerciez-Moi et ne soyez pas ingrats envers Moi!",
+    "audio": "audio/shukr_2_152.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 7,
+    "ayah": 10,
+    "surah_ar": "سُورَةُ الأَعۡرَافِ",
+    "surah_fr": "Al-A'raaf",
+    "ref": "Al-A'raaf 7:10",
+    "verse_ar": "وَلَقَدْ مَكَّنَّٰكُمْ فِى ٱلْأَرْضِ وَجَعَلْنَا لَكُمْ فِيهَا مَعَٰيِشَ ۗ قَلِيلًۭا مَّا تَشْكُرُونَ",
+    "translation": "Certes, Nous vous avons donné du pouvoir sur terre et Nous vous y avons assigné subsistance. (Mais) vous êtes très peu reconnaissants!",
+    "audio": "audio/shukr_7_10.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 10,
+    "ayah": 60,
+    "surah_ar": "سُورَةُ يُونُسَ",
+    "surah_fr": "Yunus",
+    "ref": "Yunus 10:60",
+    "verse_ar": "وَمَا ظَنُّ ٱلَّذِينَ يَفْتَرُونَ عَلَى ٱللَّهِ ٱلْكَذِبَ يَوْمَ ٱلْقِيَٰمَةِ ۗ إِنَّ ٱللَّهَ لَذُو فَضْلٍ عَلَى ٱلنَّاسِ وَلَٰكِنَّ أَكْثَرَهُمْ لَا يَشْكُرُونَ",
+    "translation": "Et que penseront, au Jour de la Résurrection, ceux qui forgent le mensonge contre Allah? - Certes, Allah est Détenteur de grâce pour les gens, mais la plupart d'entre eux ne sont pas reconnaissants.",
+    "audio": "audio/shukr_10_60.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 14,
+    "ayah": 5,
+    "surah_ar": "سُورَةُ إِبۡرَاهِيمَ",
+    "surah_fr": "Ibrahim",
+    "ref": "Ibrahim 14:5",
+    "verse_ar": "وَلَقَدْ أَرْسَلْنَا مُوسَىٰ بِـَٔايَٰتِنَآ أَنْ أَخْرِجْ قَوْمَكَ مِنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِ وَذَكِّرْهُم بِأَيَّىٰمِ ٱللَّهِ ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّكُلِّ صَبَّارٍۢ شَكُورٍۢ",
+    "translation": "Nous avons certes, envoyé Moïse avec Nos miracles [en lui disant]: «Fais sortir ton peuple des ténèbres vers la lumière, et rappelle-leur les jours d'Allah». [Ses bienfaits]. Dans tout cela il y a des signes pour tout homme plein d'endurance et de reconnaissance.",
+    "audio": "audio/shukr_14_5.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 16,
+    "ayah": 14,
+    "surah_ar": "سُورَةُ النَّحۡلِ",
+    "surah_fr": "An-Nahl",
+    "ref": "An-Nahl 16:14",
+    "verse_ar": "وَهُوَ ٱلَّذِى سَخَّرَ ٱلْبَحْرَ لِتَأْكُلُوا۟ مِنْهُ لَحْمًۭا طَرِيًّۭا وَتَسْتَخْرِجُوا۟ مِنْهُ حِلْيَةًۭ تَلْبَسُونَهَا وَتَرَى ٱلْفُلْكَ مَوَاخِرَ فِيهِ وَلِتَبْتَغُوا۟ مِن فَضْلِهِۦ وَلَعَلَّكُمْ تَشْكُرُونَ",
+    "translation": "Et c'est Lui qui a assujetti la mer afin que vous en mangiez une chair fraîche, et que vous en retiriez des parures que vous portez. Et tu vois les bateaux fendre la mer avec bruit, pour que vous partiez en quête de Sa grâce et afin que vous soyez reconnaissants.",
+    "audio": "audio/shukr_16_14.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 27,
+    "ayah": 73,
+    "surah_ar": "سُورَةُ النَّمۡلِ",
+    "surah_fr": "An-Naml",
+    "ref": "An-Naml 27:73",
+    "verse_ar": "وَإِنَّ رَبَّكَ لَذُو فَضْلٍ عَلَى ٱلنَّاسِ وَلَٰكِنَّ أَكْثَرَهُمْ لَا يَشْكُرُونَ",
+    "translation": "Certes, ton Seigneur est pourvoyeur de grâce aux hommes, mais la plupart d'entre eux ne sont pas reconnaissants.",
+    "audio": "audio/shukr_27_73.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 31,
+    "ayah": 31,
+    "surah_ar": "سُورَةُ لُقۡمَانَ",
+    "surah_fr": "Luqman",
+    "ref": "Luqman 31:31",
+    "verse_ar": "أَلَمْ تَرَ أَنَّ ٱلْفُلْكَ تَجْرِى فِى ٱلْبَحْرِ بِنِعْمَتِ ٱللَّهِ لِيُرِيَكُم مِّنْ ءَايَٰتِهِۦٓ ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّكُلِّ صَبَّارٍۢ شَكُورٍۢ",
+    "translation": "N'as-tu pas vu que c'est par la grâce d'Allah que le vaisseau vogue dans la mer, afin qu'Il vous fasse voir de Ses merveilles? Il y a en cela des preuves pour tout homme patient et reconnaissant.",
+    "audio": "audio/shukr_31_31.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 34,
+    "ayah": 15,
+    "surah_ar": "سُورَةُ سَبَإٍ",
+    "surah_fr": "Saba",
+    "ref": "Saba 34:15",
+    "verse_ar": "لَقَدْ كَانَ لِسَبَإٍۢ فِى مَسْكَنِهِمْ ءَايَةٌۭ ۖ جَنَّتَانِ عَن يَمِينٍۢ وَشِمَالٍۢ ۖ كُلُوا۟ مِن رِّزْقِ رَبِّكُمْ وَٱشْكُرُوا۟ لَهُۥ ۚ بَلْدَةٌۭ طَيِّبَةٌۭ وَرَبٌّ غَفُورٌۭ",
+    "translation": "Il y avait assurément, pour la tribu de Saba' un Signe dans leurs habitat: deux jardins, l'un à droite et l'autre à gauche. «Mangez de ce que votre Seigneur vous a attribué, et soyez-Lui reconnaissants: une bonne contrée et un Seigneur Pardonneur».",
+    "audio": "audio/shukr_34_15.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 39,
+    "ayah": 66,
+    "surah_ar": "سُورَةُ الزُّمَرِ",
+    "surah_fr": "Az-Zumar",
+    "ref": "Az-Zumar 39:66",
+    "verse_ar": "بَلِ ٱللَّهَ فَٱعْبُدْ وَكُن مِّنَ ٱلشَّٰكِرِينَ",
+    "translation": "Tout au contraire, adore Allah seul et sois du nombre des reconnaissants».",
+    "audio": "audio/shukr_39_66.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 45,
+    "ayah": 12,
+    "surah_ar": "سُورَةُ الجَاثِيَةِ",
+    "surah_fr": "Al-Jaathiya",
+    "ref": "Al-Jaathiya 45:12",
+    "verse_ar": "ٱللَّهُ ٱلَّذِى سَخَّرَ لَكُمُ ٱلْبَحْرَ لِتَجْرِىَ ٱلْفُلْكُ فِيهِ بِأَمْرِهِۦ وَلِتَبْتَغُوا۟ مِن فَضْلِهِۦ وَلَعَلَّكُمْ تَشْكُرُونَ",
+    "translation": "Allah c'est Lui qui vous a assujetti la mer, afin que les vaisseaux y voguent, par Son ordre, et que vous alliez en quête de sa grâce afin que vous soyez reconnaissants.",
+    "audio": "audio/shukr_45_12.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 64,
+    "ayah": 17,
+    "surah_ar": "سُورَةُ التَّغَابُنِ",
+    "surah_fr": "At-Taghaabun",
+    "ref": "At-Taghaabun 64:17",
+    "verse_ar": "إِن تُقْرِضُوا۟ ٱللَّهَ قَرْضًا حَسَنًۭا يُضَٰعِفْهُ لَكُمْ وَيَغْفِرْ لَكُمْ ۚ وَٱللَّهُ شَكُورٌ حَلِيمٌ",
+    "translation": "Si vous faites à Allah un prêt sincère, Il le multipliera pour vous et vous pardonnera. Allah cependant est très Reconnaissant et Indulgent.",
+    "audio": "audio/shukr_64_17.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 67,
+    "ayah": 23,
+    "surah_ar": "سُورَةُ المُلۡكِ",
+    "surah_fr": "Al-Mulk",
+    "ref": "Al-Mulk 67:23",
+    "verse_ar": "قُلْ هُوَ ٱلَّذِىٓ أَنشَأَكُمْ وَجَعَلَ لَكُمُ ٱلسَّمْعَ وَٱلْأَبْصَٰرَ وَٱلْأَفْـِٔدَةَ ۖ قَلِيلًۭا مَّا تَشْكُرُونَ",
+    "translation": "Dis: «C'est Lui qui vous a créés et vous a donné l'ouïe, les yeux et les cœurs». Mais vous êtes rarement reconnaissants!",
+    "audio": "audio/shukr_67_23.mp3"
+  },
+  {
+    "theme": "shukr",
+    "surah": 76,
+    "ayah": 9,
+    "surah_ar": "سُورَةُ الإِنسَانِ",
+    "surah_fr": "Al-Insaan",
+    "ref": "Al-Insaan 76:9",
+    "verse_ar": "إِنَّمَا نُطْعِمُكُمْ لِوَجْهِ ٱللَّهِ لَا نُرِيدُ مِنكُمْ جَزَآءًۭ وَلَا شُكُورًا",
+    "translation": "(disant): «C'est pour le visage d'Allah que nous vous nourrissons: nous ne voulons de vous ni récompense ni gratitude.",
+    "audio": "audio/shukr_76_9.mp3"
   },
   {
     "theme": "tawakkul",
@@ -1321,17 +1618,6 @@
   },
   {
     "theme": "tawakkul",
-    "surah": 39,
-    "ayah": 38,
-    "surah_ar": "سُورَةُ الزُّمَرِ",
-    "surah_fr": "Az-Zumar",
-    "ref": "Az-Zumar 39:38",
-    "verse_ar": "وَلَئِن سَأَلْتَهُم مَّنْ خَلَقَ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ لَيَقُولُنَّ ٱللَّهُ ۚ قُلْ أَفَرَءَيْتُم مَّا تَدْعُونَ مِن دُونِ ٱللَّهِ إِنْ أَرَادَنِىَ ٱللَّهُ بِضُرٍّ هَلْ هُنَّ كَٰشِفَٰتُ ضُرِّهِۦٓ أَوْ أَرَادَنِى بِرَحْمَةٍ هَلْ هُنَّ مُمْسِكَٰتُ رَحْمَتِهِۦ ۚ قُلْ حَسْبِىَ ٱللَّهُ ۖ عَلَيْهِ يَتَوَكَّلُ ٱلْمُتَوَكِّلُونَ",
-    "translation": "Si tu leur demandais: «Qui a créé les cieux et la terre?», Ils diraient assurément: «Allah». Dis: «Voyez-vous ceux que vous invoquez en dehors d'Allah; si Allah me voulait du mal, est-ce que [ces divinités] pourraient dissiper Son mal? Ou s'Il me voulait une miséricorde, pourraient-elles retenir Sa miséricorde?» - Dis: «Allah me suffit: c'est en Lui que placent leur confiance ceux qui cherchent un appui».",
-    "audio": "audio/tawakkul_39_38.mp3"
-  },
-  {
-    "theme": "tawakkul",
     "surah": 67,
     "ayah": 29,
     "surah_ar": "سُورَةُ المُلۡكِ",
@@ -1364,15 +1650,125 @@
     "audio": "audio/tawakkul_11_123.mp3"
   },
   {
-    "theme": "birr",
-    "surah": 17,
-    "ayah": 23,
-    "surah_ar": "سُورَةُ الإِسۡرَاءِ",
-    "surah_fr": "Al-Israa",
-    "ref": "Al-Israa 17:23",
-    "verse_ar": "وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوٓا۟ إِلَّآ إِيَّاهُ وَبِٱلْوَٰلِدَيْنِ إِحْسَٰنًا ۚ إِمَّا يَبْلُغَنَّ عِندَكَ ٱلْكِبَرَ أَحَدُهُمَآ أَوْ كِلَاهُمَا فَلَا تَقُل لَّهُمَآ أُفٍّۢ وَلَا تَنْهَرْهُمَا وَقُل لَّهُمَا قَوْلًۭا كَرِيمًۭا",
-    "translation": "Et ton Seigneur a décrété: «N'adorez que Lui; et (marquez) de la bonté envers les père et mère: si l'un d'eux ou tous deux doivent atteindre la vieillesse auprès de toi, alors ne leur dis point: «Fi!» et ne les brusque pas, mais adresse-leur des paroles respectueuses.",
-    "audio": "audio/birr_17_23.mp3"
+    "theme": "tawakkul",
+    "surah": 3,
+    "ayah": 122,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:122",
+    "verse_ar": "إِذْ هَمَّت طَّآئِفَتَانِ مِنكُمْ أَن تَفْشَلَا وَٱللَّهُ وَلِيُّهُمَا ۗ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+    "translation": "Quand deux de vos groupes songèrent à fléchir! Alors qu'Allah est leur allié à tous deux! Car, c'est en Allah que les croyants doivent placer leur confiance.",
+    "audio": "audio/tawakkul_3_122.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 3,
+    "ayah": 173,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:173",
+    "verse_ar": "ٱلَّذِينَ قَالَ لَهُمُ ٱلنَّاسُ إِنَّ ٱلنَّاسَ قَدْ جَمَعُوا۟ لَكُمْ فَٱخْشَوْهُمْ فَزَادَهُمْ إِيمَٰنًۭا وَقَالُوا۟ حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ",
+    "translation": "Certes ceux auxquels l'on disait: «Les gens se sont rassemblés contre vous; craignez-les» - cela accrut leur foi - et ils dirent: «Allah nous suffit; Il est notre meilleur garant».",
+    "audio": "audio/tawakkul_3_173.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 8,
+    "ayah": 61,
+    "surah_ar": "سُورَةُ الأَنفَالِ",
+    "surah_fr": "Al-Anfaal",
+    "ref": "Al-Anfaal 8:61",
+    "verse_ar": "وَإِن جَنَحُوا۟ لِلسَّلْمِ فَٱجْنَحْ لَهَا وَتَوَكَّلْ عَلَى ٱللَّهِ ۚ إِنَّهُۥ هُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ",
+    "translation": "Et s'ils inclinent à la paix, incline vers celle-ci (toi aussi) et place ta confiance en Allah, car c'est Lui l'Audient, l'Omniscient.",
+    "audio": "audio/tawakkul_8_61.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 9,
+    "ayah": 129,
+    "surah_ar": "سُورَةُ التَّوۡبَةِ",
+    "surah_fr": "At-Tawba",
+    "ref": "At-Tawba 9:129",
+    "verse_ar": "فَإِن تَوَلَّوْا۟ فَقُلْ حَسْبِىَ ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ رَبُّ ٱلْعَرْشِ ٱلْعَظِيمِ",
+    "translation": "Alors, s'ils se détournent dis: «Allah me suffit. Il n'y a de divinité que Lui. En Lui je place ma confiance; et Il est le Seigneur du Trône immense».",
+    "audio": "audio/tawakkul_9_129.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 10,
+    "ayah": 84,
+    "surah_ar": "سُورَةُ يُونُسَ",
+    "surah_fr": "Yunus",
+    "ref": "Yunus 10:84",
+    "verse_ar": "وَقَالَ مُوسَىٰ يَٰقَوْمِ إِن كُنتُمْ ءَامَنتُم بِٱللَّهِ فَعَلَيْهِ تَوَكَّلُوٓا۟ إِن كُنتُم مُّسْلِمِينَ",
+    "translation": "Et Moïse dit: «O mon peuple, si vous croyez en Allah, placez votre confiance en Lui si vous (Lui) êtes soumis».",
+    "audio": "audio/tawakkul_10_84.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 10,
+    "ayah": 85,
+    "surah_ar": "سُورَةُ يُونُسَ",
+    "surah_fr": "Yunus",
+    "ref": "Yunus 10:85",
+    "verse_ar": "فَقَالُوا۟ عَلَى ٱللَّهِ تَوَكَّلْنَا رَبَّنَا لَا تَجْعَلْنَا فِتْنَةًۭ لِّلْقَوْمِ ٱلظَّٰلِمِينَ",
+    "translation": "Ils dirent: «En Allah nous plaçons notre confiance. O notre Seigneur, ne fais pas de nous une cible pour les persécutions des injustes.",
+    "audio": "audio/tawakkul_10_85.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 11,
+    "ayah": 56,
+    "surah_ar": "سُورَةُ هُودٍ",
+    "surah_fr": "Hud",
+    "ref": "Hud 11:56",
+    "verse_ar": "إِنِّى تَوَكَّلْتُ عَلَى ٱللَّهِ رَبِّى وَرَبِّكُم ۚ مَّا مِن دَآبَّةٍ إِلَّا هُوَ ءَاخِذٌۢ بِنَاصِيَتِهَآ ۚ إِنَّ رَبِّى عَلَىٰ صِرَٰطٍۢ مُّسْتَقِيمٍۢ",
+    "translation": "Je place ma confiance en Allah, mon Seigneur et le vôtre. Il n'y a pas d'être vivant qu'Il ne tienne par son toupet. Mon Seigneur, certes, est sur un droit chemin.",
+    "audio": "audio/tawakkul_11_56.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 16,
+    "ayah": 42,
+    "surah_ar": "سُورَةُ النَّحۡلِ",
+    "surah_fr": "An-Nahl",
+    "ref": "An-Nahl 16:42",
+    "verse_ar": "ٱلَّذِينَ صَبَرُوا۟ وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ",
+    "translation": "Eux qui ont enduré et placé leur confiance en leur Seigneur.",
+    "audio": "audio/tawakkul_16_42.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 29,
+    "ayah": 59,
+    "surah_ar": "سُورَةُ العَنكَبُوتِ",
+    "surah_fr": "Al-Ankaboot",
+    "ref": "Al-Ankaboot 29:59",
+    "verse_ar": "ٱلَّذِينَ صَبَرُوا۟ وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ",
+    "translation": "qui endurent, et placent leur confiance en leur Seigneur!",
+    "audio": "audio/tawakkul_29_59.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 33,
+    "ayah": 3,
+    "surah_ar": "سُورَةُ الأَحۡزَابِ",
+    "surah_fr": "Al-Ahzaab",
+    "ref": "Al-Ahzaab 33:3",
+    "verse_ar": "وَتَوَكَّلْ عَلَى ٱللَّهِ ۚ وَكَفَىٰ بِٱللَّهِ وَكِيلًۭا",
+    "translation": "Et place ta confiance en Allah. Allah te suffit comme protecteur.",
+    "audio": "audio/tawakkul_33_3.mp3"
+  },
+  {
+    "theme": "tawakkul",
+    "surah": 64,
+    "ayah": 13,
+    "surah_ar": "سُورَةُ التَّغَابُنِ",
+    "surah_fr": "At-Taghaabun",
+    "ref": "At-Taghaabun 64:13",
+    "verse_ar": "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ۚ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+    "translation": "Allah nulle autre divinité que Lui! Et c'est à Allah que les croyants [doivent] s'en remettre.",
+    "audio": "audio/tawakkul_64_13.mp3"
   },
   {
     "theme": "birr",
@@ -1398,50 +1794,6 @@
   },
   {
     "theme": "birr",
-    "surah": 46,
-    "ayah": 15,
-    "surah_ar": "سُورَةُ الأَحۡقَافِ",
-    "surah_fr": "Al-Ahqaf",
-    "ref": "Al-Ahqaf 46:15",
-    "verse_ar": "وَوَصَّيْنَا ٱلْإِنسَٰنَ بِوَٰلِدَيْهِ إِحْسَٰنًا ۖ حَمَلَتْهُ أُمُّهُۥ كُرْهًۭا وَوَضَعَتْهُ كُرْهًۭا ۖ وَحَمْلُهُۥ وَفِصَٰلُهُۥ ثَلَٰثُونَ شَهْرًا ۚ حَتَّىٰٓ إِذَا بَلَغَ أَشُدَّهُۥ وَبَلَغَ أَرْبَعِينَ سَنَةًۭ قَالَ رَبِّ أَوْزِعْنِىٓ أَنْ أَشْكُرَ نِعْمَتَكَ ٱلَّتِىٓ أَنْعَمْتَ عَلَىَّ وَعَلَىٰ وَٰلِدَىَّ وَأَنْ أَعْمَلَ صَٰلِحًۭا تَرْضَىٰهُ وَأَصْلِحْ لِى فِى ذُرِّيَّتِىٓ ۖ إِنِّى تُبْتُ إِلَيْكَ وَإِنِّى مِنَ ٱلْمُسْلِمِينَ",
-    "translation": "Et Nous avons enjoint à l'homme de la bonté envers ses père et mère: sa mère l'a péniblement porté et en a péniblement accouché; et sa gestation et sevrage durent trente mois; puis quand il atteint ses pleines forces et atteint quarante ans, il dit: «O Seigneur! Inspire-moi pour que je rende grâce au bienfait dont Tu m'as comblé ainsi qu'à mes père et mère, et pour que je fasse une bonne œuvre que Tu agrées. Et fais que ma postérité soit de moralité saine. Je me repens à Toi et je suis du nombre des Soumis».",
-    "audio": "audio/birr_46_15.mp3"
-  },
-  {
-    "theme": "birr",
-    "surah": 2,
-    "ayah": 83,
-    "surah_ar": "سُورَةُ البَقَرَةِ",
-    "surah_fr": "Al-Baqara",
-    "ref": "Al-Baqara 2:83",
-    "verse_ar": "وَإِذْ أَخَذْنَا مِيثَٰقَ بَنِىٓ إِسْرَٰٓءِيلَ لَا تَعْبُدُونَ إِلَّا ٱللَّهَ وَبِٱلْوَٰلِدَيْنِ إِحْسَانًۭا وَذِى ٱلْقُرْبَىٰ وَٱلْيَتَٰمَىٰ وَٱلْمَسَٰكِينِ وَقُولُوا۟ لِلنَّاسِ حُسْنًۭا وَأَقِيمُوا۟ ٱلصَّلَوٰةَ وَءَاتُوا۟ ٱلزَّكَوٰةَ ثُمَّ تَوَلَّيْتُمْ إِلَّا قَلِيلًۭا مِّنكُمْ وَأَنتُم مُّعْرِضُونَ",
-    "translation": "Et [rappelle-toi], lorsque Nous avons pris l'engagement des enfants d'Israël de n'adorer qu'Allah, de faire le bien envers les pères, les mères, les proches parents, les orphelins et les nécessiteux, d'avoir de bonnes paroles avec les gens; d'accomplir régulièrement la Salât et d'acquitter la Zakât! - Mais à l'exception d'un petit nombre de vous, vous manquiez à vos engagements en vous détournant de Nos commandements.",
-    "audio": "audio/birr_2_83.mp3"
-  },
-  {
-    "theme": "birr",
-    "surah": 4,
-    "ayah": 36,
-    "surah_ar": "سُورَةُ النِّسَاءِ",
-    "surah_fr": "An-Nisaa",
-    "ref": "An-Nisaa 4:36",
-    "verse_ar": "وَٱعْبُدُوا۟ ٱللَّهَ وَلَا تُشْرِكُوا۟ بِهِۦ شَيْـًۭٔا ۖ وَبِٱلْوَٰلِدَيْنِ إِحْسَٰنًۭا وَبِذِى ٱلْقُرْبَىٰ وَٱلْيَتَٰمَىٰ وَٱلْمَسَٰكِينِ وَٱلْجَارِ ذِى ٱلْقُرْبَىٰ وَٱلْجَارِ ٱلْجُنُبِ وَٱلصَّاحِبِ بِٱلْجَنۢبِ وَٱبْنِ ٱلسَّبِيلِ وَمَا مَلَكَتْ أَيْمَٰنُكُمْ ۗ إِنَّ ٱللَّهَ لَا يُحِبُّ مَن كَانَ مُخْتَالًۭا فَخُورًا",
-    "translation": "Adorez Allah et ne Lui donnez aucun associé. Agissez avec bonté envers (vos) père et mère, les proches, les orphelins, les pauvres, le proche voisin, le voisin lointain, le collègue et le voyageur, et les esclaves en votre possession, car Allah n'aime pas, en vérité, le présomptueux, l'arrogant,",
-    "audio": "audio/birr_4_36.mp3"
-  },
-  {
-    "theme": "birr",
-    "surah": 6,
-    "ayah": 151,
-    "surah_ar": "سُورَةُ الأَنۡعَامِ",
-    "surah_fr": "Al-An'aam",
-    "ref": "Al-An'aam 6:151",
-    "verse_ar": "قُلْ تَعَالَوْا۟ أَتْلُ مَا حَرَّمَ رَبُّكُمْ عَلَيْكُمْ ۖ أَلَّا تُشْرِكُوا۟ بِهِۦ شَيْـًۭٔا ۖ وَبِٱلْوَٰلِدَيْنِ إِحْسَٰنًۭا ۖ وَلَا تَقْتُلُوٓا۟ أَوْلَٰدَكُم مِّنْ إِمْلَٰقٍۢ ۖ نَّحْنُ نَرْزُقُكُمْ وَإِيَّاهُمْ ۖ وَلَا تَقْرَبُوا۟ ٱلْفَوَٰحِشَ مَا ظَهَرَ مِنْهَا وَمَا بَطَنَ ۖ وَلَا تَقْتُلُوا۟ ٱلنَّفْسَ ٱلَّتِى حَرَّمَ ٱللَّهُ إِلَّا بِٱلْحَقِّ ۚ ذَٰلِكُمْ وَصَّىٰكُم بِهِۦ لَعَلَّكُمْ تَعْقِلُونَ",
-    "translation": "Dis: «Venez, je vais réciter ce que votre Seigneur vous a interdit: ne Lui associez rien; et soyez bienfaisants envers vos père et mère. Ne tuez pas vos enfants pour cause de pauvreté. Nous vous nourrissons tout comme eux. N'approchez pas des turpitudes ouvertement, ou en cachette. Ne tuez qu'en toute justice la vie qu'Allah a fait sacrée. Voilà ce qu'[Allah] vous a recommandé de faire; peut-être comprendrez-vous.",
-    "audio": "audio/birr_6_151.mp3"
-  },
-  {
-    "theme": "birr",
     "surah": 29,
     "ayah": 8,
     "surah_ar": "سُورَةُ العَنكَبُوتِ",
@@ -1453,17 +1805,6 @@
   },
   {
     "theme": "birr",
-    "surah": 31,
-    "ayah": 15,
-    "surah_ar": "سُورَةُ لُقۡمَانَ",
-    "surah_fr": "Luqman",
-    "ref": "Luqman 31:15",
-    "verse_ar": "وَإِن جَٰهَدَاكَ عَلَىٰٓ أَن تُشْرِكَ بِى مَا لَيْسَ لَكَ بِهِۦ عِلْمٌۭ فَلَا تُطِعْهُمَا ۖ وَصَاحِبْهُمَا فِى ٱلدُّنْيَا مَعْرُوفًۭا ۖ وَٱتَّبِعْ سَبِيلَ مَنْ أَنَابَ إِلَىَّ ۚ ثُمَّ إِلَىَّ مَرْجِعُكُمْ فَأُنَبِّئُكُم بِمَا كُنتُمْ تَعْمَلُونَ",
-    "translation": "Et si tous deux te forcent à M'associer ce dont tu n'as aucune connaissance, alors ne leur obéis pas; mais reste avec eux ici-bas de façon convenable. Et suis le sentier de celui qui se tourne vers Moi. Vers Moi, ensuite, est votre retour, et alors Je vous informerai de ce que vous faisiez».",
-    "audio": "audio/birr_31_15.mp3"
-  },
-  {
-    "theme": "birr",
     "surah": 19,
     "ayah": 14,
     "surah_ar": "سُورَةُ مَرۡيَمَ",
@@ -1472,6 +1813,39 @@
     "verse_ar": "وَبَرًّۢا بِوَٰلِدَيْهِ وَلَمْ يَكُن جَبَّارًا عَصِيًّۭا",
     "translation": "et dévoué envers ses père et mère; et ne fut ni violent ni désobéissant.",
     "audio": "audio/birr_19_14.mp3"
+  },
+  {
+    "theme": "birr",
+    "surah": 14,
+    "ayah": 41,
+    "surah_ar": "سُورَةُ إِبۡرَاهِيمَ",
+    "surah_fr": "Ibrahim",
+    "ref": "Ibrahim 14:41",
+    "verse_ar": "رَبَّنَا ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ ٱلْحِسَابُ",
+    "translation": "O notre Seigneur! pardonne-moi, ainsi qu'à mes père et mère et aux croyants, le jour de la reddition des comptes».",
+    "audio": "audio/birr_14_41.mp3"
+  },
+  {
+    "theme": "birr",
+    "surah": 71,
+    "ayah": 28,
+    "surah_ar": "سُورَةُ نُوحٍ",
+    "surah_fr": "Nooh",
+    "ref": "Nooh 71:28",
+    "verse_ar": "رَّبِّ ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِمَن دَخَلَ بَيْتِىَ مُؤْمِنًۭا وَلِلْمُؤْمِنِينَ وَٱلْمُؤْمِنَٰتِ وَلَا تَزِدِ ٱلظَّٰلِمِينَ إِلَّا تَبَارًۢا",
+    "translation": "Seigneur! Pardonne-moi, et à mes père et mère et à celui qui entre dans ma demeure croyant, ainsi qu'aux croyants et croyantes; et ne fais croître les injustes qu'en perdition».",
+    "audio": "audio/birr_71_28.mp3"
+  },
+  {
+    "theme": "birr",
+    "surah": 19,
+    "ayah": 32,
+    "surah_ar": "سُورَةُ مَرۡيَمَ",
+    "surah_fr": "Maryam",
+    "ref": "Maryam 19:32",
+    "verse_ar": "وَبَرًّۢا بِوَٰلِدَتِى وَلَمْ يَجْعَلْنِى جَبَّارًۭا شَقِيًّۭا",
+    "translation": "et la bonté envers ma mère. Il ne m'a fait ni violent ni malheureux.",
+    "audio": "audio/birr_19_32.mp3"
   },
   {
     "theme": "tafakkur",
@@ -1552,17 +1926,6 @@
   },
   {
     "theme": "tafakkur",
-    "surah": 10,
-    "ayah": 24,
-    "surah_ar": "سُورَةُ يُونُسَ",
-    "surah_fr": "Yunus",
-    "ref": "Yunus 10:24",
-    "verse_ar": "إِنَّمَا مَثَلُ ٱلْحَيَوٰةِ ٱلدُّنْيَا كَمَآءٍ أَنزَلْنَٰهُ مِنَ ٱلسَّمَآءِ فَٱخْتَلَطَ بِهِۦ نَبَاتُ ٱلْأَرْضِ مِمَّا يَأْكُلُ ٱلنَّاسُ وَٱلْأَنْعَٰمُ حَتَّىٰٓ إِذَآ أَخَذَتِ ٱلْأَرْضُ زُخْرُفَهَا وَٱزَّيَّنَتْ وَظَنَّ أَهْلُهَآ أَنَّهُمْ قَٰدِرُونَ عَلَيْهَآ أَتَىٰهَآ أَمْرُنَا لَيْلًا أَوْ نَهَارًۭا فَجَعَلْنَٰهَا حَصِيدًۭا كَأَن لَّمْ تَغْنَ بِٱلْأَمْسِ ۚ كَذَٰلِكَ نُفَصِّلُ ٱلْءَايَٰتِ لِقَوْمٍۢ يَتَفَكَّرُونَ",
-    "translation": "La vie présente est comparable à une eau que Nous faisons descendre du ciel et qui se mélange à la végétation de la terre dont se nourrissent les hommes et les bêtes. Puis, lorsque la terre prend sa parure et s'embellit, et que ses habitants pensent qu'elle est à leur entière disposition, Notre Ordre lui vient, de nuit ou de jour, c'est alors que Nous la rendrons toute moissonnée, comme si elle n'avait pas été florissante la veille. Ainsi exposons-Nous les preuves pour des gens qui réfléchissent.",
-    "audio": "audio/tafakkur_10_24.mp3"
-  },
-  {
-    "theme": "tafakkur",
     "surah": 6,
     "ayah": 50,
     "surah_ar": "سُورَةُ الأَنۡعَامِ",
@@ -1582,6 +1945,28 @@
     "verse_ar": "بِٱلْبَيِّنَٰتِ وَٱلزُّبُرِ ۗ وَأَنزَلْنَآ إِلَيْكَ ٱلذِّكْرَ لِتُبَيِّنَ لِلنَّاسِ مَا نُزِّلَ إِلَيْهِمْ وَلَعَلَّهُمْ يَتَفَكَّرُونَ",
     "translation": "(Nous les avons envoyés) avec des preuves évidentes et des livres saints. Et vers toi, Nous avons fait descendre le Coran, pour que tu exposes clairement aux gens ce qu'on a fait descendre pour eux et afin qu'ils réfléchissent.",
     "audio": "audio/tafakkur_16_44.mp3"
+  },
+  {
+    "theme": "tafakkur",
+    "surah": 34,
+    "ayah": 46,
+    "surah_ar": "سُورَةُ سَبَإٍ",
+    "surah_fr": "Saba",
+    "ref": "Saba 34:46",
+    "verse_ar": "قُلْ إِنَّمَآ أَعِظُكُم بِوَٰحِدَةٍ ۖ أَن تَقُومُوا۟ لِلَّهِ مَثْنَىٰ وَفُرَٰدَىٰ ثُمَّ تَتَفَكَّرُوا۟ ۚ مَا بِصَاحِبِكُم مِّن جِنَّةٍ ۚ إِنْ هُوَ إِلَّا نَذِيرٌۭ لَّكُم بَيْنَ يَدَىْ عَذَابٍۢ شَدِيدٍۢ",
+    "translation": "Dis: «Je vous exhorte seulement à une chose: que pour Allah vous vous leviez, par deux ou isolément, et qu'ensuite vous réfléchissiez. Votre compagnon (Muhammad) n'est nullement possédé: il n'est pour vous qu'un avertisseur annonçant un dur châtiment».",
+    "audio": "audio/tafakkur_34_46.mp3"
+  },
+  {
+    "theme": "tafakkur",
+    "surah": 7,
+    "ayah": 184,
+    "surah_ar": "سُورَةُ الأَعۡرَافِ",
+    "surah_fr": "Al-A'raaf",
+    "ref": "Al-A'raaf 7:184",
+    "verse_ar": "أَوَلَمْ يَتَفَكَّرُوا۟ ۗ مَا بِصَاحِبِهِم مِّن جِنَّةٍ ۚ إِنْ هُوَ إِلَّا نَذِيرٌۭ مُّبِينٌ",
+    "translation": "Est-ce qu'ils n'ont pas réfléchi? Il n'y a point de folie en leur compagnon (Muhammad): il n'est qu'un avertisseur explicite!",
+    "audio": "audio/tafakkur_7_184.mp3"
   },
   {
     "theme": "mort",
@@ -1618,17 +2003,6 @@
   },
   {
     "theme": "mort",
-    "surah": 4,
-    "ayah": 78,
-    "surah_ar": "سُورَةُ النِّسَاءِ",
-    "surah_fr": "An-Nisaa",
-    "ref": "An-Nisaa 4:78",
-    "verse_ar": "أَيْنَمَا تَكُونُوا۟ يُدْرِككُّمُ ٱلْمَوْتُ وَلَوْ كُنتُمْ فِى بُرُوجٍۢ مُّشَيَّدَةٍۢ ۗ وَإِن تُصِبْهُمْ حَسَنَةٌۭ يَقُولُوا۟ هَٰذِهِۦ مِنْ عِندِ ٱللَّهِ ۖ وَإِن تُصِبْهُمْ سَيِّئَةٌۭ يَقُولُوا۟ هَٰذِهِۦ مِنْ عِندِكَ ۚ قُلْ كُلٌّۭ مِّنْ عِندِ ٱللَّهِ ۖ فَمَالِ هَٰٓؤُلَآءِ ٱلْقَوْمِ لَا يَكَادُونَ يَفْقَهُونَ حَدِيثًۭا",
-    "translation": "Où que vous soyez, la mort vous atteindra, fussiez-vous dans des tours imprenables. Qu'un bien les atteigne, ils disent: «C'est de la part d'Allah.» Qu'un mal les atteigne, ils disent: «C'est dû à toi (Muhammad).» Dis: «Tout est d'Allah.» Mais qu'ont-ils ces gens, à ne comprendre presque aucune parole?",
-    "audio": "audio/mort_4_78.mp3"
-  },
-  {
-    "theme": "mort",
     "surah": 3,
     "ayah": 145,
     "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
@@ -1637,17 +2011,6 @@
     "verse_ar": "وَمَا كَانَ لِنَفْسٍ أَن تَمُوتَ إِلَّا بِإِذْنِ ٱللَّهِ كِتَٰبًۭا مُّؤَجَّلًۭا ۗ وَمَن يُرِدْ ثَوَابَ ٱلدُّنْيَا نُؤْتِهِۦ مِنْهَا وَمَن يُرِدْ ثَوَابَ ٱلْءَاخِرَةِ نُؤْتِهِۦ مِنْهَا ۚ وَسَنَجْزِى ٱلشَّٰكِرِينَ",
     "translation": "Personne ne peut mourir que par la permission d'Allah, et au moment prédéterminé. Quiconque veut la récompense d'ici-bas, Nous lui en donnons. Quiconque veut la récompense de l'au-delà, Nous lui en donnons, et Nous récompenserons bientôt les reconnaissants.",
     "audio": "audio/mort_3_145.mp3"
-  },
-  {
-    "theme": "mort",
-    "surah": 39,
-    "ayah": 42,
-    "surah_ar": "سُورَةُ الزُّمَرِ",
-    "surah_fr": "Az-Zumar",
-    "ref": "Az-Zumar 39:42",
-    "verse_ar": "ٱللَّهُ يَتَوَفَّى ٱلْأَنفُسَ حِينَ مَوْتِهَا وَٱلَّتِى لَمْ تَمُتْ فِى مَنَامِهَا ۖ فَيُمْسِكُ ٱلَّتِى قَضَىٰ عَلَيْهَا ٱلْمَوْتَ وَيُرْسِلُ ٱلْأُخْرَىٰٓ إِلَىٰٓ أَجَلٍۢ مُّسَمًّى ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّقَوْمٍۢ يَتَفَكَّرُونَ",
-    "translation": "Allah reçoit les âmes au moment de leur mort ainsi que celles qui ne meurent pas au cours de leur sommeil. Il retient celles à qui Il a décrété la mort, tandis qu'Il renvoie les autres jusqu'à un terme fixé. Il y a certainement là des preuves pour des gens qui réfléchissent.",
-    "audio": "audio/mort_39_42.mp3"
   },
   {
     "theme": "mort",
@@ -1694,6 +2057,72 @@
     "audio": "audio/mort_67_2.mp3"
   },
   {
+    "theme": "mort",
+    "surah": 3,
+    "ayah": 169,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:169",
+    "verse_ar": "وَلَا تَحْسَبَنَّ ٱلَّذِينَ قُتِلُوا۟ فِى سَبِيلِ ٱللَّهِ أَمْوَٰتًۢا ۚ بَلْ أَحْيَآءٌ عِندَ رَبِّهِمْ يُرْزَقُونَ",
+    "translation": "Ne pense pas que ceux qui ont été tués dans le sentier d'Allah, soient morts. Au contraire, ils sont vivants, auprès de leur Seigneur, bien pourvus",
+    "audio": "audio/mort_3_169.mp3"
+  },
+  {
+    "theme": "mort",
+    "surah": 2,
+    "ayah": 154,
+    "surah_ar": "سُورَةُ البَقَرَةِ",
+    "surah_fr": "Al-Baqara",
+    "ref": "Al-Baqara 2:154",
+    "verse_ar": "وَلَا تَقُولُوا۟ لِمَن يُقْتَلُ فِى سَبِيلِ ٱللَّهِ أَمْوَٰتٌۢ ۚ بَلْ أَحْيَآءٌۭ وَلَٰكِن لَّا تَشْعُرُونَ",
+    "translation": "Et ne dites pas de ceux qui sont tués dans le sentier d'Allah qu'ils sont morts. Au contraire ils sont vivants, mais vous en êtes inconscients.",
+    "audio": "audio/mort_2_154.mp3"
+  },
+  {
+    "theme": "mort",
+    "surah": 23,
+    "ayah": 15,
+    "surah_ar": "سُورَةُ المُؤۡمِنُونَ",
+    "surah_fr": "Al-Muminoon",
+    "ref": "Al-Muminoon 23:15",
+    "verse_ar": "ثُمَّ إِنَّكُم بَعْدَ ذَٰلِكَ لَمَيِّتُونَ",
+    "translation": "Et puis, après cela vous mourrez.",
+    "audio": "audio/mort_23_15.mp3"
+  },
+  {
+    "theme": "mort",
+    "surah": 44,
+    "ayah": 56,
+    "surah_ar": "سُورَةُ الدُّخَانِ",
+    "surah_fr": "Ad-Dukhaan",
+    "ref": "Ad-Dukhaan 44:56",
+    "verse_ar": "لَا يَذُوقُونَ فِيهَا ٱلْمَوْتَ إِلَّا ٱلْمَوْتَةَ ٱلْأُولَىٰ ۖ وَوَقَىٰهُمْ عَذَابَ ٱلْجَحِيمِ",
+    "translation": "Ils n'y goûteront pas à la mort sauf leur mort première. Et [Allah] les protègera du châtiment de la Fournaise,",
+    "audio": "audio/mort_44_56.mp3"
+  },
+  {
+    "theme": "mort",
+    "surah": 56,
+    "ayah": 60,
+    "surah_ar": "سُورَةُ الوَاقِعَةِ",
+    "surah_fr": "Al-Waaqia",
+    "ref": "Al-Waaqia 56:60",
+    "verse_ar": "نَحْنُ قَدَّرْنَا بَيْنَكُمُ ٱلْمَوْتَ وَمَا نَحْنُ بِمَسْبُوقِينَ",
+    "translation": "Nous avons prédéterminé la mort parmi vous. Nous ne serons point empêchés",
+    "audio": "audio/mort_56_60.mp3"
+  },
+  {
+    "theme": "mort",
+    "surah": 3,
+    "ayah": 143,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:143",
+    "verse_ar": "وَلَقَدْ كُنتُمْ تَمَنَّوْنَ ٱلْمَوْتَ مِن قَبْلِ أَن تَلْقَوْهُ فَقَدْ رَأَيْتُمُوهُ وَأَنتُمْ تَنظُرُونَ",
+    "translation": "Bien sûr, vous souhaitiez la mort avant de la rencontrer. Or vous l'avez vue, certes, tandis que vous regardiez!",
+    "audio": "audio/mort_3_143.mp3"
+  },
+  {
     "theme": "taqwa",
     "surah": 3,
     "ayah": 102,
@@ -1703,17 +2132,6 @@
     "verse_ar": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ حَقَّ تُقَاتِهِۦ وَلَا تَمُوتُنَّ إِلَّا وَأَنتُم مُّسْلِمُونَ",
     "translation": "O les croyants! Craignez Allah comme Il doit être craint. Et ne mourez qu'en pleine soumission.",
     "audio": "audio/taqwa_3_102.mp3"
-  },
-  {
-    "theme": "taqwa",
-    "surah": 2,
-    "ayah": 197,
-    "surah_ar": "سُورَةُ البَقَرَةِ",
-    "surah_fr": "Al-Baqara",
-    "ref": "Al-Baqara 2:197",
-    "verse_ar": "ٱلْحَجُّ أَشْهُرٌۭ مَّعْلُومَٰتٌۭ ۚ فَمَن فَرَضَ فِيهِنَّ ٱلْحَجَّ فَلَا رَفَثَ وَلَا فُسُوقَ وَلَا جِدَالَ فِى ٱلْحَجِّ ۗ وَمَا تَفْعَلُوا۟ مِنْ خَيْرٍۢ يَعْلَمْهُ ٱللَّهُ ۗ وَتَزَوَّدُوا۟ فَإِنَّ خَيْرَ ٱلزَّادِ ٱلتَّقْوَىٰ ۚ وَٱتَّقُونِ يَٰٓأُو۟لِى ٱلْأَلْبَٰبِ",
-    "translation": "Le pèlerinage a lieu dans des mois connus. Si l'on se décide de l'accomplir, alors point de rapport sexuel, point de perversité, point de dispute pendant le pèlerinage. Et le bien que vous faites, Allah le sait. Et prenez vos provisions; mais vraiment la meilleure provision est la piété. Et redoutez-Moi, ô doués d'intelligence",
-    "audio": "audio/taqwa_2_197.mp3"
   },
   {
     "theme": "taqwa",
@@ -1804,6 +2222,127 @@
     "audio": "audio/taqwa_16_128.mp3"
   },
   {
+    "theme": "taqwa",
+    "surah": 2,
+    "ayah": 281,
+    "surah_ar": "سُورَةُ البَقَرَةِ",
+    "surah_fr": "Al-Baqara",
+    "ref": "Al-Baqara 2:281",
+    "verse_ar": "وَٱتَّقُوا۟ يَوْمًۭا تُرْجَعُونَ فِيهِ إِلَى ٱللَّهِ ۖ ثُمَّ تُوَفَّىٰ كُلُّ نَفْسٍۢ مَّا كَسَبَتْ وَهُمْ لَا يُظْلَمُونَ",
+    "translation": "Et craignez le jour où vous serez ramenés vers Allah. Alors chaque âme sera pleinement rétribuée de ce qu'elle aura acquis. Et ils ne seront point lésés.",
+    "audio": "audio/taqwa_2_281.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 3,
+    "ayah": 130,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:130",
+    "verse_ar": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لَا تَأْكُلُوا۟ ٱلرِّبَوٰٓا۟ أَضْعَٰفًۭا مُّضَٰعَفَةًۭ ۖ وَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تُفْلِحُونَ",
+    "translation": "O les croyants! Ne pratiquez pas l'usure en multipliant démesurément votre capital. Et craignez Allah afin que vous réussissiez!",
+    "audio": "audio/taqwa_3_130.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 7,
+    "ayah": 26,
+    "surah_ar": "سُورَةُ الأَعۡرَافِ",
+    "surah_fr": "Al-A'raaf",
+    "ref": "Al-A'raaf 7:26",
+    "verse_ar": "يَٰبَنِىٓ ءَادَمَ قَدْ أَنزَلْنَا عَلَيْكُمْ لِبَاسًۭا يُوَٰرِى سَوْءَٰتِكُمْ وَرِيشًۭا ۖ وَلِبَاسُ ٱلتَّقْوَىٰ ذَٰلِكَ خَيْرٌۭ ۚ ذَٰلِكَ مِنْ ءَايَٰتِ ٱللَّهِ لَعَلَّهُمْ يَذَّكَّرُونَ",
+    "translation": "O enfants d'Adam! Nous avons fait descendre sur vous un vêtement pour cacher vos nudités, ainsi que des parures. - Mais le vêtement de la piété voilà qui est meilleur - C'est un des signes (de la puissance) d'Allah. Afin qu'ils se rappellent.",
+    "audio": "audio/taqwa_7_26.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 22,
+    "ayah": 1,
+    "surah_ar": "سُورَةُ الحَجِّ",
+    "surah_fr": "Al-Hajj",
+    "ref": "Al-Hajj 22:1",
+    "verse_ar": "يَٰٓأَيُّهَا ٱلنَّاسُ ٱتَّقُوا۟ رَبَّكُمْ ۚ إِنَّ زَلْزَلَةَ ٱلسَّاعَةِ شَىْءٌ عَظِيمٌۭ",
+    "translation": "O hommes! Craignez votre Seigneur. Le séisme [qui précédera] l'Heure est une chose terrible.",
+    "audio": "audio/taqwa_22_1.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 47,
+    "ayah": 17,
+    "surah_ar": "سُورَةُ مُحَمَّدٍ",
+    "surah_fr": "Muhammad",
+    "ref": "Muhammad 47:17",
+    "verse_ar": "وَٱلَّذِينَ ٱهْتَدَوْا۟ زَادَهُمْ هُدًۭى وَءَاتَىٰهُمْ تَقْوَىٰهُمْ",
+    "translation": "Quant à ceux qui se mirent sur la bonne voie, Il les guida encore plus et leur inspira leur piété.",
+    "audio": "audio/taqwa_47_17.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 59,
+    "ayah": 18,
+    "surah_ar": "سُورَةُ الحَشۡرِ",
+    "surah_fr": "Al-Hashr",
+    "ref": "Al-Hashr 59:18",
+    "verse_ar": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَلْتَنظُرْ نَفْسٌۭ مَّا قَدَّمَتْ لِغَدٍۢ ۖ وَٱتَّقُوا۟ ٱللَّهَ ۚ إِنَّ ٱللَّهَ خَبِيرٌۢ بِمَا تَعْمَلُونَ",
+    "translation": "O vous qui avez cru! Craignez Allah. Que chaque âme voit bien ce qu'elle a avancé pour demain. Et craignez Allah, car Allah est Parfaitement Connaisseur de ce que vous faites.",
+    "audio": "audio/taqwa_59_18.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 64,
+    "ayah": 16,
+    "surah_ar": "سُورَةُ التَّغَابُنِ",
+    "surah_fr": "At-Taghaabun",
+    "ref": "At-Taghaabun 64:16",
+    "verse_ar": "فَٱتَّقُوا۟ ٱللَّهَ مَا ٱسْتَطَعْتُمْ وَٱسْمَعُوا۟ وَأَطِيعُوا۟ وَأَنفِقُوا۟ خَيْرًۭا لِّأَنفُسِكُمْ ۗ وَمَن يُوقَ شُحَّ نَفْسِهِۦ فَأُو۟لَٰٓئِكَ هُمُ ٱلْمُفْلِحُونَ",
+    "translation": "Craignez Allah, donc autant que vous pouvez, écoutez, obéissez et faites largesses. Ce sera un bien pour vous. Et quiconque a été protégé contre sa propre avidité... ceux-là sont ceux qui réussissent.",
+    "audio": "audio/taqwa_64_16.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 2,
+    "ayah": 194,
+    "surah_ar": "سُورَةُ البَقَرَةِ",
+    "surah_fr": "Al-Baqara",
+    "ref": "Al-Baqara 2:194",
+    "verse_ar": "ٱلشَّهْرُ ٱلْحَرَامُ بِٱلشَّهْرِ ٱلْحَرَامِ وَٱلْحُرُمَٰتُ قِصَاصٌۭ ۚ فَمَنِ ٱعْتَدَىٰ عَلَيْكُمْ فَٱعْتَدُوا۟ عَلَيْهِ بِمِثْلِ مَا ٱعْتَدَىٰ عَلَيْكُمْ ۚ وَٱتَّقُوا۟ ٱللَّهَ وَٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ مَعَ ٱلْمُتَّقِينَ",
+    "translation": "Le Mois sacré pour le mois sacré! - Le talion s'applique à toutes choses sacrées -. Donc, quiconque transgresse contre vous, transgressez contre lui, à transgression égale. Et craignez Allah. Et sachez qu'Allah est avec les pieux.",
+    "audio": "audio/taqwa_2_194.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 2,
+    "ayah": 212,
+    "surah_ar": "سُورَةُ البَقَرَةِ",
+    "surah_fr": "Al-Baqara",
+    "ref": "Al-Baqara 2:212",
+    "verse_ar": "زُيِّنَ لِلَّذِينَ كَفَرُوا۟ ٱلْحَيَوٰةُ ٱلدُّنْيَا وَيَسْخَرُونَ مِنَ ٱلَّذِينَ ءَامَنُوا۟ ۘ وَٱلَّذِينَ ٱتَّقَوْا۟ فَوْقَهُمْ يَوْمَ ٱلْقِيَٰمَةِ ۗ وَٱللَّهُ يَرْزُقُ مَن يَشَآءُ بِغَيْرِ حِسَابٍۢ",
+    "translation": "On a enjolivé la vie présente à ceux qui ne croient pas, et ils se moquent de ceux qui croient. Mais les pieux seront au-dessus d'eux, au Jour de la Résurrection. Et Allah accorde Ses bienfaits à qui Il veut, sans compter.",
+    "audio": "audio/taqwa_2_212.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 8,
+    "ayah": 34,
+    "surah_ar": "سُورَةُ الأَنفَالِ",
+    "surah_fr": "Al-Anfaal",
+    "ref": "Al-Anfaal 8:34",
+    "verse_ar": "وَمَا لَهُمْ أَلَّا يُعَذِّبَهُمُ ٱللَّهُ وَهُمْ يَصُدُّونَ عَنِ ٱلْمَسْجِدِ ٱلْحَرَامِ وَمَا كَانُوٓا۟ أَوْلِيَآءَهُۥٓ ۚ إِنْ أَوْلِيَآؤُهُۥٓ إِلَّا ٱلْمُتَّقُونَ وَلَٰكِنَّ أَكْثَرَهُمْ لَا يَعْلَمُونَ",
+    "translation": "Qu'ont-ils donc pour qu'Allah ne les châtie pas, alors qu'ils repoussent (les croyants) de la Mosquée sacrée, quoiqu'ils n'en soient pas les gardiens, car ses gardiens ne sont que les pieux. Mais la plupart d'entre eux ne le savent pas.",
+    "audio": "audio/taqwa_8_34.mp3"
+  },
+  {
+    "theme": "taqwa",
+    "surah": 16,
+    "ayah": 30,
+    "surah_ar": "سُورَةُ النَّحۡلِ",
+    "surah_fr": "An-Nahl",
+    "ref": "An-Nahl 16:30",
+    "verse_ar": "وَقِيلَ لِلَّذِينَ ٱتَّقَوْا۟ مَاذَآ أَنزَلَ رَبُّكُمْ ۚ قَالُوا۟ خَيْرًۭا ۗ لِّلَّذِينَ أَحْسَنُوا۟ فِى هَٰذِهِ ٱلدُّنْيَا حَسَنَةٌۭ ۚ وَلَدَارُ ٱلْءَاخِرَةِ خَيْرٌۭ ۚ وَلَنِعْمَ دَارُ ٱلْمُتَّقِينَ",
+    "translation": "Et on dira à ceux qui étaient pieux: «Qu'a fait descendre votre Seigneur?» Ils diront: «Un bien». Ceux qui font les bonnes œuvres auront un bien ici-bas; mais la demeure de l'au-delà est certes meilleure. Combien agréable sera la demeure des pieux!",
+    "audio": "audio/taqwa_16_30.mp3"
+  },
+  {
     "theme": "faraj",
     "surah": 65,
     "ayah": 7,
@@ -1813,17 +2352,6 @@
     "verse_ar": "لِيُنفِقْ ذُو سَعَةٍۢ مِّن سَعَتِهِۦ ۖ وَمَن قُدِرَ عَلَيْهِ رِزْقُهُۥ فَلْيُنفِقْ مِمَّآ ءَاتَىٰهُ ٱللَّهُ ۚ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا مَآ ءَاتَىٰهَا ۚ سَيَجْعَلُ ٱللَّهُ بَعْدَ عُسْرٍۢ يُسْرًۭا",
     "translation": "Que celui qui est aisé dépense de sa fortune; et que celui dont les biens sont restreints dépense selon ce qu'Allah lui a accordé. Allah n'impose à personne que selon ce qu'Il lui a donné, et Allah fera succéder l'aisance à la gêne.",
     "audio": "audio/faraj_65_7.mp3"
-  },
-  {
-    "theme": "faraj",
-    "surah": 65,
-    "ayah": 2,
-    "surah_ar": "سُورَةُ الطَّلَاقِ",
-    "surah_fr": "At-Talaaq",
-    "ref": "At-Talaaq 65:2",
-    "verse_ar": "فَإِذَا بَلَغْنَ أَجَلَهُنَّ فَأَمْسِكُوهُنَّ بِمَعْرُوفٍ أَوْ فَارِقُوهُنَّ بِمَعْرُوفٍۢ وَأَشْهِدُوا۟ ذَوَىْ عَدْلٍۢ مِّنكُمْ وَأَقِيمُوا۟ ٱلشَّهَٰدَةَ لِلَّهِ ۚ ذَٰلِكُمْ يُوعَظُ بِهِۦ مَن كَانَ يُؤْمِنُ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ ۚ وَمَن يَتَّقِ ٱللَّهَ يَجْعَل لَّهُۥ مَخْرَجًۭا",
-    "translation": "Puis quand elles atteignent le terme prescrit, retenez-les de façon convenable, ou séparez-vous d'elles de façon convenable; et prenez deux hommes intègres parmi vous comme témoins. Et acquittez-vous du témoignage envers Allah. Voilà ce à quoi est exhorté celui qui croit en Allah et au Jour dernier. Et quiconque craint Allah, Il Lui donnera une issue favorable,",
-    "audio": "audio/faraj_65_2.mp3"
   },
   {
     "theme": "faraj",
@@ -1871,17 +2399,6 @@
   },
   {
     "theme": "faraj",
-    "surah": 2,
-    "ayah": 286,
-    "surah_ar": "سُورَةُ البَقَرَةِ",
-    "surah_fr": "Al-Baqara",
-    "ref": "Al-Baqara 2:286",
-    "verse_ar": "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ",
-    "translation": "Allah n'impose à aucune âme une charge supérieure à sa capacité. Elle sera récompensée du bien qu'elle aura fait, punie du mal qu'elle aura fait. Seigneur, ne nous châtie pas s'il nous arrive d'oublier ou de commettre une erreur. Seigneur! Ne nous charge pas d'un fardeau lourd comme Tu as chargé ceux qui vécurent avant nous. Seigneur! Ne nous impose pas ce que nous ne pouvons supporter, efface nos fautes, pardonne-nous et fais nous miséricorde. Tu es Notre Maître, accorde-nous donc la victoire sur les peuples infidèles.",
-    "audio": "audio/faraj_2_286.mp3"
-  },
-  {
-    "theme": "faraj",
     "surah": 40,
     "ayah": 60,
     "surah_ar": "سُورَةُ غَافِرٍ",
@@ -1893,17 +2410,6 @@
   },
   {
     "theme": "faraj",
-    "surah": 2,
-    "ayah": 214,
-    "surah_ar": "سُورَةُ البَقَرَةِ",
-    "surah_fr": "Al-Baqara",
-    "ref": "Al-Baqara 2:214",
-    "verse_ar": "أَمْ حَسِبْتُمْ أَن تَدْخُلُوا۟ ٱلْجَنَّةَ وَلَمَّا يَأْتِكُم مَّثَلُ ٱلَّذِينَ خَلَوْا۟ مِن قَبْلِكُم ۖ مَّسَّتْهُمُ ٱلْبَأْسَآءُ وَٱلضَّرَّآءُ وَزُلْزِلُوا۟ حَتَّىٰ يَقُولَ ٱلرَّسُولُ وَٱلَّذِينَ ءَامَنُوا۟ مَعَهُۥ مَتَىٰ نَصْرُ ٱللَّهِ ۗ أَلَآ إِنَّ نَصْرَ ٱللَّهِ قَرِيبٌۭ",
-    "translation": "Pensez-vous entrer au Paradis alors que vous n'avez pas encore subi des épreuves semblables à celles que subirent ceux qui vécurent avant vous? Misère et maladie les avaient touchés; et ils furent secoués jusqu'à ce que le Messager, et avec lui, ceux qui avaient cru, se fussent écriés: «Quand viendra le secours d'Allah?» - Quoi! le secours d'Allah est sûrement proche.",
-    "audio": "audio/faraj_2_214.mp3"
-  },
-  {
-    "theme": "faraj",
     "surah": 3,
     "ayah": 139,
     "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
@@ -1912,6 +2418,105 @@
     "verse_ar": "وَلَا تَهِنُوا۟ وَلَا تَحْزَنُوا۟ وَأَنتُمُ ٱلْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
     "translation": "Ne vous laissez pas battre, ne vous affligez pas alors que vous êtes les supérieurs, si vous êtes de vrais croyants.",
     "audio": "audio/faraj_3_139.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 65,
+    "ayah": 5,
+    "surah_ar": "سُورَةُ الطَّلَاقِ",
+    "surah_fr": "At-Talaaq",
+    "ref": "At-Talaaq 65:5",
+    "verse_ar": "ذَٰلِكَ أَمْرُ ٱللَّهِ أَنزَلَهُۥٓ إِلَيْكُمْ ۚ وَمَن يَتَّقِ ٱللَّهَ يُكَفِّرْ عَنْهُ سَيِّـَٔاتِهِۦ وَيُعْظِمْ لَهُۥٓ أَجْرًا",
+    "translation": "Tel est le commandement d'Allah qu'Il a fait descendre vers vous. Quiconque craint Allah cependant, Il lui efface ses fautes et lui accorde une grosse récompense.",
+    "audio": "audio/faraj_65_5.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 21,
+    "ayah": 88,
+    "surah_ar": "سُورَةُ الأَنبِيَاءِ",
+    "surah_fr": "Al-Anbiyaa",
+    "ref": "Al-Anbiyaa 21:88",
+    "verse_ar": "فَٱسْتَجَبْنَا لَهُۥ وَنَجَّيْنَٰهُ مِنَ ٱلْغَمِّ ۚ وَكَذَٰلِكَ نُۨجِى ٱلْمُؤْمِنِينَ",
+    "translation": "Nous l'exauçâmes et le sauvâmes de son angoisse. Et c'est ainsi que Nous sauvons les croyants.",
+    "audio": "audio/faraj_21_88.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 12,
+    "ayah": 90,
+    "surah_ar": "سُورَةُ يُوسُفَ",
+    "surah_fr": "Yusuf",
+    "ref": "Yusuf 12:90",
+    "verse_ar": "قَالُوٓا۟ أَءِنَّكَ لَأَنتَ يُوسُفُ ۖ قَالَ أَنَا۠ يُوسُفُ وَهَٰذَآ أَخِى ۖ قَدْ مَنَّ ٱللَّهُ عَلَيْنَآ ۖ إِنَّهُۥ مَن يَتَّقِ وَيَصْبِرْ فَإِنَّ ٱللَّهَ لَا يُضِيعُ أَجْرَ ٱلْمُحْسِنِينَ",
+    "translation": "- Ils dirent: «Est-ce que tu es... Certes, tu es Joseph!» - Il dit: «Je suis Joseph, et voici mon frère. Certes, Allah nous a favorisés. Quiconque craint et patiente... Et très certainement, Allah ne fait pas perdre la récompense des bienfaisants».",
+    "audio": "audio/faraj_12_90.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 12,
+    "ayah": 86,
+    "surah_ar": "سُورَةُ يُوسُفَ",
+    "surah_fr": "Yusuf",
+    "ref": "Yusuf 12:86",
+    "verse_ar": "قَالَ إِنَّمَآ أَشْكُوا۟ بَثِّى وَحُزْنِىٓ إِلَى ٱللَّهِ وَأَعْلَمُ مِنَ ٱللَّهِ مَا لَا تَعْلَمُونَ",
+    "translation": "- Il dit: «Je ne me plains qu'à Allah de mon déchirement et de mon chagrin. Et, je sais de la part d'Allah, ce que vous ne savez pas.",
+    "audio": "audio/faraj_12_86.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 8,
+    "ayah": 10,
+    "surah_ar": "سُورَةُ الأَنفَالِ",
+    "surah_fr": "Al-Anfaal",
+    "ref": "Al-Anfaal 8:10",
+    "verse_ar": "وَمَا جَعَلَهُ ٱللَّهُ إِلَّا بُشْرَىٰ وَلِتَطْمَئِنَّ بِهِۦ قُلُوبُكُمْ ۚ وَمَا ٱلنَّصْرُ إِلَّا مِنْ عِندِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ عَزِيزٌ حَكِيمٌ",
+    "translation": "Allah ne fit cela que pour (vous) apporter une bonne nouvelle et pour qu'avec cela vos cœurs se tranquillisent. Il n'y a de victoire que de la part d'Allah. Allah est Puissant et Sage.",
+    "audio": "audio/faraj_8_10.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 30,
+    "ayah": 5,
+    "surah_ar": "سُورَةُ الرُّومِ",
+    "surah_fr": "Ar-Room",
+    "ref": "Ar-Room 30:5",
+    "verse_ar": "بِنَصْرِ ٱللَّهِ ۚ يَنصُرُ مَن يَشَآءُ ۖ وَهُوَ ٱلْعَزِيزُ ٱلرَّحِيمُ",
+    "translation": "du secours d'Allah. Il secourt qui Il veut et Il est le Tout Puissant, le Tout Miséricordieux.",
+    "audio": "audio/faraj_30_5.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 48,
+    "ayah": 1,
+    "surah_ar": "سُورَةُ الفَتۡحِ",
+    "surah_fr": "Al-Fath",
+    "ref": "Al-Fath 48:1",
+    "verse_ar": "إِنَّا فَتَحْنَا لَكَ فَتْحًۭا مُّبِينًۭا",
+    "translation": "En vérité Nous t'avons accordé une victoire éclatante,",
+    "audio": "audio/faraj_48_1.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 40,
+    "ayah": 51,
+    "surah_ar": "سُورَةُ غَافِرٍ",
+    "surah_fr": "Ghafir",
+    "ref": "Ghafir 40:51",
+    "verse_ar": "إِنَّا لَنَنصُرُ رُسُلَنَا وَٱلَّذِينَ ءَامَنُوا۟ فِى ٱلْحَيَوٰةِ ٱلدُّنْيَا وَيَوْمَ يَقُومُ ٱلْأَشْهَٰدُ",
+    "translation": "Nous secourrons, certes, Nos Messagers et ceux qui croient, dans la vie présente tout comme au jour où les témoins [les Anges gardiens] se dresseront (le Jour du Jugement),",
+    "audio": "audio/faraj_40_51.mp3"
+  },
+  {
+    "theme": "faraj",
+    "surah": 3,
+    "ayah": 126,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:126",
+    "verse_ar": "وَمَا جَعَلَهُ ٱللَّهُ إِلَّا بُشْرَىٰ لَكُمْ وَلِتَطْمَئِنَّ قُلُوبُكُم بِهِۦ ۗ وَمَا ٱلنَّصْرُ إِلَّا مِنْ عِندِ ٱللَّهِ ٱلْعَزِيزِ ٱلْحَكِيمِ",
+    "translation": "Et Allah ne le fit que (pour vous annoncer) une bonne nouvelle, et pour que vos cœurs s'en rassurent. La victoire ne peut venir que d'Allah, le Puissant, le Sage;",
+    "audio": "audio/faraj_3_126.mp3"
   },
   {
     "theme": "rappel",
@@ -1970,17 +2575,6 @@
   },
   {
     "theme": "rappel",
-    "surah": 33,
-    "ayah": 35,
-    "surah_ar": "سُورَةُ الأَحۡزَابِ",
-    "surah_fr": "Al-Ahzaab",
-    "ref": "Al-Ahzaab 33:35",
-    "verse_ar": "إِنَّ ٱلْمُسْلِمِينَ وَٱلْمُسْلِمَٰتِ وَٱلْمُؤْمِنِينَ وَٱلْمُؤْمِنَٰتِ وَٱلْقَٰنِتِينَ وَٱلْقَٰنِتَٰتِ وَٱلصَّٰدِقِينَ وَٱلصَّٰدِقَٰتِ وَٱلصَّٰبِرِينَ وَٱلصَّٰبِرَٰتِ وَٱلْخَٰشِعِينَ وَٱلْخَٰشِعَٰتِ وَٱلْمُتَصَدِّقِينَ وَٱلْمُتَصَدِّقَٰتِ وَٱلصَّٰٓئِمِينَ وَٱلصَّٰٓئِمَٰتِ وَٱلْحَٰفِظِينَ فُرُوجَهُمْ وَٱلْحَٰفِظَٰتِ وَٱلذَّٰكِرِينَ ٱللَّهَ كَثِيرًۭا وَٱلذَّٰكِرَٰتِ أَعَدَّ ٱللَّهُ لَهُم مَّغْفِرَةًۭ وَأَجْرًا عَظِيمًۭا",
-    "translation": "Les Musulmans et Musulmanes, croyants et croyantes, obéissants et obéissantes, loyaux et loyales, endurants et endurantes, craignants et craignantes, donneurs et donneuses d'aumône, jeûnants et jeûnantes, gardiens de leur chasteté et gardiennes, invocateurs souvent d'Allah et invocatrices: Allah a préparé pour eux un pardon et une énorme récompense.",
-    "audio": "audio/rappel_33_35.mp3"
-  },
-  {
-    "theme": "rappel",
     "surah": 63,
     "ayah": 9,
     "surah_ar": "سُورَةُ المُنَافِقُونَ",
@@ -2022,5 +2616,137 @@
     "verse_ar": "فَإِذَا قَضَيْتُم مَّنَٰسِكَكُمْ فَٱذْكُرُوا۟ ٱللَّهَ كَذِكْرِكُمْ ءَابَآءَكُمْ أَوْ أَشَدَّ ذِكْرًۭا ۗ فَمِنَ ٱلنَّاسِ مَن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا وَمَا لَهُۥ فِى ٱلْءَاخِرَةِ مِنْ خَلَٰقٍۢ",
     "translation": "Et quand vous aurez achevé vos rites, alors invoquez Allah comme vous invoquez vos pères, et plus ardemment encore. Mais il est des gens qui disent seulement: «Seigneur! Accorde nous [le bien] ici-bas!» - Pour ceux-là, nulle part dans l'au-delà.",
     "audio": "audio/rappel_2_200.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 8,
+    "ayah": 45,
+    "surah_ar": "سُورَةُ الأَنفَالِ",
+    "surah_fr": "Al-Anfaal",
+    "ref": "Al-Anfaal 8:45",
+    "verse_ar": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِذَا لَقِيتُمْ فِئَةًۭ فَٱثْبُتُوا۟ وَٱذْكُرُوا۟ ٱللَّهَ كَثِيرًۭا لَّعَلَّكُمْ تُفْلِحُونَ",
+    "translation": "O vous qui croyez! Lorsque vous rencontrez une troupe (ennemie), soyez fermes, et invoquez beaucoup Allah afin de réussir.",
+    "audio": "audio/rappel_8_45.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 62,
+    "ayah": 10,
+    "surah_ar": "سُورَةُ الجُمُعَةِ",
+    "surah_fr": "Al-Jumu'a",
+    "ref": "Al-Jumu'a 62:10",
+    "verse_ar": "فَإِذَا قُضِيَتِ ٱلصَّلَوٰةُ فَٱنتَشِرُوا۟ فِى ٱلْأَرْضِ وَٱبْتَغُوا۟ مِن فَضْلِ ٱللَّهِ وَٱذْكُرُوا۟ ٱللَّهَ كَثِيرًۭا لَّعَلَّكُمْ تُفْلِحُونَ",
+    "translation": "Puis quand la Salât est achevée, dispersez-vous sur terre et recherchez [quelque effet] de la grâce d'Allah, et invoquez beaucoup Allah afin que vous réussissiez.",
+    "audio": "audio/rappel_62_10.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 4,
+    "ayah": 103,
+    "surah_ar": "سُورَةُ النِّسَاءِ",
+    "surah_fr": "An-Nisaa",
+    "ref": "An-Nisaa 4:103",
+    "verse_ar": "فَإِذَا قَضَيْتُمُ ٱلصَّلَوٰةَ فَٱذْكُرُوا۟ ٱللَّهَ قِيَٰمًۭا وَقُعُودًۭا وَعَلَىٰ جُنُوبِكُمْ ۚ فَإِذَا ٱطْمَأْنَنتُمْ فَأَقِيمُوا۟ ٱلصَّلَوٰةَ ۚ إِنَّ ٱلصَّلَوٰةَ كَانَتْ عَلَى ٱلْمُؤْمِنِينَ كِتَٰبًۭا مَّوْقُوتًۭا",
+    "translation": "Quand vous avez accompli la Salât, invoquez le nom d'Allah, debout, assis ou couchés sur vos côtés. Puis lorsque vous êtes en sécurité, accomplissez la Salât (normalement), car la Salât demeure, pour les croyants, une prescription, à des temps déterminés.",
+    "audio": "audio/rappel_4_103.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 18,
+    "ayah": 24,
+    "surah_ar": "سُورَةُ الكَهۡفِ",
+    "surah_fr": "Al-Kahf",
+    "ref": "Al-Kahf 18:24",
+    "verse_ar": "إِلَّآ أَن يَشَآءَ ٱللَّهُ ۚ وَٱذْكُر رَّبَّكَ إِذَا نَسِيتَ وَقُلْ عَسَىٰٓ أَن يَهْدِيَنِ رَبِّى لِأَقْرَبَ مِنْ هَٰذَا رَشَدًۭا",
+    "translation": "sans ajouter: «Si Allah le veut», et invoque ton Seigneur quand tu oublies et dis: «Je souhaite que mon Seigneur me guide et me mène plus près de ce qui est correct».",
+    "audio": "audio/rappel_18_24.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 76,
+    "ayah": 25,
+    "surah_ar": "سُورَةُ الإِنسَانِ",
+    "surah_fr": "Al-Insaan",
+    "ref": "Al-Insaan 76:25",
+    "verse_ar": "وَٱذْكُرِ ٱسْمَ رَبِّكَ بُكْرَةًۭ وَأَصِيلًۭا",
+    "translation": "Et invoque le nom de ton Seigneur, matin et après-midi;",
+    "audio": "audio/rappel_76_25.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 3,
+    "ayah": 41,
+    "surah_ar": "سُورَةُ آلِ عِمۡرَانَ",
+    "surah_fr": "Aal-i-Imraan",
+    "ref": "Aal-i-Imraan 3:41",
+    "verse_ar": "قَالَ رَبِّ ٱجْعَل لِّىٓ ءَايَةًۭ ۖ قَالَ ءَايَتُكَ أَلَّا تُكَلِّمَ ٱلنَّاسَ ثَلَٰثَةَ أَيَّامٍ إِلَّا رَمْزًۭا ۗ وَٱذْكُر رَّبَّكَ كَثِيرًۭا وَسَبِّحْ بِٱلْعَشِىِّ وَٱلْإِبْكَٰرِ",
+    "translation": "- «Seigneur, dit Zacharie, donne-moi un signe.» - «Ton signe, dit Allah, c'est que pendant trois jours tu ne pourras parler aux gens que par geste. Invoque beaucoup Ton Seigneur; et, glorifie-Le, en fin et en début de journée.»",
+    "audio": "audio/rappel_3_41.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 39,
+    "ayah": 22,
+    "surah_ar": "سُورَةُ الزُّمَرِ",
+    "surah_fr": "Az-Zumar",
+    "ref": "Az-Zumar 39:22",
+    "verse_ar": "أَفَمَن شَرَحَ ٱللَّهُ صَدْرَهُۥ لِلْإِسْلَٰمِ فَهُوَ عَلَىٰ نُورٍۢ مِّن رَّبِّهِۦ ۚ فَوَيْلٌۭ لِّلْقَٰسِيَةِ قُلُوبُهُم مِّن ذِكْرِ ٱللَّهِ ۚ أُو۟لَٰٓئِكَ فِى ضَلَٰلٍۢ مُّبِينٍ",
+    "translation": "Est-ce que celui dont Allah ouvre la poitrine à l'Islam et qui détient ainsi une lumière venant de Son Seigneur... Malheur donc à ceux dont les cœurs sont endurcis contre le rappel d'Allah. Ceux-là sont dans un égarement évident.",
+    "audio": "audio/rappel_39_22.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 7,
+    "ayah": 205,
+    "surah_ar": "سُورَةُ الأَعۡرَافِ",
+    "surah_fr": "Al-A'raaf",
+    "ref": "Al-A'raaf 7:205",
+    "verse_ar": "وَٱذْكُر رَّبَّكَ فِى نَفْسِكَ تَضَرُّعًۭا وَخِيفَةًۭ وَدُونَ ٱلْجَهْرِ مِنَ ٱلْقَوْلِ بِٱلْغُدُوِّ وَٱلْءَاصَالِ وَلَا تَكُن مِّنَ ٱلْغَٰفِلِينَ",
+    "translation": "Et invoque ton Seigneur en toi-même, en humilité et crainte, à mi-voix, le matin et le soir, et ne sois pas du nombre des insouciants.",
+    "audio": "audio/rappel_7_205.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 24,
+    "ayah": 37,
+    "surah_ar": "سُورَةُ النُّورِ",
+    "surah_fr": "An-Noor",
+    "ref": "An-Noor 24:37",
+    "verse_ar": "رِجَالٌۭ لَّا تُلْهِيهِمْ تِجَٰرَةٌۭ وَلَا بَيْعٌ عَن ذِكْرِ ٱللَّهِ وَإِقَامِ ٱلصَّلَوٰةِ وَإِيتَآءِ ٱلزَّكَوٰةِ ۙ يَخَافُونَ يَوْمًۭا تَتَقَلَّبُ فِيهِ ٱلْقُلُوبُ وَٱلْأَبْصَٰرُ",
+    "translation": "des hommes que ni le négoce, ni le troc ne distraient de l'invocation d'Allah, de l'accomplissement de la Salât et de l'acquittement de la Zakât, et qui redoutent un Jour où les cœurs seront bouleversés ainsi que les regards.",
+    "audio": "audio/rappel_24_37.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 20,
+    "ayah": 124,
+    "surah_ar": "سُورَةُ طه",
+    "surah_fr": "Taa-Haa",
+    "ref": "Taa-Haa 20:124",
+    "verse_ar": "وَمَنْ أَعْرَضَ عَن ذِكْرِى فَإِنَّ لَهُۥ مَعِيشَةًۭ ضَنكًۭا وَنَحْشُرُهُۥ يَوْمَ ٱلْقِيَٰمَةِ أَعْمَىٰ",
+    "translation": "Et quiconque se détourne de Mon Rappel, mènera certes, une vie pleine de gêne, et le Jour de la Résurrection Nous l'amènerons aveugle au rassemblement».",
+    "audio": "audio/rappel_20_124.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 26,
+    "ayah": 227,
+    "surah_ar": "سُورَةُ الشُّعَرَاءِ",
+    "surah_fr": "Ash-Shu'araa",
+    "ref": "Ash-Shu'araa 26:227",
+    "verse_ar": "إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَذَكَرُوا۟ ٱللَّهَ كَثِيرًۭا وَٱنتَصَرُوا۟ مِنۢ بَعْدِ مَا ظُلِمُوا۟ ۗ وَسَيَعْلَمُ ٱلَّذِينَ ظَلَمُوٓا۟ أَىَّ مُنقَلَبٍۢ يَنقَلِبُونَ",
+    "translation": "à part ceux qui croient et font de bonnes œuvres, qui invoquent souvent le nom d'Allah et se défendent contre les torts qu'on leur fait. Les injustes verront bientôt le revirement qu'ils [éprouveront]!",
+    "audio": "audio/rappel_26_227.mp3"
+  },
+  {
+    "theme": "rappel",
+    "surah": 33,
+    "ayah": 21,
+    "surah_ar": "سُورَةُ الأَحۡزَابِ",
+    "surah_fr": "Al-Ahzaab",
+    "ref": "Al-Ahzaab 33:21",
+    "verse_ar": "لَّقَدْ كَانَ لَكُمْ فِى رَسُولِ ٱللَّهِ أُسْوَةٌ حَسَنَةٌۭ لِّمَن كَانَ يَرْجُوا۟ ٱللَّهَ وَٱلْيَوْمَ ٱلْءَاخِرَ وَذَكَرَ ٱللَّهَ كَثِيرًۭا",
+    "translation": "En effet, vous avez dans le Messager d'Allah un excellent modèle [à suivre], pour quiconque espère en Allah et au Jour dernier et invoque Allah fréquemment.",
+    "audio": "audio/rappel_33_21.mp3"
   }
 ]

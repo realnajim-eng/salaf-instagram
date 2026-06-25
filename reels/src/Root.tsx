@@ -26,7 +26,10 @@ if (typeof document !== "undefined") {
 }
 
 type Verse = {
-  theme: "paradis" | "enfer" | "temps" | "tawhid" | "jugement" | "coran" | "patience";
+  theme:
+    | "paradis" | "enfer" | "temps" | "tawhid" | "jugement" | "coran" | "patience"
+    | "rahma" | "tawba" | "shukr" | "tawakkul" | "birr" | "tafakkur"
+    | "mort" | "taqwa" | "faraj" | "rappel";
   verse_ar: string;
   translation: string;
   surah_ar: string;

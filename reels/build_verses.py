@@ -62,6 +62,76 @@ REFS = {
         (2, 153), (2, 155), (3, 200), (3, 146), (8, 46), (16, 96),
         (16, 127), (39, 10), (13, 24), (41, 35), (31, 17), (70, 5),
     ],
+    # Miséricorde d'Allah (الرَّحْمَة) : Sa miséricorde embrasse toute chose,
+    # ne pas désespérer de Sa miséricorde, le Prophète ﷺ miséricorde pour
+    # les mondes. Racine ر-ح-م vérifiée via le serveur MCP tafsir.
+    "rahma": [
+        (7, 156), (39, 53), (21, 107), (6, 54), (7, 56),
+        (2, 218), (12, 64), (40, 7), (11, 90), (7, 49),
+    ],
+    # Repentir & pardon (التَّوْبَة) : Allah accepte le repentir de Ses
+    # serviteurs, le repentir sincère, quiconque se repent et fait le bien.
+    # Racine ت-و-ب vérifiée via le serveur MCP tafsir.
+    "tawba": [
+        (28, 67), (20, 82), (25, 71), (4, 17), (9, 104),
+        (42, 25), (110, 3), (2, 160), (66, 8), (5, 39),
+    ],
+    # Gratitude (الشُّكْر) : « si vous êtes reconnaissants, Je vous
+    # accroîtrai », qui est reconnaissant l'est pour lui-même.
+    # Racine ش-ك-ر vérifiée via le serveur MCP tafsir.
+    "shukr": [
+        (14, 7), (31, 12), (2, 172), (16, 114), (39, 7),
+        (27, 40), (34, 13), (16, 18), (27, 19), (16, 78),
+    ],
+    # Confiance en Allah (التَّوَكُّل) : quiconque place sa confiance en
+    # Allah, Il lui suffit ; c'est sur Lui que comptent les croyants.
+    # Racine و-ك-ل vérifiée via le serveur MCP tafsir.
+    "tawakkul": [
+        (3, 159), (65, 3), (8, 2), (3, 160), (14, 12),
+        (9, 51), (39, 38), (67, 29), (25, 58), (11, 123),
+    ],
+    # Piété filiale (بِرُّ الوَالِدَيْن) : bonté envers les parents associée
+    # à l'adoration d'Allah, la douceur envers eux dans leur vieillesse.
+    # Vérifié via recherche textuelle (و-ل-د / إحسان) sur le serveur MCP tafsir.
+    "birr": [
+        (17, 23), (17, 24), (31, 14), (46, 15), (2, 83),
+        (4, 36), (6, 151), (29, 8), (31, 15), (19, 14),
+    ],
+    # Méditation sur la création (التَّفَكُّر) : réfléchir aux signes
+    # d'Allah dans les cieux, la terre et soi-même.
+    # Racine ف-ك-ر vérifiée via le serveur MCP tafsir.
+    "tafakkur": [
+        (3, 191), (30, 21), (30, 8), (16, 11), (16, 69),
+        (13, 3), (45, 13), (10, 24), (6, 50), (16, 44),
+    ],
+    # La mort (المَوْت) : toute âme goûtera la mort, elle vous atteindra
+    # où que vous soyez, le rappel du retour vers Allah.
+    # Racine م-و-ت vérifiée via le serveur MCP tafsir.
+    "mort": [
+        (3, 185), (21, 35), (29, 57), (4, 78), (3, 145),
+        (39, 42), (2, 28), (23, 99), (50, 19), (67, 2),
+    ],
+    # Crainte révérencielle d'Allah (التَّقْوَى) : craignez Allah comme il
+    # se doit, le meilleur viatique est la piété, le plus noble est le plus pieux.
+    # Racine و-ق-ي vérifiée via le serveur MCP tafsir.
+    "taqwa": [
+        (3, 102), (2, 197), (49, 13), (8, 29), (33, 70),
+        (3, 76), (9, 119), (7, 96), (5, 35), (16, 128),
+    ],
+    # Espoir après l'épreuve (الفَرَج بَعْدَ الشِّدَّة) : Allah accordera
+    # une aisance après la gêne, une issue à qui Le craint, le secours proche.
+    # Vérifié via recherche textuelle (عُسْر/يُسْر, مخرج) sur le serveur MCP tafsir.
+    "faraj": [
+        (65, 7), (65, 2), (65, 3), (12, 87), (93, 5),
+        (93, 3), (2, 286), (40, 60), (2, 214), (3, 139),
+    ],
+    # Le rappel / évocation d'Allah (الذِّكْر) : c'est par le rappel d'Allah
+    # que les cœurs s'apaisent, « évoquez-Moi, Je vous évoquerai ».
+    # Racine ذ-ك-ر vérifiée via le serveur MCP tafsir.
+    "rappel": [
+        (13, 28), (2, 152), (33, 41), (29, 45), (20, 14),
+        (33, 35), (63, 9), (73, 8), (87, 15), (2, 200),
+    ],
 }
 
 # Entrées combinées (plusieurs āyāt d'une même sourate présentées comme un bloc).

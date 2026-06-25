@@ -12,7 +12,11 @@ import {
 import { Background } from "./Background";
 
 export const verseSchema = z.object({
-  theme: z.enum(["paradis", "enfer", "temps", "tawhid", "jugement", "coran", "patience"]),
+  theme: z.enum([
+    "paradis", "enfer", "temps", "tawhid", "jugement", "coran", "patience",
+    "rahma", "tawba", "shukr", "tawakkul", "birr", "tafakkur",
+    "mort", "taqwa", "faraj", "rappel",
+  ]),
   verse_ar: z.string(),
   translation: z.string(),
   surah_ar: z.string(),
@@ -77,6 +81,56 @@ const PALETTES = {
     sub: "#b9cad6",
     trans: "#eef3f6",
   },
+  // Miséricorde : douceur chaude, vert-or apaisant
+  rahma: {
+    bg: "linear-gradient(160deg, #0b1a12 0%, #16352a 55%, #0b1a12 100%)",
+    arabic: "#f7eecb", accent: "#d9b65c", sub: "#cfe3d2", trans: "#eef5f0",
+  },
+  // Repentir : aube qui se lève, orangé doux sur bleu nuit
+  tawba: {
+    bg: "linear-gradient(160deg, #120c0a 0%, #33231a 55%, #120c0a 100%)",
+    arabic: "#f6ecda", accent: "#e0b15a", sub: "#d8c7b0", trans: "#f3ece1",
+  },
+  // Gratitude : champ doré au soleil couchant
+  shukr: {
+    bg: "linear-gradient(160deg, #14110a 0%, #2c2413 55%, #14110a 100%)",
+    arabic: "#f8efd2", accent: "#e0bb5a", sub: "#ddcba0", trans: "#f4efe0",
+  },
+  // Confiance en Allah : ciel ouvert, bleu & or
+  tawakkul: {
+    bg: "linear-gradient(160deg, #08101a 0%, #142536 55%, #08101a 100%)",
+    arabic: "#f2efe2", accent: "#d6c07e", sub: "#b9cad6", trans: "#eef3f6",
+  },
+  // Piété filiale : chaleur tendre et douce
+  birr: {
+    bg: "linear-gradient(160deg, #130f09 0%, #2f2417 55%, #130f09 100%)",
+    arabic: "#f5ecd9", accent: "#d8b877", sub: "#d6c3a8", trans: "#f1ebe0",
+  },
+  // Méditation sur la création : voûte étoilée, bleu profond
+  tafakkur: {
+    bg: "linear-gradient(160deg, #05060f 0%, #0c1430 55%, #05060f 100%)",
+    arabic: "#f1eee2", accent: "#cbb56f", sub: "#aebcd2", trans: "#eef0f6",
+  },
+  // La mort : sobriété, gris-bleu silencieux
+  mort: {
+    bg: "linear-gradient(160deg, #0a0c10 0%, #1c2128 55%, #0a0c10 100%)",
+    arabic: "#ece9e2", accent: "#c2b18a", sub: "#b6bcc4", trans: "#eef0f2",
+  },
+  // Crainte d'Allah : montagne, bleu froid & or sobre
+  taqwa: {
+    bg: "linear-gradient(160deg, #080d12 0%, #18242e 55%, #080d12 100%)",
+    arabic: "#f1efe6", accent: "#cdbb86", sub: "#b7c2cc", trans: "#eef2f5",
+  },
+  // Espoir après l'épreuve : lumière perçant la tempête
+  faraj: {
+    bg: "linear-gradient(160deg, #0a0f14 0%, #1e2a2a 55%, #0a0f14 100%)",
+    arabic: "#f6f0dc", accent: "#e2c06a", sub: "#c8cdb4", trans: "#f2f3ea",
+  },
+  // Le rappel (dhikr) : lampe chaude dans le recueillement
+  rappel: {
+    bg: "linear-gradient(160deg, #110d07 0%, #2a2012 55%, #110d07 100%)",
+    arabic: "#f5edd6", accent: "#d8bd6e", sub: "#cabfa0", trans: "#f1ece0",
+  },
 };
 
 // Thèmes à fond clair : texte foncé, ombres légères (pas d'ombre noire)
@@ -91,6 +145,16 @@ const STILL_IMAGE: Record<string, string> = {
   patience: "Patience.jpg",
   paradis: "Paradis.jpg",
   enfer: "Enfer.jpg",
+  rahma: "Rahma.png",
+  tawba: "Tawba.png",
+  shukr: "Shukr.png",
+  tawakkul: "Tawakkul.png",
+  birr: "BirrWalidayn.png",
+  tafakkur: "Tafakkur.png",
+  mort: "Mawt.png",
+  taqwa: "Taqwa.png",
+  faraj: "Faraj.png",
+  rappel: "Tadhkira.png",
 };
 
 export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
@@ -171,7 +235,8 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
               : theme === "enfer"
               ? // Vallée de lave : on garde l'obscurité dramatique, braises saturées
                 "brightness(1.02) saturate(1.12) contrast(1.06)"
-              : "brightness(1.28) saturate(1.08) contrast(1.02)",
+              : // Nouveaux thèmes à fond photo : rendu sobre et homogène
+                "brightness(1.08) saturate(1.06) contrast(1.04)",
         }}
       />
       {/* Voile pour la lisibilité — léger pour le Paradis (lumineux), plus marqué pour l'Enfer */}
@@ -190,7 +255,8 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
               ? "radial-gradient(135% 95% at 50% 45%, rgba(0,0,0,0.22) 42%, rgba(0,0,0,0.58) 100%)"
               : theme === "patience"
               ? "radial-gradient(135% 95% at 50% 45%, rgba(0,0,0,0.20) 45%, rgba(0,0,0,0.55) 100%)"
-              : "radial-gradient(135% 95% at 50% 45%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.42) 100%)",
+              : // Nouveaux thèmes à fond photo : voile lisibilité homogène
+                "radial-gradient(135% 95% at 50% 45%, rgba(0,0,0,0.22) 45%, rgba(0,0,0,0.55) 100%)",
         }}
       />
       <Background theme={theme} />
@@ -222,7 +288,8 @@ export const QuoteReel: React.FC<z.infer<typeof verseSchema>> = ({
               ? "rgba(18,13,7,0.50)"
               : theme === "patience"
               ? "rgba(10,15,22,0.48)"
-              : "rgba(6,18,12,0.20)",
+              : // Nouveaux thèmes à fond photo : carte sombre lisible
+                "rgba(10,12,18,0.48)",
           backdropFilter: "none",
           WebkitBackdropFilter: "none",
           border: `1px solid ${c.accent}44`,

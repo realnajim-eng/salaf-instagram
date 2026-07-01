@@ -1,0 +1,51 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open output.jpg)",
+      "Bash(open reels/*)",
+      "Bash(python3 generate_image.py)",
+      "Bash(python3 fetch_caption.py)",
+      "Bash(python3 build_caption.py)",
+      "Bash(python3 pick_verse.py)",
+      "Bash(python3 build_reel_caption.py)",
+      "Bash(python3 build_verses.py *)",
+      "Bash(node_modules/.bin/remotion render *)",
+      "Bash(ffprobe *)",
+      "mcp__claude-in-chrome__get_page_text",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__find",
+      "mcp__claude-in-chrome__list_connected_browsers",
+      "mcp__claude-in-chrome__read_page",
+      "mcp__tafsir__fetch_ayah",
+      "mcp__tafsir__fetch_tafsir",
+      "mcp__tafsir__fetch_surah_info",
+      "mcp__tafsir__search_quran_text",
+      "mcp__tafsir__find_root_occurrences"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // \"\"' | grep -q 'generate_image.py' && open \"/Users/najim/Desktop/Claude Code/salaf-instagram/output.jpg\" 2>/dev/null || true",
+            "statusMessage": "Ouverture de l'aperçu output.jpg"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(jq -r '.tool_input.command // \"\"'); case \"$CMD\" in *\"git push\"*) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"Règle projet : confirmation requise avant git push\"}}';; esac"
+          }
+        ]
+      }
+    ]
+  }
+}

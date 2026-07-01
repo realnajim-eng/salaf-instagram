@@ -7,3 +7,6 @@ daily_caption.txt
 __pycache__/
 *.pyc
 .DS_Store
+
+# Réglages Claude Code personnels (permissions locales)
+.claude/settings.local.json

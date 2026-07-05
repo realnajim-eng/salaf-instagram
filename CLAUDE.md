@@ -61,9 +61,24 @@ remplacé et gardé en déclenchement manuel uniquement, schedule désactivé, p
 - **Rigueur islamique** : ne jamais inventer ni saisir de mémoire un verset, un
   hadith ou une parole du Salaf. Toujours passer par une source authentifiée
   (dorar.net, shamela.ws, API Coran) ou le skill `aqwal-salaf` / `islamic-sciences`.
-- **Reels un par un** : générer un seul reel à la fois + aperçu, jamais en lot.
-- **Toujours ouvrir l'aperçu** : après génération d'une image/vidéo, `open <fichier>`.
-- **Demander avant `git push`** : ne jamais pousser automatiquement.
+  Cette règle prime sur tout, y compris la gestion autonome ci-dessous.
+- **Gestion autonome de la publication quotidienne (depuis 2026-07-05)** :
+  l'utilisateur a demandé de tout gérer sans confirmation. La publication
+  elle-même est déjà 100% automatique via GitHub Actions (aucune action de ma
+  part n'est nécessaire au quotidien). Pour la maintenance du pipeline
+  (réapprovisionnement du réservoir, correction de bugs bloquant une
+  publication, mise à jour de `tracker.json`/`posted_reels.json`/
+  `post_state.json`), j'agis directement **sans demander confirmation**,
+  y compris pour committer et **pousser sur GitHub** (`git push`) — car sans
+  ça la publication automatique reste bloquée sur le commit précédent.
+  Reste couvert par la prudence habituelle (à ne jamais faire sans demander) :
+  force-push, `reset --hard`, suppression de workflows/secrets/branches, ou
+  toute action destructive/irréversible sans rapport direct avec le maintien
+  de la publication quotidienne.
+- **Reels un par un** (hors automatisation) : si l'utilisateur demande un reel
+  en interactif, en générer un seul à la fois + aperçu, jamais en lot.
+- **Toujours ouvrir l'aperçu** (hors automatisation) : après génération
+  interactive d'une image/vidéo, `open <fichier>`.
 - **Réapprovisionnement** : à épuisement d'un thème, ajouter du neuf vérifié ;
   ne republier qu'au véritable épuisement du Coran sur le thème.
 - **Aucun secret dans le code** : tout passe par les secrets GitHub.

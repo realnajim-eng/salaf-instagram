@@ -16,20 +16,36 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Vérifier qu'aucun post n'a déjà été publié aujourd'hui
+        id: guard
+        run: |
+          LAST_DATE=$(git log -1 --format=%cd --date=format:%Y-%m-%d -- tracker.json)
+          TODAY=$(date -u +%Y-%m-%d)
+          if [ "$LAST_DATE" = "$TODAY" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "⏭️  Un post a déjà été publié aujourd'hui ($LAST_DATE) — run ignoré pour éviter un doublon."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Set up Python
+        if: steps.guard.outputs.skip != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Install dependencies
+        if: steps.guard.outputs.skip != 'true'
         run: pip install -r requirements.txt
 
       - name: Generate caption (Claude API)
+        if: steps.guard.outputs.skip != 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python fetch_caption.py
 
       - name: Generate image & post to Instagram
+        if: steps.guard.outputs.skip != 'true'
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
@@ -38,6 +54,7 @@ jobs:
         run: python post_salaf.py
 
       - name: Commit tracker update
+        if: steps.guard.outputs.skip != 'true'
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"

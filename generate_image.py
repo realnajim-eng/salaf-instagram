@@ -1,7 +1,7 @@
 import textwrap
 import arabic_reshaper
 from bidi.algorithm import get_display
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 
 BACKGROUND_PATH = "images/background.jpg"
 OUTPUT_PATH = "output.jpg"
@@ -29,7 +29,7 @@ CANVAS_SIZE = 1080
 # Suréchantillonnage : on dessine tout à SS× la taille finale puis on réduit en
 # LANCZOS au moment de sauvegarder. Le texte, les contours et les traits dorés
 # en ressortent beaucoup plus nets (anti-aliasing fin) qu'un rendu direct à 1080.
-SS = 4
+SS = 6
 
 # Bordure colorée « cuite » dans background.jpg (~37 px). On rogne ce nombre de
 # pixels sur chaque bord avant redimensionnement pour l'affiner de moitié.
@@ -42,10 +42,20 @@ GOLD_STROKE = 1
 # citation centrale, pour un rendu identique des deux.
 TITLE_STROKE = 3
 
+# Assombrissement léger du fond pour une meilleure visibilité du texte doré
+# (1.0 = inchangé ; < 1.0 = plus sombre).
+BG_BRIGHTNESS = 0.82
+
+# Contraste et saturation légèrement renforcés pour une photo plus vivante
+# (1.0 = inchangé ; > 1.0 = plus marqué).
+BG_CONTRAST   = 1.10
+BG_SATURATION = 1.15
+
 WHITE      = (255, 255, 255, 255)
 WHITE_DIM  = (255, 255, 255, 200)
 GOLD        = (212, 175, 55, 230)
 GOLD_BRIGHT = (255, 209, 92, 255)   # doré clair et éclatant (nom du compte)
+QUOTE_GOLD  = (255, 211, 66, 255)   # même teinte que GOLD, luminosité et opacité maximales (meilleure visibilité)
 OVERLAY_BG  = (0, 0, 0, 155)
 
 # Couleurs du dégradé Instagram (violet → rose → orange)
@@ -54,10 +64,10 @@ IG_PINK   = (225, 48, 108)
 IG_ORANGE = (247, 119, 55)
 IG_GRADIENT = [IG_PURPLE, IG_PINK, IG_ORANGE]
 
-FONT_NAME_SIZE      = 38
-FONT_QUOTE_SIZE     = 38
-FONT_SOURCE_SIZE    = 24
-FONT_HONORIFIC_SIZE = 33   # bénédiction arabe sur la ligne du nom
+FONT_NAME_SIZE      = 50
+FONT_QUOTE_SIZE     = 50
+FONT_SOURCE_SIZE    = 31
+FONT_HONORIFIC_SIZE = 43   # bénédiction arabe sur la ligne du nom
 
 FONT_PATHS = [
     "/System/Library/Fonts/Supplemental/Georgia Bold Italic.ttf",
@@ -119,8 +129,8 @@ def book_from_source(source):
     return source.split("—")[0].strip()
 
 
-def shadow_text(draw, xy, text, font, anchor="mm", stroke_width=GOLD_STROKE):
-    draw.text(xy, text, font=font, fill=GOLD, anchor=anchor,
+def shadow_text(draw, xy, text, font, anchor="mm", stroke_width=GOLD_STROKE, fill=GOLD):
+    draw.text(xy, text, font=font, fill=fill, anchor=anchor,
               stroke_width=stroke_width, stroke_fill=(0, 0, 0, 255))
 
 
@@ -137,9 +147,9 @@ PROPHET_GLYPH = "ﷺ"
 def draw_quote_line(draw, cx, y, line, latin_font, ar_font):
     """Dessine une ligne de citation centrée ; si elle contient ﷺ, ce glyphe
     est rendu avec la police arabe, le reste avec la police latine."""
-    sw = 4 * SS   # contour noir épais de la citation (lisibilité sur fond clair)
+    sw = 5 * SS   # contour noir épais de la citation (lisibilité sur fond clair)
     if PROPHET_GLYPH not in line:
-        shadow_text(draw, (cx, y), line, latin_font, stroke_width=sw)
+        shadow_text(draw, (cx, y), line, latin_font, stroke_width=sw, fill=QUOTE_GOLD)
         return
     # Découper la ligne en segments (texte latin / glyphe ﷺ)
     segs, buf = [], ""
@@ -156,20 +166,20 @@ def draw_quote_line(draw, cx, y, line, latin_font, ar_font):
     total = sum(draw.textlength(s, font=f) for s, f in segs)
     x = cx - total / 2
     for s, f in segs:
-        draw.text((x, y), s, font=f, fill=GOLD, anchor="lm",
+        draw.text((x, y), s, font=f, fill=QUOTE_GOLD, anchor="lm",
                   stroke_width=sw, stroke_fill=(0, 0, 0, 255))
         x += draw.textlength(s, font=f)
 
 
 def text_gold_thin_outline(overlay, cx, cy, text, font_size, ss=3, stroke=2,
-                           canvas_w=CANVAS_SIZE):
+                           canvas_w=CANVAS_SIZE, fill=QUOTE_GOLD):
     """Texte DORÉ avec un fin contour noir sous-pixel : rendu à ss× avec un
     contour de `stroke` px, puis réduction → contour effectif = stroke/ss px."""
     big_font = load_font(font_size * ss)
     lw, lh = canvas_w * ss, (font_size + 24) * ss
     layer = Image.new("RGBA", (lw, lh), (0, 0, 0, 0))
     ImageDraw.Draw(layer).text(
-        (lw // 2, lh // 2), text, font=big_font, fill=GOLD,
+        (lw // 2, lh // 2), text, font=big_font, fill=fill,
         anchor="mm", stroke_width=stroke, stroke_fill=(0, 0, 0, 255))
     layer = layer.resize((lw // ss, lh // ss), Image.LANCZOS)
     overlay.alpha_composite(layer, (int(cx - layer.width / 2), int(cy - layer.height / 2)))
@@ -210,6 +220,45 @@ def wrap_text(text, font, max_width, draw, words=None):
     return lines
 
 
+MIN_LAST_LINE_FRAC = 0.5   # la dernière ligne doit couvrir au moins une demi-ligne
+
+
+def wrap_text_balanced(font, max_width, draw, words, min_last_frac=MIN_LAST_LINE_FRAC):
+    """Comme `wrap_text`, mais évite qu'un dernier mot (ou une poignée de mots)
+    ne se retrouve seul, isolé, sur la toute dernière ligne. Les lignes n'ont
+    PAS besoin d'être toutes égales entre elles : on garde le retour à la
+    ligne glouton naturel tant que la dernière ligne atteint déjà au moins
+    `min_last_frac` de la largeur disponible (une demi-ligne minimum). Ce
+    n'est que si elle est plus courte qu'on réduit un peu la largeur de
+    retour à la ligne (recherche du plus petit rétrécissement suffisant)
+    pour repousser des mots vers cette dernière ligne."""
+    greedy = wrap_text(None, font, max_width, draw, words=words)
+    n = len(greedy)
+    if n <= 1:
+        return greedy
+    if draw.textlength(greedy[-1], font=font) >= max_width * min_last_frac:
+        return greedy   # déjà assez pleine, on garde le rendu naturel (lignes inégales OK)
+
+    # Tant qu'on réduit la largeur SANS faire apparaître de ligne en plus (≤ n
+    # lignes), le nombre de lignes reste constant et la dernière ligne ne peut
+    # que s'étoffer (ou rester identique) : ce n'est qu'au-delà d'un certain
+    # rétrécissement qu'une ligne supplémentaire apparaît. On balaie donc du
+    # plus proche du rendu naturel (max_width) vers le plus rétréci, et on
+    # s'arrête dès que la dernière ligne atteint le seuil demandé.
+    best = None
+    steps = 60
+    for i in range(1, steps + 1):
+        w = max_width * (1 - i / steps)
+        test = wrap_text(None, font, w, draw, words=words)
+        if len(test) > n:
+            break   # rétrécissement excessif : une ligne en plus est apparue, on arrête
+        if draw.textlength(test[-1], font=font) >= max_width * min_last_frac:
+            best = test
+            break
+        best = test   # meilleur candidat trouvé jusqu'ici, au cas où le seuil n'est jamais atteint
+    return best if best is not None else greedy
+
+
 def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
              generation: str = ""):
     S  = SS                      # facteur de suréchantillonnage
@@ -220,6 +269,11 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
         w, h = bg.size
         bg = bg.crop((BORDER_CROP, BORDER_CROP, w - BORDER_CROP, h - BORDER_CROP))
     bg = bg.resize((RC, RC), Image.LANCZOS)
+    bg_rgb = bg.convert("RGB")
+    bg_rgb = ImageEnhance.Color(bg_rgb).enhance(BG_SATURATION)
+    bg_rgb = ImageEnhance.Contrast(bg_rgb).enhance(BG_CONTRAST)
+    bg_rgb = ImageEnhance.Brightness(bg_rgb).enhance(BG_BRIGHTNESS)
+    bg = bg_rgb.convert("RGBA")
 
     overlay = Image.new("RGBA", bg.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
@@ -229,7 +283,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     font_source = load_font(FONT_SOURCE_SIZE * S)
 
     cx     = RC // 2
-    margin = 70 * S
+    margin = 30 * S
     max_w  = RC - margin * 2
     sw     = stroke_px()
 
@@ -238,7 +292,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     quote_words = quote.split()
     quote_words[0]  = "« " + quote_words[0]
     quote_words[-1] = quote_words[-1] + " »"
-    quote_lines = wrap_text(None, font_quote, max_w, draw, words=quote_words)
+    quote_lines = wrap_text_balanced(font_quote, max_w, draw, quote_words)
     line_h      = (FONT_QUOTE_SIZE + 14) * S
     quote_h     = len(quote_lines) * line_h
 
@@ -252,11 +306,11 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
     x_left  = cx - (name_w + gap + hon_w) / 2
 
     # Titre — mêmes couleurs/contour que le texte central : doré + contour noir épais
-    title_stroke = 4 * S
-    draw.text((x_left, y_name), name, font=font_name, fill=GOLD,
+    title_stroke = 5 * S
+    draw.text((x_left, y_name), name, font=font_name, fill=QUOTE_GOLD,
               anchor="lm", stroke_width=title_stroke, stroke_fill=(0, 0, 0, 255))
     # Bénédiction arabe — même couleur/style que le titre
-    draw.text((x_left + name_w + gap, y_name), hon_text, font=font_hon, fill=GOLD,
+    draw.text((x_left + name_w + gap, y_name), hon_text, font=font_hon, fill=QUOTE_GOLD,
               anchor="lm", stroke_width=title_stroke, stroke_fill=(0, 0, 0, 255))
 
     # (Soulignement du titre retiré)
@@ -277,7 +331,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
 
     # Source — en bas de l'image (livre seul) ; texte doré, tout petit contour noir
     text_gold_thin_outline(overlay, cx, y_src, f"— {book_from_source(source)}",
-                           FONT_SOURCE_SIZE * S, canvas_w=RC)
+                           FONT_SOURCE_SIZE * S, stroke=3, canvas_w=RC)
 
     # Compte Instagram — logo + nom
     IG_PURPLE = (131, 58, 180, 255)
@@ -330,7 +384,7 @@ def generate(name: str, quote: str, source: str, output_path: str = OUTPUT_PATH,
 
     # Renforcement de netteté après réduction : rayon fin + intensité plus forte
     # pour des bords nets qui survivent mieux à la recompression Instagram.
-    result = result.filter(ImageFilter.UnsharpMask(radius=1.0, percent=115, threshold=2))
+    result = result.filter(ImageFilter.UnsharpMask(radius=1.3, percent=140, threshold=2))
 
     # subsampling=0 (4:4:4) : pas de sous-échantillonnage de la chrominance, ce
     # qui évite la bavure de couleur sur le texte doré et le dégradé Instagram.

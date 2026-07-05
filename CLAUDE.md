@@ -43,8 +43,10 @@ python3 pick_verse.py                  # sélectionne le verset du jour
 node_modules/.bin/remotion render Verse out/reel.mp4 --props=render_props.json
 npx remotion studio                    # aperçu interactif
 ```
-> `paradis` & `enfer` utilisent une vidéo de fond locale **absente du dépôt** →
-> exclus du rendu cloud automatique (fond image fixe pour les autres thèmes).
+> Les **17 thèmes** utilisent désormais un **fond image fixe** présent dans
+> `reels/public/` (zoom lent continu via `STILL_IMAGE` dans `QuoteReel.tsx`),
+> `paradis` (`Paradis.jpg`) et `enfer` (`Enfer.jpg`) compris → tous rendables
+> dans le cloud automatique, plus aucune vidéo de fond locale requise.
 
 ## Automatisation — ACTIVE depuis 2026-07-05
 Deux publications indépendantes **chaque jour** (pas d'alternance) :

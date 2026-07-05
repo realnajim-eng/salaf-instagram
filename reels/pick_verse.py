@@ -2,9 +2,10 @@
 """
 pick_verse.py — Choisit le verset du Reel du jour.
 
-Ne retient que les thèmes à fond IMAGE (rendables dans le cloud, assets dans
-public/) : paradis & enfer utilisent une vidéo de fond locale absente du dépôt,
-donc ils sont exclus du rendu automatique.
+Ne retient que les thèmes à fond IMAGE fixe (rendables dans le cloud, assets
+présents dans public/). Depuis que QuoteReel.tsx utilise STILL_IMAGE pour TOUS
+les thèmes (y compris paradis → Paradis.jpg et enfer → Enfer.jpg), les 17 thèmes
+sont rendables en CI : plus aucune vidéo de fond locale requise.
 
 Les thèmes sont entrelacés (round-robin) pour qu'un thème ne revienne pas deux
 jours de suite. On publie le premier verset non encore publié. Quand le stock
@@ -26,7 +27,8 @@ TRACKER = os.path.join(HERE, "posted_reels.json")
 RENDER_PROPS = os.path.join(HERE, "render_props.json")
 CURRENT = os.path.join(HERE, "current_verse.json")
 
-# Thèmes à fond image (cf. STILL_IMAGE dans QuoteReel.tsx) — seuls rendables en CI.
+# Les 17 thèmes, tous à fond image fixe (cf. STILL_IMAGE dans QuoteReel.tsx),
+# donc tous rendables en CI (aucune vidéo de fond locale requise).
 IMAGE_THEMES = [
     "coran", "tawhid", "patience", "jugement", "temps", "paradis", "enfer",
     "rahma", "tawba", "shukr", "tawakkul", "birr", "tafakkur",

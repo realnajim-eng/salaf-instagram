@@ -51,9 +51,9 @@ npx remotion studio                    # aperçu interactif
 ## Automatisation — ACTIVE depuis 2026-07-05
 Deux publications indépendantes **chaque jour** (pas d'alternance) :
 - `daily_post.yml` : parole de Salaf à **17h17 Paris** (cron `17 15 * * *` UTC).
-- `daily_reel.yml` : reel verset à **22h22 Paris** (cron `22 20 * * *` UTC).
+- `daily_reel.yml` : reel verset à **19h19 Paris** (cron `19 17 * * *` UTC).
 
-Horaires volontairement décalés hors pile-heure (`:17`/`:22` plutôt que `:00`)
+Horaires volontairement décalés hors pile-heure (`:17`/`:19` plutôt que `:00`)
 car les crons GitHub Actions programmés pile à l'heure ronde subissent des
 retards de charge (observé : jusqu'à 3h41 de retard le 2026-07-05). Les crons
 sont en UTC fixe → dérive d'1h en heure d'hiver (CET) sans ajustement.

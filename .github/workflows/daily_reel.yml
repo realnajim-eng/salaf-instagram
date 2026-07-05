@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # historique complet requis : un clone shallow fait croire à git que le commit du jour a "ajouté" tous les fichiers, faussant le garde-fou anti-doublon ci-dessous
 
       - name: Vérifier qu'aucun reel n'a déjà été publié aujourd'hui
         id: guard

@@ -24,7 +24,7 @@ Référence sourate:verset → texte récupéré d'une source authentifiée → 
 | Fichier | Rôle |
 |---|---|
 | `reels/build_verses.py` | (Re)construit `public/verses.json` depuis les **références** REFS. **Ne saisit jamais le texte coranique de mémoire** — télécharge rasm ʿuthmānī + traduction Hamidullah via alquran.cloud |
-| `reels/pick_verse.py` | Choisit le verset du jour (round-robin par thème, jamais de republication), écrit `render_props.json` + `current_verse.json` |
+| `reels/pick_verse.py` | Choisit le verset du jour (round-robin par thème) ; une fois les 250 publiés, boucle depuis le début, écrit `render_props.json` + `current_verse.json` |
 | `reels/prune_verses.py` | Élague le réservoir de versets |
 | `reels/build_reel_caption.py` | Légende du reel |
 | `reels/post_reel.py` | Publie le reel sur Instagram |
@@ -79,8 +79,13 @@ remplacé et gardé en déclenchement manuel uniquement, schedule désactivé, p
   en interactif, en générer un seul à la fois + aperçu, jamais en lot.
 - **Toujours ouvrir l'aperçu** (hors automatisation) : après génération
   interactive d'une image/vidéo, `open <fichier>`.
-- **Réapprovisionnement** : à épuisement d'un thème, ajouter du neuf vérifié ;
-  ne republier qu'au véritable épuisement du Coran sur le thème.
+- **Boucle infinie (depuis 2026-07-05)** : les deux réservoirs (citations Salaf,
+  versets) recommencent automatiquement depuis le début une fois entièrement
+  épuisés (`tracker.json` / `posted_reels.json` remis à zéro), au lieu de
+  bloquer la publication. Le réapprovisionnement (ajout de nouvelles citations
+  ou versets vérifiés) reste bienvenu à tout moment pour retarder les
+  répétitions, mais n'est plus une condition requise pour que la publication
+  continue.
 - **Aucun secret dans le code** : tout passe par les secrets GitHub.
 
 ## Environnement

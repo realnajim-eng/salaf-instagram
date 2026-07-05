@@ -7,9 +7,9 @@ public/) : paradis & enfer utilisent une vidéo de fond locale absente du dépô
 donc ils sont exclus du rendu automatique.
 
 Les thèmes sont entrelacés (round-robin) pour qu'un thème ne revienne pas deux
-jours de suite. On publie le premier verset non encore publié. RÈGLE : un verset
-n'est JAMAIS republié — quand le stock est épuisé, le workflow s'arrête (erreur)
-au lieu de répéter, le temps d'ajouter de nouveaux versets via build_verses.py.
+jours de suite. On publie le premier verset non encore publié. Quand le stock
+est épuisé (tous publiés), on recommence depuis le début — boucle infinie,
+comme pour les paroles de Salaf (fetch_caption.py).
 
 Sorties :
   reels/render_props.json   — props passées à Remotion (--props)
@@ -60,21 +60,21 @@ def main():
 
     remaining = [v for v in queue if v["ref"] not in posted]
     if not remaining:
-        # RÈGLE : jamais deux fois le même verset. On ne republie donc JAMAIS.
-        # Quand le stock est épuisé, il faut ajouter de nouveaux versets
-        # (références authentifiées) via build_verses.py, puis ce workflow
-        # reprend tout seul la rotation des thèmes.
-        raise SystemExit(
-            f"STOCK ÉPUISÉ : les {len(queue)} versets ont tous été publiés. "
-            "Aucune republication (règle : jamais le même verset). "
-            "Ajoute de nouveaux versets aux thèmes (build_verses.py) pour relancer."
-        )
+        # Tout a été publié — recommencer depuis le début (boucle infinie).
+        # On réinitialise le tracker tout de suite sur disque : sinon post_reel.py
+        # rajouterait la ref choisie à une liste déjà pleine, et le stock resterait
+        # "épuisé" dès demain (on republierait sans arrêt ce même premier verset).
+        print(f"🔁 STOCK ÉPUISÉ : les {len(queue)} versets ont tous été publiés — "
+              "on recommence depuis le début.")
+        posted = []
+        remaining = queue
+        json.dump({"posted": posted}, open(TRACKER, "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=2)
     chosen = remaining[0]
 
-    # Alerte anticipée : prévenir AVANT l'épuisement pour réapprovisionner à temps.
+    # Alerte anticipée : prévenir avant l'épuisement, pour réapprovisionner si souhaité.
     if len(remaining) <= 10:
-        print(f"⚠️  STOCK BAS : {len(remaining)} versets non publiés restants — "
-              f"penser à ajouter de nouveaux versets bientôt.")
+        print(f"⚠️  STOCK BAS : {len(remaining)} versets non publiés restants avant la boucle.")
 
     props = {k: chosen[k] for k in PROP_FIELDS}
     json.dump(props, open(RENDER_PROPS, "w", encoding="utf-8"), ensure_ascii=False, indent=2)

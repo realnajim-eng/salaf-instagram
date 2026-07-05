@@ -2,7 +2,7 @@ name: Daily Reel Post
 
 on:
   schedule:
-    - cron: "0 20 * * *"   # chaque jour à 20h00 UTC = 22h Paris (été/CEST ; 21h Paris en hiver/CET)
+    - cron: "22 20 * * *"   # chaque jour à 20h22 UTC = 22h22 Paris (été/CEST ; 21h22 Paris en hiver/CET) ; décalé hors pile-heure pour éviter les retards de charge GitHub Actions
   workflow_dispatch:         # déclenchement manuel depuis GitHub
 
 permissions:

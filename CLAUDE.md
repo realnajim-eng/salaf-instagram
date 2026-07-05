@@ -46,15 +46,16 @@ npx remotion studio                    # aperçu interactif
 > `paradis` & `enfer` utilisent une vidéo de fond locale **absente du dépôt** →
 > exclus du rendu cloud automatique (fond image fixe pour les autres thèmes).
 
-## Alternance de publication
-`daily_alternate.yml` alterne Salaf ↔ reel via le compteur `post_state.json`
-(`{"next": "salaf"|"reel"}`).
+## Automatisation — ACTIVE depuis 2026-07-05
+Deux publications indépendantes **chaque jour** (pas d'alternance) :
+- `daily_post.yml` : parole de Salaf à **17h Paris** (cron `0 15 * * *` UTC).
+- `daily_reel.yml` : reel verset à **22h Paris** (cron `0 20 * * *` UTC).
 
-## Automatisation — EN PAUSE
-Les workflows GitHub Actions (`.github/workflows/`) sont **en pause depuis
-2026-06-24** à la demande. La logique est prête ; publication 18h Paris quand
-réactivée. Secrets requis : `INSTAGRAM_ACCESS_TOKEN`, `INSTAGRAM_USER_ID`,
-`INSTAGRAM_CLIENT_SECRET`, `ANTHROPIC_API_KEY`.
+Les crons sont en UTC fixe → dérive d'1h en heure d'hiver (CET) sans ajustement.
+`daily_alternate.yml` (ancienne alternance Salaf/reel via `post_state.json`) est
+remplacé et gardé en déclenchement manuel uniquement, schedule désactivé, pour
+éviter tout double post. Secrets requis : `INSTAGRAM_ACCESS_TOKEN`,
+`INSTAGRAM_USER_ID`, `INSTAGRAM_CLIENT_SECRET`, `ANTHROPIC_API_KEY`.
 
 ## Règles de travail (IMPORTANT)
 - **Rigueur islamique** : ne jamais inventer ni saisir de mémoire un verset, un

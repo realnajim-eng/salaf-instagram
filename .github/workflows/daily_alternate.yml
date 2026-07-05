@@ -4,10 +4,15 @@ name: Daily Alternate Post (Salaf / Reel)
 # et ainsi de suite. Le type publié est piloté par le compteur d'état post_state.json
 # ("next": "salaf" | "reel"), qui bascule après CHAQUE publication réussie.
 # L'alternance reste donc stricte même si un jour est manqué.
+#
+# SUPERSEDÉ depuis 2026-07-05 : remplacé par les deux plannings quotidiens
+# indépendants daily_post.yml (17h Paris) + daily_reel.yml (22h Paris), qui
+# publient CHAQUE jour les deux types au lieu d'alterner. Ce workflow reste
+# disponible en déclenchement manuel uniquement (schedule volontairement
+# désactivé) pour éviter tout double post.
 
 on:
-  # PUBLICATION AUTOMATIQUE EN PAUSE (à la demande de l'utilisateur).
-  # Pour activer l'alternance quotidienne : décommenter le bloc schedule ci-dessous.
+  # Schedule désactivé : voir note ci-dessus.
   # schedule:
   #   - cron: "0 16 * * *"   # chaque jour à 16h00 UTC = 18h Paris (été/CEST ; 17h en hiver/CET)
   workflow_dispatch:         # déclenchement manuel depuis GitHub

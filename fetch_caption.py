@@ -71,7 +71,7 @@ Thème : {theme_ar} ({theme_lat})
 }}
 ---END_JSON---"""
 
-    message = client.messages.create(model="claude-sonnet-4-6", max_tokens=1500,
+    message = client.messages.create(model="claude-sonnet-5", max_tokens=1500,
         messages=[{"role": "user", "content": prompt}])
     response = message.content[0].text
 

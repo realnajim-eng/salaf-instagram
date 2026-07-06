@@ -3,8 +3,9 @@
 post_reel.py — Publie le Reel du jour sur Instagram.
 
 Reprend le mécanisme de post_salaf.py (renouvellement du token, hébergement via
-GitHub Releases pour obtenir une URL publique, polling du container) mais pour
-une VIDÉO publiée en tant que Reel (media_type=REELS).
+GitHub Releases pour obtenir une URL publique, polling du container), factorisé
+dans ig_publish_common.py à la racine du dépôt, mais pour une VIDÉO publiée en
+tant que Reel (media_type=REELS).
 
 Pré-requis (produits par les étapes précédentes du workflow) :
   reels/out/daily_reel.mp4   — vidéo rendue par Remotion
@@ -13,13 +14,12 @@ Pré-requis (produits par les étapes précédentes du workflow) :
 Met à jour reels/posted_reels.json en fin de publication.
 """
 import os
+import sys
 import json
 import time
-import base64
-import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-from nacl import encoding, public
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from ig_publish_common import make_session, renew_token_and_persist, REPO
 
 from build_reel_caption import build_caption
 
@@ -27,7 +27,6 @@ ACCESS_TOKEN  = os.environ["INSTAGRAM_ACCESS_TOKEN"]
 USER_ID       = os.environ["INSTAGRAM_USER_ID"]
 GITHUB_TOKEN  = os.environ["GITHUB_TOKEN"]
 SECRETS_TOKEN = os.environ.get("GH_PAT") or GITHUB_TOKEN
-REPO          = "realnajim-eng/salaf-instagram"
 RELEASE_TAG   = "daily-reels"
 VIDEO_NAME    = "daily_reel.mp4"
 
@@ -40,64 +39,11 @@ GH_HEADERS = {"Authorization": f"token {GITHUB_TOKEN}", "Accept": "application/v
 GH_SECRETS_HEADERS = {"Authorization": f"token {SECRETS_TOKEN}", "Accept": "application/vnd.github+json"}
 TIMEOUT = (10, 120)
 
-
-def make_session():
-    session = requests.Session()
-    retry = Retry(total=4, backoff_factor=2,
-                  status_forcelist=(429, 500, 502, 503, 504),
-                  allowed_methods=("GET", "POST", "PUT", "DELETE"),
-                  raise_on_status=False)
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
-    return session
-
-
 http = make_session()
 
 
 # ── 0. Renouveler le token Instagram (expire tous les 60 jours) ──────────────
-def refresh_instagram_token(token):
-    resp = http.get("https://graph.instagram.com/refresh_access_token",
-                    params={"grant_type": "ig_refresh_token", "access_token": token},
-                    timeout=TIMEOUT)
-    data = resp.json()
-    if "access_token" in data:
-        print(f"✅ Token Instagram renouvelé (expire dans {data.get('expires_in', 0) // 86400} jours)")
-        return data["access_token"]
-    print(f"⚠️  Renouvellement token échoué : {data}")
-    return token
-
-
-def update_github_secret(name, value):
-    key_resp = http.get(f"https://api.github.com/repos/{REPO}/actions/secrets/public-key",
-                        headers=GH_SECRETS_HEADERS, timeout=TIMEOUT)
-    key_data = key_resp.json()
-    if "key" not in key_data:
-        raise RuntimeError(f"Clé publique inaccessible (HTTP {key_resp.status_code}) : {key_data}. "
-                           "Fournis un PAT dans le secret GH_PAT (Secrets: read & write).")
-    pk = public.PublicKey(key_data["key"].encode("utf-8"), encoding.Base64Encoder())
-    encrypted = base64.b64encode(public.SealedBox(pk).encrypt(value.encode("utf-8"))).decode("utf-8")
-    put = http.put(f"https://api.github.com/repos/{REPO}/actions/secrets/{name}",
-                   headers=GH_SECRETS_HEADERS,
-                   json={"encrypted_value": encrypted, "key_id": key_data["key_id"]},
-                   timeout=TIMEOUT)
-    if put.status_code in (201, 204):
-        print(f"✅ Secret GitHub '{name}' mis à jour")
-    else:
-        raise RuntimeError(f"Mise à jour secret échouée : {put.status_code} {put.text}")
-
-
-try:
-    new_token = refresh_instagram_token(ACCESS_TOKEN)
-    if new_token != ACCESS_TOKEN:
-        ACCESS_TOKEN = new_token
-        try:
-            update_github_secret("INSTAGRAM_ACCESS_TOKEN", new_token)
-        except Exception as e:
-            print(f"⚠️  Persistance du nouveau token échouée (publication poursuivie) : {e}")
-except Exception as e:
-    print(f"⚠️  Renouvellement du token échoué (publication avec l'ancien token) : {e}")
+ACCESS_TOKEN = renew_token_and_persist(http, ACCESS_TOKEN, GH_SECRETS_HEADERS, TIMEOUT)
 
 
 # ── 1. Charger le verset du jour + construire la légende ─────────────────────

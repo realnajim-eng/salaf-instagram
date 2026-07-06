@@ -1,12 +1,8 @@
 import os
 import json
 import time
-import base64
-import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-from nacl import encoding, public
 from generate_image import generate
+from ig_publish_common import make_session, renew_token_and_persist, REPO
 
 ACCESS_TOKEN   = os.environ["INSTAGRAM_ACCESS_TOKEN"]
 USER_ID        = os.environ["INSTAGRAM_USER_ID"]
@@ -14,7 +10,6 @@ GITHUB_TOKEN   = os.environ["GITHUB_TOKEN"]
 # Token utilisé pour écrire les secrets (le GITHUB_TOKEN automatique n'a pas ce
 # droit) : on préfère un PAT dédié s'il est fourni, sinon on retombe dessus.
 SECRETS_TOKEN  = os.environ.get("GH_PAT") or GITHUB_TOKEN
-REPO           = "realnajim-eng/salaf-instagram"
 RELEASE_TAG    = "daily-images"
 IMAGE_FILENAME = "temp_post.jpg"
 
@@ -31,79 +26,10 @@ GH_SECRETS_HEADERS = {
 # Timeout par défaut (connexion, lecture) pour tous les appels réseau
 TIMEOUT = (10, 60)
 
-# ── Session HTTP avec reprise automatique sur erreurs transitoires ───────────
-def make_session():
-    session = requests.Session()
-    retry = Retry(
-        total=4,
-        backoff_factor=2,                       # 2s, 4s, 8s, 16s
-        status_forcelist=(429, 500, 502, 503, 504),
-        allowed_methods=("GET", "POST", "PUT", "DELETE"),
-        raise_on_status=False,
-    )
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
-    return session
-
 http = make_session()
 
 # ── 0. Renouveler le token Instagram (expire tous les 60 jours) ─────────────
-def refresh_instagram_token(token):
-    resp = http.get(
-        "https://graph.instagram.com/refresh_access_token",
-        params={"grant_type": "ig_refresh_token", "access_token": token},
-        timeout=TIMEOUT,
-    )
-    data = resp.json()
-    if "access_token" in data:
-        new_token = data["access_token"]
-        expires_in = data.get("expires_in", 0)
-        print(f"✅ Token Instagram renouvelé (expire dans {expires_in // 86400} jours)")
-        return new_token
-    else:
-        print(f"⚠️  Renouvellement token échoué : {data}")
-        return token
-
-def update_github_secret(secret_name, secret_value):
-    # Récupérer la clé publique du dépôt
-    key_resp = http.get(
-        f"https://api.github.com/repos/{REPO}/actions/secrets/public-key",
-        headers=GH_SECRETS_HEADERS,
-        timeout=TIMEOUT,
-    )
-    key_data = key_resp.json()
-    if "key" not in key_data:
-        raise RuntimeError(
-            f"Clé publique inaccessible (HTTP {key_resp.status_code}) : {key_data}. "
-            "Le token n'a probablement pas le droit d'écrire les secrets — "
-            "fournis un PAT dans le secret GH_PAT (permission Secrets: read & write)."
-        )
-    public_key = public.PublicKey(key_data["key"].encode("utf-8"), encoding.Base64Encoder())
-    sealed_box = public.SealedBox(public_key)
-    encrypted = base64.b64encode(sealed_box.encrypt(secret_value.encode("utf-8"))).decode("utf-8")
-
-    put_resp = http.put(
-        f"https://api.github.com/repos/{REPO}/actions/secrets/{secret_name}",
-        headers=GH_SECRETS_HEADERS,
-        json={"encrypted_value": encrypted, "key_id": key_data["key_id"]},
-        timeout=TIMEOUT,
-    )
-    if put_resp.status_code in (201, 204):
-        print(f"✅ Secret GitHub '{secret_name}' mis à jour")
-    else:
-        raise RuntimeError(f"Mise à jour secret échouée : {put_resp.status_code} {put_resp.text}")
-
-try:
-    new_token = refresh_instagram_token(ACCESS_TOKEN)
-    if new_token != ACCESS_TOKEN:
-        ACCESS_TOKEN = new_token
-        try:
-            update_github_secret("INSTAGRAM_ACCESS_TOKEN", new_token)
-        except Exception as e:
-            print(f"⚠️  Persistance du nouveau token échouée (publication poursuivie) : {e}")
-except Exception as e:
-    print(f"⚠️  Renouvellement du token échoué (publication avec l'ancien token) : {e}")
+ACCESS_TOKEN = renew_token_and_persist(http, ACCESS_TOKEN, GH_SECRETS_HEADERS, TIMEOUT)
 
 # ── 1. Charger la citation du jour (produite par fetch_caption.py) ───────────
 if not os.path.exists("daily_quote.json"):

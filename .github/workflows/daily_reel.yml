@@ -2,11 +2,26 @@ name: Daily Reel Post
 
 on:
   schedule:
-    - cron: "19 17 * * *"   # chaque jour à 17h19 UTC = 19h19 Paris (été/CEST ; 18h19 Paris en hiver/CET) ; décalé hors pile-heure pour éviter les retards de charge GitHub Actions
+    # Cible : 17h19 UTC = 19h19 Paris (été/CEST ; 18h19 en hiver/CET), décalé
+    # hors pile-heure. Les crons GitHub subissent des retards de charge parfois
+    # énormes (3h à 6h observés les 5-6 juillet 2026) : les entrées suivantes
+    # sont des RATTRAPAGES — le garde-fou anti-doublon ci-dessous fait que seul
+    # le premier run du jour publie, les suivants s'arrêtent en ~15s.
+    - cron: "19 17 * * *"
+    - cron: "49 17 * * *"
+    - cron: "19 18 * * *"
+    - cron: "49 18 * * *"
+    - cron: "19 19 * * *"
   workflow_dispatch:         # déclenchement manuel depuis GitHub
 
 permissions:
   contents: write
+
+# Groupe partagé avec daily_post.yml : jamais deux publications en même temps
+# (évite les courses sur le push du tracker et les doublons Instagram).
+concurrency:
+  group: instagram-publish
+  cancel-in-progress: false
 
 jobs:
   post:
@@ -86,4 +101,5 @@ jobs:
           git config user.name "GitHub Action"
           git add posted_reels.json
           git diff --staged --quiet || git commit -m "Update reels tracker"
+          git pull --rebase origin main   # un autre workflow a pu pousser entre-temps
           git push

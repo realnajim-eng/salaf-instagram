@@ -122,7 +122,7 @@ REFS = {
     # Racine م-و-ت vérifiée via le serveur MCP tafsir.
     "mort": [
         (3, 185), (21, 35), (29, 57), (4, 78), (3, 145),
-        (39, 42), (2, 28), (23, 99), (50, 19), (67, 2),
+        (2, 28), (23, 99), (50, 19), (67, 2),
         (3, 169), (2, 154), (21, 34), (23, 15), (44, 56),
         (56, 60), (40, 11), (3, 143),
     ],
@@ -140,7 +140,7 @@ REFS = {
     # une aisance après la gêne, une issue à qui Le craint, le secours proche.
     # Vérifié via recherche textuelle (عُسْر/يُسْر, مخرج) sur le serveur MCP tafsir.
     "faraj": [
-        (65, 7), (65, 2), (65, 3), (12, 87), (93, 5),
+        (65, 7), (65, 2), (12, 87), (93, 5),
         (93, 3), (2, 286), (40, 60), (2, 214), (3, 139),
         (65, 4), (65, 5), (21, 88), (12, 90), (12, 86),
         (8, 10), (30, 5), (48, 1), (40, 51), (3, 126),
@@ -149,7 +149,7 @@ REFS = {
     # que les cœurs s'apaisent, « évoquez-Moi, Je vous évoquerai ».
     # Racine ذ-ك-ر vérifiée via le serveur MCP tafsir.
     "rappel": [
-        (13, 28), (2, 152), (33, 41), (29, 45), (20, 14),
+        (13, 28), (33, 41), (29, 45), (20, 14),
         (33, 35), (63, 9), (73, 8), (87, 15), (2, 200),
         (8, 45), (62, 10), (4, 103), (2, 198), (18, 24), (76, 25),
         (3, 41), (39, 22), (7, 205), (24, 37), (57, 16), (20, 124),
@@ -264,8 +264,27 @@ def build_combined(theme, spec):
     }
 
 
+def check_duplicate_refs():
+    """Une même référence dans deux thèmes rend la 2e occurrence impubliable :
+    le tracker (posted_reels.json) suit les versets par ref, donc publier l'une
+    marque l'autre comme déjà publiée. On avertit avant de construire."""
+    seen = {}
+    dups = []
+    for theme, refs in REFS.items():
+        for ref in refs:
+            if ref in seen:
+                dups.append(f"{ref[0]}:{ref[1]} présent dans « {seen[ref]} » et « {theme} »")
+            else:
+                seen[ref] = theme
+    if dups:
+        print("⚠️  RÉFÉRENCES DUPLIQUÉES entre thèmes (à corriger dans REFS) :")
+        for d in dups:
+            print(f"   - {d}")
+
+
 def main():
     os.makedirs("public/audio", exist_ok=True)
+    check_duplicate_refs()
     only = set(sys.argv[1:])  # thèmes à (re)construire ; vide = tous
     themes = [t for t in REFS if not only or t in only]
 

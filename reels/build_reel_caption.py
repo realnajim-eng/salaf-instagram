@@ -35,6 +35,16 @@ THEME_TAGS = {
     "temps":    ["#letemps", "#viedicibas", "#mediter"],
     "paradis":  ["#paradis", "#jannah", "#recompense"],
     "enfer":    ["#enfer", "#jahannam", "#craintedallah"],
+    "rahma":    ["#misericorde", "#rahma", "#espoir"],
+    "tawba":    ["#repentir", "#tawba", "#pardon"],
+    "shukr":    ["#gratitude", "#reconnaissance", "#alhamdulillah"],
+    "tawakkul": ["#tawakkul", "#confianceenallah", "#certitude"],
+    "birr":     ["#parents", "#birralwalidayn", "#famille"],
+    "tafakkur": ["#meditation", "#creation", "#signesdallah"],
+    "mort":     ["#rappeldelamort", "#audela", "#mort"],
+    "taqwa":    ["#taqwa", "#piete", "#craintedallah"],
+    "faraj":    ["#espoir", "#delivrance", "#patience"],
+    "rappel":   ["#dhikr", "#rappeldallah", "#invocation"],
 }
 
 # Phrase d'accroche sobre par thème (première ligne, en français).
@@ -46,6 +56,16 @@ HOOK = {
     "temps":    "⏳ Le temps qui passe",
     "paradis":  "🌿 Le Paradis (al-Jannah)",
     "enfer":    "🔥 L'Enfer (an-Nār)",
+    "rahma":    "🌸 La miséricorde d'Allah (ar-raḥma)",
+    "tawba":    "🚪 Le repentir (at-tawba)",
+    "shukr":    "🌾 La gratitude (ash-shukr)",
+    "tawakkul": "🕊️ La confiance en Allah (at-tawakkul)",
+    "birr":     "🏡 La bonté envers les parents (al-birr)",
+    "tafakkur": "🌌 Méditer sur la création (at-tafakkur)",
+    "mort":     "🕰️ Le rappel de la mort (al-mawt)",
+    "taqwa":    "🛡️ La crainte pieuse (at-taqwā)",
+    "faraj":    "🌅 Après la difficulté, la délivrance (al-faraj)",
+    "rappel":   "📿 Le rappel d'Allah (adh-dhikr)",
 }
 
 

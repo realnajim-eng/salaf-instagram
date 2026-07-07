@@ -32,7 +32,7 @@ Référence sourate:verset → texte récupéré d'une source authentifiée → 
 | `reels/public/` | Fonds (`.jpg`/`.png`), `audio/`, `fonts/`, `verses.json` |
 | `reels/posted_reels.json` | Historique des reels publiés |
 
-**Réservoir actuel : 250 versets, 17 thèmes** (paradis, enfer, temps, tawhid,
+**Réservoir actuel : 248 versets, 17 thèmes** (paradis, enfer, temps, tawhid,
 patience, jugement, coran, rahma, tawba, shukr, tawakkul, birr, tafakkur, mort,
 taqwa, faraj, rappel).
 
@@ -50,13 +50,19 @@ npx remotion studio                    # aperçu interactif
 
 ## Automatisation — ACTIVE depuis 2026-07-05
 Deux publications indépendantes **chaque jour** (pas d'alternance) :
-- `daily_post.yml` : parole de Salaf à **17h17 Paris** (cron `17 15 * * *` UTC).
-- `daily_reel.yml` : reel verset à **19h19 Paris** (cron `19 17 * * *` UTC).
+- `daily_post.yml` : parole de Salaf à **17h17 Paris** (cron cible `17 15 * * *` UTC).
+- `daily_reel.yml` : reel verset à **19h19 Paris** (cron cible `19 17 * * *` UTC).
 
 Horaires volontairement décalés hors pile-heure (`:17`/`:19` plutôt que `:00`)
-car les crons GitHub Actions programmés pile à l'heure ronde subissent des
-retards de charge (observé : jusqu'à 3h41 de retard le 2026-07-05). Les crons
-sont en UTC fixe → dérive d'1h en heure d'hiver (CET) sans ajustement.
+car les crons GitHub Actions subissent des retards de charge (observé : 3h à
+6h de retard les 5-6 juillet 2026). Depuis 2026-07-07, chaque workflow a en
+plus **4 crons de rattrapage** (toutes les 30 min sur ~2h après la cible) : le
+garde-fou anti-doublon (date du dernier commit du tracker) fait que seul le
+premier run du jour publie, les suivants s'arrêtent en ~15s (runs « skip »
+normaux dans l'historique, certains peuvent apparaître « cancelled » à cause du
+groupe `concurrency: instagram-publish` partagé qui sérialise toutes les
+publications). Les crons sont en UTC fixe → dérive d'1h en heure d'hiver (CET)
+sans ajustement.
 `daily_alternate.yml` (ancienne alternance Salaf/reel via `post_state.json`) est
 remplacé et gardé en déclenchement manuel uniquement, schedule désactivé, pour
 éviter tout double post. Secrets requis : `INSTAGRAM_ACCESS_TOKEN`,

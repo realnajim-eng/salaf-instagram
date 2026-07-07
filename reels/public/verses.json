@@ -2355,17 +2355,6 @@
   },
   {
     "theme": "faraj",
-    "surah": 65,
-    "ayah": 3,
-    "surah_ar": "سُورَةُ الطَّلَاقِ",
-    "surah_fr": "At-Talaaq",
-    "ref": "At-Talaaq 65:3",
-    "verse_ar": "وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ ۚ إِنَّ ٱللَّهَ بَٰلِغُ أَمْرِهِۦ ۚ قَدْ جَعَلَ ٱللَّهُ لِكُلِّ شَىْءٍۢ قَدْرًۭا",
-    "translation": "et lui accordera Ses dons par [des moyens] sur lesquels il ne comptait pas. Et quiconque place sa confiance en Allah, Il [Allah] lui suffit. Allah atteint ce qu'Il Se propose, et Allah a assigné une mesure à chaque chose.",
-    "audio": "audio/faraj_65_3.mp3"
-  },
-  {
-    "theme": "faraj",
     "surah": 12,
     "ayah": 87,
     "surah_ar": "سُورَةُ يُوسُفَ",
@@ -2528,17 +2517,6 @@
     "verse_ar": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
     "translation": "ceux qui ont cru, et dont les cœurs se tranquillisent à l'évocation d'Allah». Certes, c'est par l'évocation d'Allah que les cœurs se tranquillisent.",
     "audio": "audio/rappel_13_28.mp3"
-  },
-  {
-    "theme": "rappel",
-    "surah": 2,
-    "ayah": 152,
-    "surah_ar": "سُورَةُ البَقَرَةِ",
-    "surah_fr": "Al-Baqara",
-    "ref": "Al-Baqara 2:152",
-    "verse_ar": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ",
-    "translation": "Souvenez-vous de Moi donc. Je vous récompenserai. Remerciez-Moi et ne soyez pas ingrats envers Moi!",
-    "audio": "audio/rappel_2_152.mp3"
   },
   {
     "theme": "rappel",

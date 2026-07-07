@@ -67,7 +67,10 @@ if rel_resp.status_code == 404:
         json={"tag_name": RELEASE_TAG, "name": "Daily images", "body": "Auto-generated images"},
         timeout=TIMEOUT,
     )
-release_id = rel_resp.json()["id"]
+rel_data = rel_resp.json()
+if "id" not in rel_data:
+    raise SystemExit(f"Release '{RELEASE_TAG}' inaccessible (HTTP {rel_resp.status_code}) : {rel_data}")
+release_id = rel_data["id"]
 
 # Supprimer l'asset existant s'il y en a un (même nom)
 assets_resp = http.get(

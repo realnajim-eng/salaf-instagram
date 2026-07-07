@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // \"\"' | grep -q 'generate_image.py' && open \"/Users/najim/Desktop/Claude Code/salaf-instagram/output.jpg\" 2>/dev/null || true",
+            "command": "jq -r '.tool_input.command // \"\"' | grep -q 'generate_image.py' && open \"/Users/najim/Desktop/Projets Claude Code/salaf-instagram/output.jpg\" 2>/dev/null || true",
             "statusMessage": "Ouverture de l'aperçu output.jpg"
           }
         ]

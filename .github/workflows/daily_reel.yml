@@ -4,14 +4,20 @@ on:
   schedule:
     # Cible : 17h19 UTC = 19h19 Paris (été/CEST ; 18h19 en hiver/CET), décalé
     # hors pile-heure. Les crons GitHub subissent des retards de charge parfois
-    # énormes (3h à 6h observés les 5-6 juillet 2026) : les entrées suivantes
-    # sont des RATTRAPAGES — le garde-fou anti-doublon ci-dessous fait que seul
-    # le premier run du jour publie, les suivants s'arrêtent en ~15s.
+    # énormes (~6h observés les 5-7 juillet 2026) : les entrées suivantes sont
+    # des RATTRAPAGES toutes les 30 min jusqu'à 21h49 UTC (23h49 Paris été) —
+    # le garde-fou anti-doublon ci-dessous fait que seul le premier run du
+    # jour publie, les suivants s'arrêtent en ~15s.
     - cron: "19 17 * * *"
     - cron: "49 17 * * *"
     - cron: "19 18 * * *"
     - cron: "49 18 * * *"
     - cron: "19 19 * * *"
+    - cron: "49 19 * * *"
+    - cron: "19 20 * * *"
+    - cron: "49 20 * * *"
+    - cron: "19 21 * * *"
+    - cron: "49 21 * * *"
   workflow_dispatch:         # déclenchement manuel depuis GitHub
 
 permissions:

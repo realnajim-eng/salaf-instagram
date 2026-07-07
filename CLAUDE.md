@@ -55,8 +55,9 @@ Deux publications indépendantes **chaque jour** (pas d'alternance) :
 
 Horaires volontairement décalés hors pile-heure (`:17`/`:19` plutôt que `:00`)
 car les crons GitHub Actions subissent des retards de charge (observé : 3h à
-6h de retard les 5-6 juillet 2026). Depuis 2026-07-07, chaque workflow a en
-plus **4 crons de rattrapage** (toutes les 30 min sur ~2h après la cible) : le
+6h de retard les 5-7 juillet 2026). Depuis 2026-07-07 (fenêtre élargie le soir
+même), chaque workflow a en plus des **crons de rattrapage toutes les 30 min
+sur ~5h30 après la cible** (post jusqu'à 22h47 Paris été, reel jusqu'à 23h49) : le
 garde-fou anti-doublon (date du dernier commit du tracker) fait que seul le
 premier run du jour publie, les suivants s'arrêtent en ~15s (runs « skip »
 normaux dans l'historique, certains peuvent apparaître « cancelled » à cause du

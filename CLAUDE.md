@@ -87,10 +87,25 @@ planificateur GitHub** garantissent la publication :
    - Recharger : `launchctl load ~/Library/LaunchAgents/com.najim.salaf-backup.plist`
    - Tester : `launchctl kickstart -k gui/$(id -u)/com.najim.salaf-backup` puis lire le log
 
-2. **Déclencheur externe (cron-job.org)** — appelle l'API `workflow_dispatch`
-   de GitHub à l'heure pile, indépendamment du Mac. Garantie maximale. Token
-   GitHub restreint (fine-grained, `Actions: read/write`, dépôt `salaf-instagram`
-   seul) stocké UNIQUEMENT dans le champ du service, jamais dans un fichier.
+2. **Déclencheur externe (cron-job.org)** — EN PLACE ET VÉRIFIÉ depuis le
+   2026-07-08 (compte `realnajim@hotmail.com`). Appelle l'API `workflow_dispatch`
+   de GitHub à l'heure pile, indépendamment du Mac (garantie maximale). Deux
+   tâches, fuseau Europe/Brussels (= Paris) :
+   - « Salaf post 17h17 » → POST `…/actions/workflows/daily_post.yml/dispatches`
+   - « Salaf reel 19h19 » → POST `…/actions/workflows/daily_reel.yml/dispatches`
+   Corps `{"ref":"main"}` ; en-têtes `Authorization: Bearer <PAT>`,
+   `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`,
+   `Content-Type: application/json`. Token GitHub restreint (fine-grained,
+   `Actions: read/write`, dépôt `salaf-instagram` seul, sans expiration) stocké
+   UNIQUEMENT dans le champ Authorization de cron-job.org — jamais dans un fichier.
+   - **Piège cron-job.org** : à la CRÉATION, son test d'URL fait un GET anonyme →
+     GitHub répond 404 → « URL invalide » qui BLOQUE l'enregistrement. Contournement :
+     créer/éditer avec le token déjà présent (le test passe alors), ou passer d'abord
+     par `https://api.github.com` puis rééditer l'URL. Le clonage d'une tâche
+     fonctionnelle (menu ACTIONS → Cloner) reprend le token et évite de le recoller.
+   - Révoquer/renouveler le token : GitHub → Settings → Developer settings →
+     Fine-grained tokens (« cron-job.org - salaf publish »), puis recoller dans
+     les 2 tâches cron-job.org.
 
 > Ne PAS ré-éditer les crons `schedule` sans raison : chaque édition peut faire
 > sauter à GitHub le cycle suivant. Le garde-fou anti-doublon rend tout

@@ -65,8 +65,10 @@ groupe `concurrency: instagram-publish` partagé qui sérialise toutes les
 publications). Les crons sont en UTC fixe → dérive d'1h en heure d'hiver (CET)
 sans ajustement.
 `daily_alternate.yml` (ancienne alternance Salaf/reel via `post_state.json`) est
-remplacé et gardé en déclenchement manuel uniquement, schedule désactivé, pour
-éviter tout double post. Secrets requis : `INSTAGRAM_ACCESS_TOKEN`,
+remplacé et **entièrement désactivé** depuis le 2026-07-08 (`gh workflow disable`,
+état `disabled_manually`) : il ne peut plus se déclencher, ni par schedule ni
+manuellement. Pour le réactiver un jour : `gh workflow enable daily_alternate.yml`
+(mais ne jamais réactiver son schedule → double post). Secrets requis : `INSTAGRAM_ACCESS_TOKEN`,
 `INSTAGRAM_USER_ID`, `INSTAGRAM_CLIENT_SECRET`, `ANTHROPIC_API_KEY`.
 
 ### Fiabilisation — horloge externe au planificateur GitHub (depuis 2026-07-08)

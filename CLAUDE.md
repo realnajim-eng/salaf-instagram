@@ -103,9 +103,12 @@ planificateur GitHub** garantissent la publication :
      créer/éditer avec le token déjà présent (le test passe alors), ou passer d'abord
      par `https://api.github.com` puis rééditer l'URL. Le clonage d'une tâche
      fonctionnelle (menu ACTIONS → Cloner) reprend le token et évite de le recoller.
-   - Révoquer/renouveler le token : GitHub → Settings → Developer settings →
-     Fine-grained tokens (« cron-job.org - salaf publish »), puis recoller dans
-     les 2 tâches cron-job.org.
+   - Token actuel : « cron-job.org - salaf publish v2 » (le v1 a été révoqué le
+     2026-07-08 après exposition à l'écran). Révoquer/renouveler : GitHub →
+     Settings → Developer settings → Fine-grained tokens, régénérer, puis
+     recoller le MÊME token dans les **2** tâches cron-job.org (ne pas en oublier
+     une : chacune a son propre en-tête Authorization) et retester chacune
+     (« Test de fonctionnement » → 204 attendu).
 
 > Ne PAS ré-éditer les crons `schedule` sans raison : chaque édition peut faire
 > sauter à GitHub le cycle suivant. Le garde-fou anti-doublon rend tout

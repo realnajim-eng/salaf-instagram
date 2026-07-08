@@ -69,6 +69,33 @@ remplacé et gardé en déclenchement manuel uniquement, schedule désactivé, p
 éviter tout double post. Secrets requis : `INSTAGRAM_ACCESS_TOKEN`,
 `INSTAGRAM_USER_ID`, `INSTAGRAM_CLIENT_SECRET`, `ANTHROPIC_API_KEY`.
 
+### Fiabilisation — horloge externe au planificateur GitHub (depuis 2026-07-08)
+Le planificateur `schedule` de GitHub est best-effort et peut sauter TOUS les
+créneaux d'un jour (le 2026-07-08 : 0 déclenchement, cron modifié la veille →
+GitHub a « oublié » le cycle suivant). Deux filets **indépendants du
+planificateur GitHub** garantissent la publication :
+
+1. **Filet macOS (`launchd`)** — `scripts/backup_trigger.sh` (copie de référence
+   versionnée). Copie **opérationnelle** exécutée : `~/.local/bin/salaf_backup_trigger.sh`
+   (hors dossier protégé macOS/TCC — `launchd` ne peut pas lire `~/Desktop`).
+   Planifié par `~/Library/LaunchAgents/com.najim.salaf-backup.plist` à 20h30 et
+   22h15 Paris. Chaque soir : si aucun run réussi du jour, déclenche
+   `gh workflow run`. Aucun secret (réutilise le `gh` du trousseau). Log :
+   `~/Library/Logs/salaf-backup.log`. Ne marche que si le Mac est allumé le soir.
+   - Après modif du script : `cp scripts/backup_trigger.sh ~/.local/bin/salaf_backup_trigger.sh`
+   - Désactiver : `launchctl unload ~/Library/LaunchAgents/com.najim.salaf-backup.plist`
+   - Recharger : `launchctl load ~/Library/LaunchAgents/com.najim.salaf-backup.plist`
+   - Tester : `launchctl kickstart -k gui/$(id -u)/com.najim.salaf-backup` puis lire le log
+
+2. **Déclencheur externe (cron-job.org)** — appelle l'API `workflow_dispatch`
+   de GitHub à l'heure pile, indépendamment du Mac. Garantie maximale. Token
+   GitHub restreint (fine-grained, `Actions: read/write`, dépôt `salaf-instagram`
+   seul) stocké UNIQUEMENT dans le champ du service, jamais dans un fichier.
+
+> Ne PAS ré-éditer les crons `schedule` sans raison : chaque édition peut faire
+> sauter à GitHub le cycle suivant. Le garde-fou anti-doublon rend tout
+> déclenchement supplémentaire (manuel, filet, externe) sans danger.
+
 ## Règles de travail (IMPORTANT)
 - **Rigueur islamique** : ne jamais inventer ni saisir de mémoire un verset, un
   hadith ou une parole du Salaf. Toujours passer par une source authentifiée

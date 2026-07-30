@@ -98,7 +98,8 @@ planificateur GitHub** garantissent la publication :
    Corps `{"ref":"main"}` ; en-têtes `Authorization: Bearer <PAT>`,
    `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`,
    `Content-Type: application/json`. Token GitHub restreint (fine-grained,
-   `Actions: read/write`, dépôt `salaf-instagram` seul, sans expiration) stocké
+   `Actions: read/write`, dépôt `un_jour_un_salaf` seul — renommé depuis
+   `salaf-instagram` le 2026-07-30, l'accès du token suit le renommage —, sans expiration) stocké
    UNIQUEMENT dans le champ Authorization de cron-job.org — jamais dans un fichier.
    - **Piège cron-job.org** : à la CRÉATION, son test d'URL fait un GET anonyme →
      GitHub répond 404 → « URL invalide » qui BLOQUE l'enregistrement. Contournement :

@@ -14,7 +14,7 @@
 
 set -euo pipefail
 
-REPO="realnajim-eng/salaf-instagram"
+REPO="realnajim-eng/un_jour_un_salaf"
 GH="/Users/najim/.local/bin/gh"
 export GH_PAGER=""
 

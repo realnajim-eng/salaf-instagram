@@ -10,7 +10,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from nacl import encoding, public
 
-REPO = "realnajim-eng/salaf-instagram"
+REPO = "realnajim-eng/un_jour_un_salaf"
 
 
 def make_session():
